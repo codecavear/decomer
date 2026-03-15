@@ -22,28 +22,30 @@ export default defineNuxtConfig({
         lang: 'es'
       },
       title: 'DeComer',
-      titleTemplate: '%s - DeComer',
+      titleTemplate: '%s | DeComer',
       meta: [
-        { name: 'description', content: 'Crea tu tienda vegetariana o vegana. Plataforma para emprendedores plant-based.' },
+        { name: 'description', content: 'Viandas saludables, cocinadas hoy, en tu puerta mañana. Sin congelar. Suscripción semanal o pedido único. Delivery en Córdoba Capital.' },
         { name: 'theme-color', content: '#22c55e' },
-        { property: 'og:title', content: 'DeComer - Viandas saludables por suscripcion' },
-        { property: 'og:description', content: 'Plataforma para crear y gestionar tu tienda vegetariana o vegana.' },
-        { property: 'og:image', content: 'https://decomer.codecave.ar/og-image.png' },
+        { property: 'og:site_name', content: 'DeComer' },
+        { property: 'og:title', content: 'DeComer — Viandas frescas, nunca congeladas' },
+        { property: 'og:description', content: 'Comes bien, nosotros cocinamos. Viandas saludables con delivery en Córdoba. Suscribite o pedí cuando quieras.' },
+        { property: 'og:image', content: 'https://decomer.com.ar/og-image.jpg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://decomer.codecave.ar' },
+        { property: 'og:url', content: 'https://decomer.com.ar' },
+        { property: 'og:locale', content: 'es_AR' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'DeComer - Viandas saludables por suscripcion' },
-        { name: 'twitter:description', content: 'Plataforma para emprendedores plant-based.' },
-        { name: 'twitter:image', content: 'https://decomer.codecave.ar/og-image.png' }
+        { name: 'twitter:title', content: 'DeComer — Viandas frescas por suscripción' },
+        { name: 'twitter:description', content: 'Comida real, cocinada hoy, en tu puerta mañana. Sin congelar. Córdoba Capital.' },
+        { name: 'twitter:image', content: 'https://decomer.com.ar/og-image.jpg' }
       ],
       link: [
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'canonical', href: 'https://decomer.codecave.ar' }
+        { rel: 'canonical', href: 'https://decomer.com.ar' }
       ],
       script: [
         {
@@ -58,7 +60,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   site: {
-    url: 'https://decomer.codecave.ar'
+    url: 'https://decomer.com.ar'
   },
 
   runtimeConfig: {
@@ -75,13 +77,12 @@ export default defineNuxtConfig({
       }
     },
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://decomer.codecave.ar',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://decomer.com.ar',
       googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY
     }
   },
 
   routeRules: {
-    // Pages that require session - disable prerender
     '/panel/**': { prerender: false },
     '/carrito': { prerender: false },
     '/favoritos': { prerender: false },
