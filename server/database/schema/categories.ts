@@ -2,7 +2,7 @@ import { pgTable, uuid, text, timestamp, primaryKey, index, uniqueIndex } from '
 import { relations } from 'drizzle-orm'
 import { stores } from './stores'
 
-export const categories = pgTable('vegy_categories', {
+export const categories = pgTable('decomer_categories', {
   id: uuid('id').defaultRandom().primaryKey(),
   name: text('name').notNull(),
   slug: text('slug').notNull(),
@@ -15,7 +15,7 @@ export const categories = pgTable('vegy_categories', {
   index('categories_parent_idx').on(table.parentId)
 ])
 
-export const storeCategories = pgTable('vegy_store_categories', {
+export const storeCategories = pgTable('decomer_store_categories', {
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   categoryId: uuid('category_id').notNull().references(() => categories.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow().notNull()

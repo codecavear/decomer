@@ -21,29 +21,29 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'es'
       },
-      title: 'Vegy',
-      titleTemplate: '%s - Vegy',
+      title: 'DeComer',
+      titleTemplate: '%s - DeComer',
       meta: [
         { name: 'description', content: 'Crea tu tienda vegetariana o vegana. Plataforma para emprendedores plant-based.' },
         { name: 'theme-color', content: '#22c55e' },
-        { property: 'og:title', content: 'Vegy - Crea tu tienda vegana' },
+        { property: 'og:title', content: 'DeComer - Viandas saludables por suscripcion' },
         { property: 'og:description', content: 'Plataforma para crear y gestionar tu tienda vegetariana o vegana.' },
-        { property: 'og:image', content: 'https://vegy.ar/og-image.png' },
+        { property: 'og:image', content: 'https://decomer.codecave.ar/og-image.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://vegy.ar' },
+        { property: 'og:url', content: 'https://decomer.codecave.ar' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Vegy - Crea tu tienda vegana' },
+        { name: 'twitter:title', content: 'DeComer - Viandas saludables por suscripcion' },
         { name: 'twitter:description', content: 'Plataforma para emprendedores plant-based.' },
-        { name: 'twitter:image', content: 'https://vegy.ar/og-image.png' }
+        { name: 'twitter:image', content: 'https://decomer.codecave.ar/og-image.png' }
       ],
       link: [
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96x96.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'canonical', href: 'https://vegy.ar' }
+        { rel: 'canonical', href: 'https://decomer.codecave.ar' }
       ],
       script: [
         {
@@ -58,7 +58,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   site: {
-    url: 'https://vegy.ar'
+    url: 'https://decomer.codecave.ar'
   },
 
   runtimeConfig: {
@@ -75,7 +75,7 @@ export default defineNuxtConfig({
       }
     },
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://vegy.ar',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://decomer.codecave.ar',
       googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY
     }
   },

@@ -3,7 +3,7 @@ import { setup, $fetch } from '@nuxt/test-utils/e2e'
 
 /**
  * E2E Tests - Home Page
- * COD-VEGY-118: Basic E2E tests for Vegy
+ * COD-VEGY-118: Basic E2E tests for DeComer
  */
 
 describe('Home Page E2E', async () => {
@@ -22,8 +22,8 @@ describe('Home Page E2E', async () => {
   test('homepage contains expected elements', async () => {
     const html = await $fetch('/')
 
-    // Should have Vegy branding/content
-    expect(html.toLowerCase()).toMatch(/vegy|tienda|vegetariano|vegano/i)
+    // Should have DeComer branding/content
+    expect(html.toLowerCase()).toMatch(/decomer|tienda|vegetariano|vegano/i)
   })
 
   test('homepage has meta tags for SEO', async () => {

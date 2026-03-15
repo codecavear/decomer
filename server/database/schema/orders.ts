@@ -8,7 +8,7 @@ export const orderStatusEnum = ['pending', 'confirmed', 'preparing', 'ready', 'd
 export const deliveryTypeEnum = ['pickup', 'delivery'] as const
 export const paymentStatusEnum = ['pending', 'paid', 'failed', 'refunded'] as const
 
-export const orders = pgTable('vegy_orders', {
+export const orders = pgTable('decomer_orders', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
@@ -28,7 +28,7 @@ export const orders = pgTable('vegy_orders', {
   index('orders_created_idx').on(table.createdAt)
 ])
 
-export const orderItems = pgTable('vegy_order_items', {
+export const orderItems = pgTable('decomer_order_items', {
   id: uuid('id').defaultRandom().primaryKey(),
   orderId: uuid('order_id').notNull().references(() => orders.id, { onDelete: 'cascade' }),
   productId: uuid('product_id').notNull().references(() => products.id, { onDelete: 'restrict' }),

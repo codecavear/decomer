@@ -57,7 +57,7 @@ const userMenuItems = computed(() => [[
             name="i-lucide-leaf"
             class="w-6 h-6 text-primary"
           />
-          Vegy
+          DeComer
         </NuxtLink>
       </template>
 

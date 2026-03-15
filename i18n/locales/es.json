@@ -19,7 +19,7 @@
     "titleHighlight": "Veganas y Vegetarianas",
     "description": "Encontra las mejores tiendas veganas y vegetarianas cerca tuyo. Pedi online, descubri nuevos productos y apoya el estilo de vida plant-based en Argentina.",
     "seo": {
-      "title": "Vegy - Descubri Tiendas Veganas y Vegetarianas",
+      "title": "DeComer - Descubri Tiendas Veganas y Vegetarianas",
       "description": "Crea y gestiona tu tienda vegetariana o vegana. Plataforma para emprendedores plant-based en Argentina."
     },
     "hero": {
@@ -51,7 +51,7 @@
     "cta": {
       "owner": {
         "title": "Tenes una tienda?",
-        "description": "Suma tu negocio a Vegy y llega a miles de personas interesadas en productos veganos y vegetarianos",
+        "description": "Suma tu negocio a DeComer y llega a miles de personas interesadas en productos veganos y vegetarianos",
         "button": "Crear Tienda"
       }
     },
@@ -81,10 +81,10 @@
     },
     "testimonials": {
       "title": "Lo que dicen nuestros vendedores",
-      "description": "Historias reales de emprendedores que crecieron con Vegy",
+      "description": "Historias reales de emprendedores que crecieron con DeComer",
       "items": [
         {
-          "quote": "Antes perdía horas respondiendo WhatsApp. Ahora mis clientes piden directo desde Vegy y yo me enfoco en cocinar. Las ventas crecieron un 40% en 3 meses.",
+          "quote": "Antes perdía horas respondiendo WhatsApp. Ahora mis clientes piden directo desde DeComer y yo me enfoco en cocinar. Las ventas crecieron un 40% en 3 meses.",
           "name": "Mariana Gutiérrez",
           "role": "Fundadora",
           "store": "Tierra Verde Deli",
@@ -147,7 +147,7 @@
   },
   "pricing": {
     "title": "Sin comisiones, sin sorpresas",
-    "description": "Vegy no cobra comisiones por venta. Paga solo una suscripcion fija y quédate con el 100% de tus ganancias.",
+    "description": "DeComer no cobra comisiones por venta. Paga solo una suscripcion fija y quédate con el 100% de tus ganancias.",
     "seo": {
       "title": "Precios",
       "description": "Planes simples sin comisiones. Crea tu tienda online y quédate con el 100% de tus ventas."
@@ -201,14 +201,14 @@
         ]
       }
     },
-    "trustedBy": "Tiendas que confían en Vegy",
+    "trustedBy": "Tiendas que confían en DeComer",
     "faq": {
       "title": "Preguntas frecuentes",
       "description": "Todo lo que necesitas saber sobre nuestros planes.",
       "items": [
         {
           "label": "Realmente no cobran comisiones?",
-          "content": "Correcto. Vegy no cobra comisión por venta. Solo pagas la suscripción mensual o anual y te quedas con el 100% de tus ventas."
+          "content": "Correcto. DeComer no cobra comisión por venta. Solo pagas la suscripción mensual o anual y te quedas con el 100% de tus ventas."
         },
         {
           "label": "Puedo empezar gratis?",

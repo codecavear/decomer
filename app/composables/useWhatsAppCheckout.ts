@@ -133,7 +133,7 @@ export function useWhatsAppCheckout() {
     // Footer
     lines.push('')
     lines.push('---')
-    lines.push('_Pedido desde Vegy_')
+    lines.push('_Pedido desde DeComer_')
 
     return lines.join('\n')
   }

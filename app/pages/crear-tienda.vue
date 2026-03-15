@@ -9,7 +9,7 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Crear Tienda',
-  description: 'Crea tu tienda vegana o vegetariana en Vegy'
+  description: 'Crea tu tienda vegana o vegetariana en DeComer'
 })
 
 const router = useRouter()

@@ -7,7 +7,7 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Carrito',
-  description: 'Tu carrito de compras en Vegy.',
+  description: 'Tu carrito de compras en DeComer.',
   robots: 'noindex'
 })
 

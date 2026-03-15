@@ -4,7 +4,7 @@ const route = useRoute()
 const runtimeConfig = useRuntimeConfig()
 
 const color = computed(() => colorMode.value === 'dark' ? '#020618' : 'white')
-const siteUrl = runtimeConfig.public.siteUrl || 'https://vegy.ar'
+const siteUrl = runtimeConfig.public.siteUrl || 'https://decomer.ar'
 const canonicalUrl = computed(() => `${siteUrl}${route.path}`)
 
 useHead({
@@ -20,7 +20,7 @@ useHead({
 })
 
 useSeoMeta({
-  titleTemplate: '%s - Vegy',
+  titleTemplate: '%s - DeComer',
   ogImage: '/og-image.png',
   twitterImage: '/og-image.png',
   twitterCard: 'summary_large_image'

@@ -6,7 +6,7 @@ export const storeStatusEnum = ['pending', 'active', 'suspended'] as const
 export const storeTypeEnum = ['catalog', 'pickup', 'delivery', 'pickup_delivery'] as const
 export const contactTypeEnum = ['phone', 'whatsapp', 'email', 'instagram', 'facebook', 'twitter', 'website'] as const
 
-export const stores = pgTable('vegy_stores', {
+export const stores = pgTable('decomer_stores', {
   id: uuid('id').defaultRandom().primaryKey(),
   ownerId: uuid('owner_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   name: text('name').notNull(),
@@ -27,7 +27,7 @@ export const stores = pgTable('vegy_stores', {
   index('stores_type_idx').on(table.type)
 ])
 
-export const storeLocations = pgTable('vegy_store_locations', {
+export const storeLocations = pgTable('decomer_store_locations', {
   id: uuid('id').defaultRandom().primaryKey(),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   address: text('address').notNull(),
@@ -45,7 +45,7 @@ export const storeLocations = pgTable('vegy_store_locations', {
   index('store_locations_coordinates_idx').on(table.latitude, table.longitude)
 ])
 
-export const storeSchedules = pgTable('vegy_store_schedules', {
+export const storeSchedules = pgTable('decomer_store_schedules', {
   id: uuid('id').defaultRandom().primaryKey(),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   dayOfWeek: integer('day_of_week').notNull(), // 0-6 (Sunday to Saturday)
@@ -58,7 +58,7 @@ export const storeSchedules = pgTable('vegy_store_schedules', {
   index('store_schedules_store_idx').on(table.storeId)
 ])
 
-export const storeContacts = pgTable('vegy_store_contacts', {
+export const storeContacts = pgTable('decomer_store_contacts', {
   id: uuid('id').defaultRandom().primaryKey(),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   type: text('type', { enum: contactTypeEnum }).notNull(),

@@ -7,7 +7,7 @@ import { orders } from './orders'
 export const paymentStatusEnum = ['pending', 'approved', 'rejected', 'cancelled', 'refunded'] as const
 export const paymentProviderEnum = ['mercadopago', 'cash', 'transfer'] as const
 
-export const payments = pgTable('vegy_payments', {
+export const payments = pgTable('decomer_payments', {
   id: uuid('id').defaultRandom().primaryKey(),
   orderId: uuid('order_id').notNull().references(() => orders.id, { onDelete: 'cascade' }),
   userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),

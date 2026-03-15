@@ -7,7 +7,7 @@ defineProps<{
 
 const { data: stores } = await useFetch('/api/stores/my-stores')
 
-const selectedStore = useCookie<string>('vegy-selected-store')
+const selectedStore = useCookie<string>('decomer-selected-store')
 
 // Auto-select first store if none selected
 watch(stores, (val) => {

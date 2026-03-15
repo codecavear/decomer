@@ -8,7 +8,7 @@ const { t } = useI18n()
   <UFooter>
     <template #left>
       <p class="text-muted text-sm">
-        © {{ new Date().getFullYear() }} Vegy · Hecho por <a
+        © {{ new Date().getFullYear() }} DeComer · Hecho por <a
           href="https://codecave.ar/"
           target="_blank"
           class="text-primary hover:underline"

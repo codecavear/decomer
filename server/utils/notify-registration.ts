@@ -1,5 +1,5 @@
 /**
- * Notify Discord when a new user registers in Vegy.
+ * Notify Discord when a new user registers in DeComer.
  */
 export async function notifyNewUser(user: {
   email: string
@@ -28,7 +28,7 @@ async function notifyDiscord(user: {
   const tierLine = user.coupon ? `${plan} (cupón: ${user.coupon})` : plan
   const name = user.name || 'Sin nombre'
 
-  const content = `🆕 **Vegy** — ${name} (${user.email})\n🔑 ${user.provider} · **${tierLine}**`
+  const content = `🆕 **DeComer** — ${name} (${user.email})\n🔑 ${user.provider} · **${tierLine}**`
 
   try {
     await fetch(`https://discord.com/api/v10/channels/${channelId}/messages`, {

@@ -7,7 +7,7 @@ export const subscriptionStatusEnum = ['active', 'cancelled', 'past_due', 'trial
 export const billingCycleEnum = ['monthly', 'yearly'] as const
 
 // Subscription Plans - defines available plans
-export const subscriptionPlans = pgTable('vegy_subscription_plans', {
+export const subscriptionPlans = pgTable('decomer_subscription_plans', {
   id: uuid('id').defaultRandom().primaryKey(),
   name: text('name').notNull(), // Free, Pro, Business
   slug: text('slug').notNull().unique(), // free, pro, business
@@ -31,7 +31,7 @@ export const subscriptionPlans = pgTable('vegy_subscription_plans', {
 })
 
 // Store Subscriptions - tracks which stores have which plan
-export const storeSubscriptions = pgTable('vegy_store_subscriptions', {
+export const storeSubscriptions = pgTable('decomer_store_subscriptions', {
   id: uuid('id').defaultRandom().primaryKey(),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   planId: uuid('plan_id').notNull().references(() => subscriptionPlans.id),

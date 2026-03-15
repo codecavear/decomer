@@ -148,7 +148,7 @@ const getStatusLabel = (status: string) => {
               </h2>
             </div>
             <p class="text-lg text-gray-600 dark:text-gray-300">
-              Empieza a vender tus productos veganos y vegetarianos en Vegy.
+              Empieza a vender tus productos veganos y vegetarianos en DeComer.
               Llega a clientes que buscan opciones sustentables y saludables.
             </p>
             <div class="flex flex-wrap gap-3 pt-2">

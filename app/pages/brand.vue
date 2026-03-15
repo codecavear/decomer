@@ -5,10 +5,10 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Brand Kit',
-  description: 'Recursos de marca, logos, colores y tipografía de Vegy.'
+  description: 'Recursos de marca, logos, colores y tipografía de DeComer.'
 })
 
-const brandName = 'Vegy'
+const brandName = 'DeComer'
 const primaryColor = '#22c55e'
 const primaryColorName = 'green'
 const bgColor = '#0a0a0a'
@@ -82,7 +82,7 @@ const fonts: FontItem[] = [
   {
     name: fontTitle,
     usage: 'Títulos, headings',
-    sample: 'Vegy - Tiendas veganas cerca tuyo'
+    sample: 'DeComer - Tiendas veganas cerca tuyo'
   },
   {
     name: fontSubtitle,

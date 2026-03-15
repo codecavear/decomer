@@ -4,7 +4,7 @@ const toast = useToast()
 
 useSeoMeta({
   title: 'Demo | La Huerta Verde',
-  description: 'Probá cómo funciona Vegy con nuestra tienda de ejemplo. Explorá productos orgánicos y veganos sin registrarte.'
+  description: 'Probá cómo funciona DeComer con nuestra tienda de ejemplo. Explorá productos orgánicos y veganos sin registrarte.'
 })
 
 // Demo store data - con WhatsApp para probar el flujo
@@ -150,7 +150,7 @@ ${items}
 ${customerName.value ? `Nombre: ${customerName.value}` : ''}
 ${customerNotes.value ? `Notas: ${customerNotes.value}` : ''}
 
-Enviado desde Vegy 🌱`
+Enviado desde DeComer 🌱`
 
   return encodeURIComponent(message.trim())
 }
@@ -214,7 +214,7 @@ const trustBadges = [
             name="i-lucide-sparkles"
             class="size-4 animate-pulse"
           />
-          <span><strong>Modo Demo</strong> — Probá cómo funciona Vegy sin compromiso</span>
+          <span><strong>Modo Demo</strong> — Probá cómo funciona DeComer sin compromiso</span>
         </div>
       </UContainer>
     </div>

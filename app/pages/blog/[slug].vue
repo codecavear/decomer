@@ -35,12 +35,12 @@ useHead({
         'datePublished': post.value.date,
         'author': {
           '@type': 'Organization',
-          'name': 'Vegy'
+          'name': 'DeComer'
         },
         'publisher': {
           '@type': 'Organization',
-          'name': 'Vegy',
-          'url': 'https://vegy.ar'
+          'name': 'DeComer',
+          'url': 'https://decomer.ar'
         }
       })
     }
@@ -188,7 +188,7 @@ const { data: relatedPosts } = await useAsyncData('related-posts', () =>
                   {{ post.authors[0].name }}
                 </p>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                  Equipo Vegy
+                  Equipo DeComer
                 </p>
               </div>
             </div>
@@ -197,7 +197,7 @@ const { data: relatedPosts } = await useAsyncData('related-posts', () =>
             <div class="flex items-center gap-3">
               <span class="text-sm text-gray-500 dark:text-gray-400">Compartir:</span>
               <UButton
-                :to="`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://vegy.ar' + post.path)}`"
+                :to="`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://decomer.ar' + post.path)}`"
                 target="_blank"
                 color="neutral"
                 variant="ghost"
@@ -205,7 +205,7 @@ const { data: relatedPosts } = await useAsyncData('related-posts', () =>
                 square
               />
               <UButton
-                :to="`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent('https://vegy.ar' + post.path)}&title=${encodeURIComponent(post.title)}`"
+                :to="`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent('https://decomer.ar' + post.path)}&title=${encodeURIComponent(post.title)}`"
                 target="_blank"
                 color="neutral"
                 variant="ghost"
@@ -213,7 +213,7 @@ const { data: relatedPosts } = await useAsyncData('related-posts', () =>
                 square
               />
               <UButton
-                :to="`https://wa.me/?text=${encodeURIComponent(post.title + ' - https://vegy.ar' + post.path)}`"
+                :to="`https://wa.me/?text=${encodeURIComponent(post.title + ' - https://decomer.ar' + post.path)}`"
                 target="_blank"
                 color="neutral"
                 variant="ghost"

@@ -15,11 +15,11 @@ if (!connectionString) {
 const sql = postgres(connectionString)
 
 async function main() {
-  console.log('Checking vegy_stores...\n')
+  console.log('Checking decomer_stores...\n')
 
   const all = await sql`
     SELECT id, name, slug, status
-    FROM vegy_stores
+    FROM decomer_stores
     ORDER BY slug
   `
   console.log(`Total stores: ${all.length}`)
@@ -28,7 +28,7 @@ async function main() {
   )
 
   const cardeno = await sql`
-    SELECT * FROM vegy_stores WHERE slug = 'cardeno'
+    SELECT * FROM decomer_stores WHERE slug = 'cardeno'
   `
   console.log('\nStore with slug "cardeno":', cardeno.length ? cardeno[0] : 'NOT FOUND')
 

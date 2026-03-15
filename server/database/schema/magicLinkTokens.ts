@@ -1,6 +1,6 @@
 import { pgTable, uuid, text, timestamp, boolean } from 'drizzle-orm/pg-core'
 
-export const magicLinkTokens = pgTable('vegy_magic_link_tokens', {
+export const magicLinkTokens = pgTable('decomer_magic_link_tokens', {
   id: uuid('id').defaultRandom().primaryKey(),
   email: text('email').notNull(),
   token: text('token').unique().notNull(),

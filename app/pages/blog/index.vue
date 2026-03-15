@@ -5,7 +5,7 @@ const { data: posts } = await useAsyncData('blog-posts', () =>
 
 useSeoMeta({
   title: 'Blog - Guías para emprendedores veganos',
-  ogTitle: 'Blog Vegy - Guías para emprendedores veganos',
+  ogTitle: 'Blog DeComer - Guías para emprendedores veganos',
   description: 'Recursos, guías y consejos para crear y hacer crecer tu emprendimiento vegano en Argentina.',
   ogDescription: 'Recursos, guías y consejos para crear y hacer crecer tu emprendimiento vegano en Argentina.',
   ogImage: '/og-image.png'
@@ -18,13 +18,13 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Blog',
-        'name': 'Blog Vegy',
+        'name': 'Blog DeComer',
         'description': 'Guías para emprendedores veganos en Argentina',
-        'url': 'https://vegy.ar/blog',
+        'url': 'https://decomer.ar/blog',
         'publisher': {
           '@type': 'Organization',
-          'name': 'Vegy',
-          'url': 'https://vegy.ar'
+          'name': 'DeComer',
+          'url': 'https://decomer.ar'
         }
       })
     }
@@ -47,7 +47,7 @@ const formatDate = (date: string | Date) => {
       <UContainer class="py-16 lg:py-24">
         <div class="text-center max-w-3xl mx-auto">
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6">
-            Blog Vegy
+            Blog DeComer
           </h1>
           <p class="text-xl text-white/90 mb-8">
             Guías, consejos y recursos para emprendedores veganos en Argentina
@@ -172,7 +172,7 @@ const formatDate = (date: string | Date) => {
             ¿Tenés una tienda vegana?
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
-            Unite a Vegy y empezá a vender tus productos a una comunidad que ya está buscando lo que ofrecés.
+            Unite a DeComer y empezá a vender tus productos a una comunidad que ya está buscando lo que ofrecés.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <UButton

@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const query = getQuery(event)
-  const folderName = (query.folder as string) === 'products' ? 'vegy/products' : 'vegy/stores'
+  const folderName = (query.folder as string) === 'products' ? 'decomer/products' : 'decomer/stores'
 
   try {
     const base64 = `data:${file.type};base64,${file.data.toString('base64')}`

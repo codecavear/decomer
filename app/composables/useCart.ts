@@ -14,7 +14,7 @@ export interface Cart {
   [storeId: string]: CartStore
 }
 
-const CART_STORAGE_KEY = 'vegy_cart'
+const CART_STORAGE_KEY = 'decomer_cart'
 
 export function useCart() {
   const cart = useState<Cart>('cart', () => ({}))

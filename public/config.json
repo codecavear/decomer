@@ -1,5 +1,5 @@
 {
-  "name": "Vegy",
+  "name": "DeComer",
   "tagline": "Tiendas veganas cerca tuyo.",
   "icon": "lucide:leaf",
   "colors": {
@@ -8,6 +8,6 @@
     "text": "#ffffff",
     "textMuted": "#9ca3af"
   },
-  "output": "/root/vegy/public",
+  "output": "/root/decomer/public",
   "iconRotation": 119
 }

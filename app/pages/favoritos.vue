@@ -8,7 +8,7 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Favoritos',
-  description: 'Tus tiendas favoritas en Vegy.',
+  description: 'Tus tiendas favoritas en DeComer.',
   robots: 'noindex'
 })
 

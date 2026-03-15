@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
   })
 
   // Build magic link URL
-  const baseUrl = config.public.siteUrl || 'https://vegy.ar'
+  const baseUrl = config.public.siteUrl || 'https://decomer.ar'
   const magicLinkUrl = `${baseUrl}/api/auth/verify?token=${token}`
 
   // Check if user exists (for email personalization)
@@ -76,9 +76,9 @@ export default defineEventHandler(async (event) => {
       'Content-Type': 'application/json'
     },
     body: {
-      from: 'Vegy <vegy@codecave.ar>',
+      from: 'DeComer <decomer@codecave.ar>',
       to: normalizedEmail,
-      subject: 'Tu link de acceso a Vegy 🌱',
+      subject: 'Tu link de acceso a DeComer 🌱',
       html: `
 <!DOCTYPE html>
 <html>
@@ -89,7 +89,7 @@ export default defineEventHandler(async (event) => {
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 40px 20px;">
   <div style="max-width: 480px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
     <div style="text-align: center; margin-bottom: 32px;">
-      <h1 style="color: #22c55e; font-size: 28px; margin: 0;">🌱 Vegy</h1>
+      <h1 style="color: #22c55e; font-size: 28px; margin: 0;">🌱 DeComer</h1>
     </div>
     
     <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
@@ -97,12 +97,12 @@ export default defineEventHandler(async (event) => {
     </p>
     
     <p style="color: #374151; font-size: 16px; line-height: 1.6; margin-bottom: 32px;">
-      Hacé click en el botón para acceder a tu cuenta de Vegy:
+      Hacé click en el botón para acceder a tu cuenta de DeComer:
     </p>
     
     <div style="text-align: center; margin-bottom: 32px;">
       <a href="${magicLinkUrl}" style="display: inline-block; background: #22c55e; color: white; font-size: 16px; font-weight: 600; text-decoration: none; padding: 14px 32px; border-radius: 8px;">
-        Acceder a Vegy
+        Acceder a DeComer
       </a>
     </div>
     
@@ -112,7 +112,7 @@ export default defineEventHandler(async (event) => {
     
     <p style="color: #9ca3af; font-size: 12px; line-height: 1.5;">
       Si no solicitaste este email, podés ignorarlo.<br>
-      <a href="${baseUrl}" style="color: #22c55e;">vegy.ar</a>
+      <a href="${baseUrl}" style="color: #22c55e;">decomer.ar</a>
     </p>
   </div>
 </body>

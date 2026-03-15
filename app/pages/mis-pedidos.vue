@@ -8,7 +8,7 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Mis Pedidos',
-  description: 'Historial de pedidos en Vegy.',
+  description: 'Historial de pedidos en DeComer.',
   robots: 'noindex'
 })
 

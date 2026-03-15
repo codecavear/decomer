@@ -10,7 +10,7 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Iniciar Sesión',
-  description: 'Accedé a tu cuenta de Vegy para gestionar tu tienda vegana o vegetariana. Login seguro con Google o email.'
+  description: 'Accedé a tu cuenta de DeComer para gestionar tu tienda vegana o vegetariana. Login seguro con Google o email.'
 })
 
 // Store redirect URL in cookie for OAuth callback to use

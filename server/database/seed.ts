@@ -129,14 +129,14 @@ async function seed() {
     console.log('👤 Seeding test user...')
     const [testUser] = await db.insert(schema.users).values({
       googleId: 'demo-seed-user-001',
-      email: 'demo@vegy.ar',
+      email: 'demo@decomer.ar',
       name: 'Demo User',
       role: 'store_owner'
     }).onConflictDoNothing().returning()
 
     // Get user ID (either new or existing)
     const userId = testUser?.id || (await db.query.users.findFirst({
-      where: (users, { eq }) => eq(users.email, 'demo@vegy.ar')
+      where: (users, { eq }) => eq(users.email, 'demo@decomer.ar')
     }))?.id
 
     if (!userId) {

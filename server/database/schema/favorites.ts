@@ -3,7 +3,7 @@ import { relations } from 'drizzle-orm'
 import { users } from './users'
 import { stores } from './stores'
 
-export const favorites = pgTable('vegy_favorites', {
+export const favorites = pgTable('decomer_favorites', {
   userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow().notNull()

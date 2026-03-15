@@ -4,8 +4,8 @@
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.vegy_categories": {
-      "name": "vegy_categories",
+    "public.decomer_categories": {
+      "name": "decomer_categories",
       "schema": "",
       "columns": {
         "id": {
@@ -93,8 +93,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_store_categories": {
-      "name": "vegy_store_categories",
+    "public.decomer_store_categories": {
+      "name": "decomer_store_categories",
       "schema": "",
       "columns": {
         "store_id": {
@@ -135,10 +135,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_store_categories_store_id_vegy_stores_id_fk": {
-          "name": "vegy_store_categories_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_store_categories",
-          "tableTo": "vegy_stores",
+        "decomer_store_categories_store_id_decomer_stores_id_fk": {
+          "name": "decomer_store_categories_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_store_categories",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -148,10 +148,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_store_categories_category_id_vegy_categories_id_fk": {
-          "name": "vegy_store_categories_category_id_vegy_categories_id_fk",
-          "tableFrom": "vegy_store_categories",
-          "tableTo": "vegy_categories",
+        "decomer_store_categories_category_id_decomer_categories_id_fk": {
+          "name": "decomer_store_categories_category_id_decomer_categories_id_fk",
+          "tableFrom": "decomer_store_categories",
+          "tableTo": "decomer_categories",
           "columnsFrom": [
             "category_id"
           ],
@@ -163,8 +163,8 @@
         }
       },
       "compositePrimaryKeys": {
-        "vegy_store_categories_store_id_category_id_pk": {
-          "name": "vegy_store_categories_store_id_category_id_pk",
+        "decomer_store_categories_store_id_category_id_pk": {
+          "name": "decomer_store_categories_store_id_category_id_pk",
           "columns": [
             "store_id",
             "category_id"
@@ -176,8 +176,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_favorites": {
-      "name": "vegy_favorites",
+    "public.decomer_favorites": {
+      "name": "decomer_favorites",
       "schema": "",
       "columns": {
         "user_id": {
@@ -218,10 +218,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_favorites_user_id_vegy_users_id_fk": {
-          "name": "vegy_favorites_user_id_vegy_users_id_fk",
-          "tableFrom": "vegy_favorites",
-          "tableTo": "vegy_users",
+        "decomer_favorites_user_id_decomer_users_id_fk": {
+          "name": "decomer_favorites_user_id_decomer_users_id_fk",
+          "tableFrom": "decomer_favorites",
+          "tableTo": "decomer_users",
           "columnsFrom": [
             "user_id"
           ],
@@ -231,10 +231,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_favorites_store_id_vegy_stores_id_fk": {
-          "name": "vegy_favorites_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_favorites",
-          "tableTo": "vegy_stores",
+        "decomer_favorites_store_id_decomer_stores_id_fk": {
+          "name": "decomer_favorites_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_favorites",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -246,8 +246,8 @@
         }
       },
       "compositePrimaryKeys": {
-        "vegy_favorites_user_id_store_id_pk": {
-          "name": "vegy_favorites_user_id_store_id_pk",
+        "decomer_favorites_user_id_store_id_pk": {
+          "name": "decomer_favorites_user_id_store_id_pk",
           "columns": [
             "user_id",
             "store_id"
@@ -259,8 +259,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_users": {
-      "name": "vegy_users",
+    "public.decomer_users": {
+      "name": "decomer_users",
       "schema": "",
       "columns": {
         "id": {
@@ -320,15 +320,15 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "vegy_users_google_id_unique": {
-          "name": "vegy_users_google_id_unique",
+        "decomer_users_google_id_unique": {
+          "name": "decomer_users_google_id_unique",
           "nullsNotDistinct": false,
           "columns": [
             "google_id"
           ]
         },
-        "vegy_users_email_unique": {
-          "name": "vegy_users_email_unique",
+        "decomer_users_email_unique": {
+          "name": "decomer_users_email_unique",
           "nullsNotDistinct": false,
           "columns": [
             "email"
@@ -339,8 +339,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_store_contacts": {
-      "name": "vegy_store_contacts",
+    "public.decomer_store_contacts": {
+      "name": "decomer_store_contacts",
       "schema": "",
       "columns": {
         "id": {
@@ -408,10 +408,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_store_contacts_store_id_vegy_stores_id_fk": {
-          "name": "vegy_store_contacts_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_store_contacts",
-          "tableTo": "vegy_stores",
+        "decomer_store_contacts_store_id_decomer_stores_id_fk": {
+          "name": "decomer_store_contacts_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_store_contacts",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -428,8 +428,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_store_locations": {
-      "name": "vegy_store_locations",
+    "public.decomer_store_locations": {
+      "name": "decomer_store_locations",
       "schema": "",
       "columns": {
         "id": {
@@ -548,10 +548,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_store_locations_store_id_vegy_stores_id_fk": {
-          "name": "vegy_store_locations_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_store_locations",
-          "tableTo": "vegy_stores",
+        "decomer_store_locations_store_id_decomer_stores_id_fk": {
+          "name": "decomer_store_locations_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_store_locations",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -568,8 +568,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_store_schedules": {
-      "name": "vegy_store_schedules",
+    "public.decomer_store_schedules": {
+      "name": "decomer_store_schedules",
       "schema": "",
       "columns": {
         "id": {
@@ -643,10 +643,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_store_schedules_store_id_vegy_stores_id_fk": {
-          "name": "vegy_store_schedules_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_store_schedules",
-          "tableTo": "vegy_stores",
+        "decomer_store_schedules_store_id_decomer_stores_id_fk": {
+          "name": "decomer_store_schedules_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_store_schedules",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -663,8 +663,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_stores": {
-      "name": "vegy_stores",
+    "public.decomer_stores": {
+      "name": "decomer_stores",
       "schema": "",
       "columns": {
         "id": {
@@ -814,10 +814,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_stores_owner_id_vegy_users_id_fk": {
-          "name": "vegy_stores_owner_id_vegy_users_id_fk",
-          "tableFrom": "vegy_stores",
-          "tableTo": "vegy_users",
+        "decomer_stores_owner_id_decomer_users_id_fk": {
+          "name": "decomer_stores_owner_id_decomer_users_id_fk",
+          "tableFrom": "decomer_stores",
+          "tableTo": "decomer_users",
           "columnsFrom": [
             "owner_id"
           ],
@@ -834,8 +834,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_products": {
-      "name": "vegy_products",
+    "public.decomer_products": {
+      "name": "decomer_products",
       "schema": "",
       "columns": {
         "id": {
@@ -949,10 +949,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_products_store_id_vegy_stores_id_fk": {
-          "name": "vegy_products_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_products",
-          "tableTo": "vegy_stores",
+        "decomer_products_store_id_decomer_stores_id_fk": {
+          "name": "decomer_products_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_products",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -969,8 +969,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_reviews": {
-      "name": "vegy_reviews",
+    "public.decomer_reviews": {
+      "name": "decomer_reviews",
       "schema": "",
       "columns": {
         "id": {
@@ -1074,10 +1074,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_reviews_user_id_vegy_users_id_fk": {
-          "name": "vegy_reviews_user_id_vegy_users_id_fk",
-          "tableFrom": "vegy_reviews",
-          "tableTo": "vegy_users",
+        "decomer_reviews_user_id_decomer_users_id_fk": {
+          "name": "decomer_reviews_user_id_decomer_users_id_fk",
+          "tableFrom": "decomer_reviews",
+          "tableTo": "decomer_users",
           "columnsFrom": [
             "user_id"
           ],
@@ -1087,10 +1087,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_reviews_store_id_vegy_stores_id_fk": {
-          "name": "vegy_reviews_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_reviews",
-          "tableTo": "vegy_stores",
+        "decomer_reviews_store_id_decomer_stores_id_fk": {
+          "name": "decomer_reviews_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_reviews",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -1107,8 +1107,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_order_items": {
-      "name": "vegy_order_items",
+    "public.decomer_order_items": {
+      "name": "decomer_order_items",
       "schema": "",
       "columns": {
         "id": {
@@ -1189,10 +1189,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_order_items_order_id_vegy_orders_id_fk": {
-          "name": "vegy_order_items_order_id_vegy_orders_id_fk",
-          "tableFrom": "vegy_order_items",
-          "tableTo": "vegy_orders",
+        "decomer_order_items_order_id_decomer_orders_id_fk": {
+          "name": "decomer_order_items_order_id_decomer_orders_id_fk",
+          "tableFrom": "decomer_order_items",
+          "tableTo": "decomer_orders",
           "columnsFrom": [
             "order_id"
           ],
@@ -1202,10 +1202,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_order_items_product_id_vegy_products_id_fk": {
-          "name": "vegy_order_items_product_id_vegy_products_id_fk",
-          "tableFrom": "vegy_order_items",
-          "tableTo": "vegy_products",
+        "decomer_order_items_product_id_decomer_products_id_fk": {
+          "name": "decomer_order_items_product_id_decomer_products_id_fk",
+          "tableFrom": "decomer_order_items",
+          "tableTo": "decomer_products",
           "columnsFrom": [
             "product_id"
           ],
@@ -1222,8 +1222,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_orders": {
-      "name": "vegy_orders",
+    "public.decomer_orders": {
+      "name": "decomer_orders",
       "schema": "",
       "columns": {
         "id": {
@@ -1354,10 +1354,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_orders_user_id_vegy_users_id_fk": {
-          "name": "vegy_orders_user_id_vegy_users_id_fk",
-          "tableFrom": "vegy_orders",
-          "tableTo": "vegy_users",
+        "decomer_orders_user_id_decomer_users_id_fk": {
+          "name": "decomer_orders_user_id_decomer_users_id_fk",
+          "tableFrom": "decomer_orders",
+          "tableTo": "decomer_users",
           "columnsFrom": [
             "user_id"
           ],
@@ -1367,10 +1367,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_orders_store_id_vegy_stores_id_fk": {
-          "name": "vegy_orders_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_orders",
-          "tableTo": "vegy_stores",
+        "decomer_orders_store_id_decomer_stores_id_fk": {
+          "name": "decomer_orders_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_orders",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -1387,8 +1387,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_store_subscriptions": {
-      "name": "vegy_store_subscriptions",
+    "public.decomer_store_subscriptions": {
+      "name": "decomer_store_subscriptions",
       "schema": "",
       "columns": {
         "id": {
@@ -1530,10 +1530,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_store_subscriptions_store_id_vegy_stores_id_fk": {
-          "name": "vegy_store_subscriptions_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_store_subscriptions",
-          "tableTo": "vegy_stores",
+        "decomer_store_subscriptions_store_id_decomer_stores_id_fk": {
+          "name": "decomer_store_subscriptions_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_store_subscriptions",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -1543,10 +1543,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_store_subscriptions_plan_id_vegy_subscription_plans_id_fk": {
-          "name": "vegy_store_subscriptions_plan_id_vegy_subscription_plans_id_fk",
-          "tableFrom": "vegy_store_subscriptions",
-          "tableTo": "vegy_subscription_plans",
+        "decomer_store_subscriptions_plan_id_decomer_subscription_plans_id_fk": {
+          "name": "decomer_store_subscriptions_plan_id_decomer_subscription_plans_id_fk",
+          "tableFrom": "decomer_store_subscriptions",
+          "tableTo": "decomer_subscription_plans",
           "columnsFrom": [
             "plan_id"
           ],
@@ -1563,8 +1563,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_subscription_plans": {
-      "name": "vegy_subscription_plans",
+    "public.decomer_subscription_plans": {
+      "name": "decomer_subscription_plans",
       "schema": "",
       "columns": {
         "id": {
@@ -1664,8 +1664,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "vegy_subscription_plans_slug_unique": {
-          "name": "vegy_subscription_plans_slug_unique",
+        "decomer_subscription_plans_slug_unique": {
+          "name": "decomer_subscription_plans_slug_unique",
           "nullsNotDistinct": false,
           "columns": [
             "slug"
@@ -1676,8 +1676,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_store_products": {
-      "name": "vegy_store_products",
+    "public.decomer_store_products": {
+      "name": "decomer_store_products",
       "schema": "",
       "columns": {
         "product_id": {
@@ -1760,10 +1760,10 @@
         }
       },
       "foreignKeys": {
-        "vegy_store_products_product_id_vegy_products_id_fk": {
-          "name": "vegy_store_products_product_id_vegy_products_id_fk",
-          "tableFrom": "vegy_store_products",
-          "tableTo": "vegy_products",
+        "decomer_store_products_product_id_decomer_products_id_fk": {
+          "name": "decomer_store_products_product_id_decomer_products_id_fk",
+          "tableFrom": "decomer_store_products",
+          "tableTo": "decomer_products",
           "columnsFrom": [
             "product_id"
           ],
@@ -1773,10 +1773,10 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "vegy_store_products_store_id_vegy_stores_id_fk": {
-          "name": "vegy_store_products_store_id_vegy_stores_id_fk",
-          "tableFrom": "vegy_store_products",
-          "tableTo": "vegy_stores",
+        "decomer_store_products_store_id_decomer_stores_id_fk": {
+          "name": "decomer_store_products_store_id_decomer_stores_id_fk",
+          "tableFrom": "decomer_store_products",
+          "tableTo": "decomer_stores",
           "columnsFrom": [
             "store_id"
           ],
@@ -1788,8 +1788,8 @@
         }
       },
       "compositePrimaryKeys": {
-        "vegy_store_products_product_id_store_id_pk": {
-          "name": "vegy_store_products_product_id_store_id_pk",
+        "decomer_store_products_product_id_store_id_pk": {
+          "name": "decomer_store_products_product_id_store_id_pk",
           "columns": [
             "product_id",
             "store_id"
@@ -1801,8 +1801,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.vegy_magic_link_tokens": {
-      "name": "vegy_magic_link_tokens",
+    "public.decomer_magic_link_tokens": {
+      "name": "decomer_magic_link_tokens",
       "schema": "",
       "columns": {
         "id": {
@@ -1849,8 +1849,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "vegy_magic_link_tokens_token_unique": {
-          "name": "vegy_magic_link_tokens_token_unique",
+        "decomer_magic_link_tokens_token_unique": {
+          "name": "decomer_magic_link_tokens_token_unique",
           "nullsNotDistinct": false,
           "columns": [
             "token"

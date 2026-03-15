@@ -34,7 +34,7 @@ const sizes = {
       :class="sizes[size || 'md'].text"
       style="font-family: 'Nunito', sans-serif;"
     >
-      Vegy
+      DeComer
     </span>
   </div>
 </template>

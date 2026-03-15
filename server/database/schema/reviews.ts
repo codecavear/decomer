@@ -3,7 +3,7 @@ import { relations } from 'drizzle-orm'
 import { users } from './users'
 import { stores } from './stores'
 
-export const reviews = pgTable('vegy_reviews', {
+export const reviews = pgTable('decomer_reviews', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),

@@ -1,4 +1,4 @@
-CREATE TABLE "vegy_store_subscriptions" (
+CREATE TABLE "decomer_store_subscriptions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"store_id" uuid NOT NULL,
 	"plan_id" uuid NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE "vegy_store_subscriptions" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "vegy_subscription_plans" (
+CREATE TABLE "decomer_subscription_plans" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
 	"slug" text NOT NULL,
@@ -30,11 +30,11 @@ CREATE TABLE "vegy_subscription_plans" (
 	"display_order" integer DEFAULT 0 NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "vegy_subscription_plans_slug_unique" UNIQUE("slug")
+	CONSTRAINT "decomer_subscription_plans_slug_unique" UNIQUE("slug")
 );
 --> statement-breakpoint
-ALTER TABLE "vegy_store_subscriptions" ADD CONSTRAINT "vegy_store_subscriptions_store_id_vegy_stores_id_fk" FOREIGN KEY ("store_id") REFERENCES "public"."vegy_stores"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "vegy_store_subscriptions" ADD CONSTRAINT "vegy_store_subscriptions_plan_id_vegy_subscription_plans_id_fk" FOREIGN KEY ("plan_id") REFERENCES "public"."vegy_subscription_plans"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-CREATE INDEX "store_subscriptions_store_idx" ON "vegy_store_subscriptions" USING btree ("store_id");--> statement-breakpoint
-CREATE INDEX "store_subscriptions_status_idx" ON "vegy_store_subscriptions" USING btree ("status");--> statement-breakpoint
-CREATE INDEX "store_subscriptions_period_end_idx" ON "vegy_store_subscriptions" USING btree ("current_period_end");
+ALTER TABLE "decomer_store_subscriptions" ADD CONSTRAINT "decomer_store_subscriptions_store_id_decomer_stores_id_fk" FOREIGN KEY ("store_id") REFERENCES "public"."decomer_stores"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "decomer_store_subscriptions" ADD CONSTRAINT "decomer_store_subscriptions_plan_id_decomer_subscription_plans_id_fk" FOREIGN KEY ("plan_id") REFERENCES "public"."decomer_subscription_plans"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+CREATE INDEX "store_subscriptions_store_idx" ON "decomer_store_subscriptions" USING btree ("store_id");--> statement-breakpoint
+CREATE INDEX "store_subscriptions_status_idx" ON "decomer_store_subscriptions" USING btree ("status");--> statement-breakpoint
+CREATE INDEX "store_subscriptions_period_end_idx" ON "decomer_store_subscriptions" USING btree ("current_period_end");

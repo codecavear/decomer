@@ -19,7 +19,7 @@
     "titleHighlight": "Vegan & Vegetarian",
     "description": "Find the best vegan and vegetarian stores near you. Order online, discover new products and support the plant-based lifestyle in Argentina.",
     "seo": {
-      "title": "Vegy - Discover Vegan & Vegetarian Stores",
+      "title": "DeComer - Discover Vegan & Vegetarian Stores",
       "description": "Create and manage your vegetarian or vegan store. Platform for plant-based entrepreneurs in Argentina."
     },
     "hero": {
@@ -57,7 +57,7 @@
       "readDocs": "Learn more",
       "owner": {
         "title": "Ready to create your store?",
-        "description": "Join Vegy and reach thousands of customers looking for vegan products.",
+        "description": "Join DeComer and reach thousands of customers looking for vegan products.",
         "button": "Create my store"
       }
     },
@@ -136,7 +136,7 @@
       "description": "Real experiences from store owners and customers",
       "items": [
         {
-          "quote": "Vegy helped me take my store online in minutes. The best part? Zero commissions.",
+          "quote": "DeComer helped me take my store online in minutes. The best part? Zero commissions.",
           "name": "María García",
           "store": "La Huerta Verde",
           "role": "Owner",
@@ -161,9 +161,9 @@
   },
   "pricing": {
     "title": "No fees, no surprises",
-    "description": "Vegy does not charge sales commissions. Pay only a flat subscription and keep 100% of your earnings.",
+    "description": "DeComer does not charge sales commissions. Pay only a flat subscription and keep 100% of your earnings.",
     "seo": {
-      "title": "Pricing - Vegy",
+      "title": "Pricing - DeComer",
       "description": "Simple plans with no commissions. Create your online store and keep 100% of your sales."
     },
     "monthly": "Monthly",
@@ -215,14 +215,14 @@
         ]
       }
     },
-    "trustedBy": "Stores that trust Vegy",
+    "trustedBy": "Stores that trust DeComer",
     "faq": {
       "title": "Frequently asked questions",
       "description": "Everything you need to know about our plans.",
       "items": [
         {
           "label": "Do you really not charge commissions?",
-          "content": "Correct. Vegy does not charge any sales commission. You only pay the monthly or yearly subscription and keep 100% of your sales."
+          "content": "Correct. DeComer does not charge any sales commission. You only pay the monthly or yearly subscription and keep 100% of your sales."
         },
         {
           "label": "Can I start for free?",

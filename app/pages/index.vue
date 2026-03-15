@@ -22,7 +22,7 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        'name': 'Vegy',
+        'name': 'DeComer',
         'description': 'Plataforma para descubrir tiendas veganas y vegetarianas en Argentina',
         'applicationCategory': 'LifestyleApplication',
         'operatingSystem': 'Web',
@@ -327,7 +327,7 @@ const testimonials = computed(() => {
       <UContainer>
         <div class="text-center mb-16">
           <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            ¿Por qué elegir Vegy?
+            ¿Por qué elegir DeComer?
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             La plataforma pensada para que vivir vegano sea más fácil y accesible

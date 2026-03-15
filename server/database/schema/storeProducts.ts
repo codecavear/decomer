@@ -3,7 +3,7 @@ import { relations } from 'drizzle-orm'
 import { products } from './products'
 import { stores } from './stores'
 
-export const storeProducts = pgTable('vegy_store_products', {
+export const storeProducts = pgTable('decomer_store_products', {
   productId: uuid('product_id').notNull().references(() => products.id, { onDelete: 'cascade' }),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   isAvailable: boolean('is_available').default(true).notNull(),

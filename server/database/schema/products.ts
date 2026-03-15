@@ -2,7 +2,7 @@ import { pgTable, uuid, text, timestamp, decimal, boolean, index } from 'drizzle
 import { relations } from 'drizzle-orm'
 import { stores } from './stores'
 
-export const products = pgTable('vegy_products', {
+export const products = pgTable('decomer_products', {
   id: uuid('id').defaultRandom().primaryKey(),
   storeId: uuid('store_id').notNull().references(() => stores.id, { onDelete: 'cascade' }),
   name: text('name').notNull(),

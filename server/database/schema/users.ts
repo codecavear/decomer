@@ -2,7 +2,7 @@ import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const userRoleEnum = ['user', 'store_owner', 'admin'] as const
 
-export const users = pgTable('vegy_users', {
+export const users = pgTable('decomer_users', {
   id: uuid('id').defaultRandom().primaryKey(),
   googleId: text('google_id').unique(),
   email: text('email').unique().notNull(),
