@@ -1,0 +1,1 @@
+ALTER TABLE "vegy_products" ADD COLUMN "is_vegan" boolean DEFAULT true NOT NULL;

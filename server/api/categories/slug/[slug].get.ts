@@ -1,0 +1,68 @@
+import { eq, sql } from 'drizzle-orm'
+import { getDb } from '../../../utils/db'
+import { categories, storeCategories } from '../../../database/schema'
+
+export default defineEventHandler(async (event) => {
+  const slug = getRouterParam(event, 'slug')
+
+  if (!slug) {
+    throw createError({ statusCode: 400, message: 'Slug is required' })
+  }
+
+  const db = getDb()
+
+  // Get category with store count
+  const [category] = await db
+    .select({
+      id: categories.id,
+      name: categories.name,
+      slug: categories.slug,
+      icon: categories.icon,
+      parentId: categories.parentId,
+      createdAt: categories.createdAt,
+      updatedAt: categories.updatedAt,
+      storeCount: sql<number>`count(distinct ${storeCategories.storeId})::int`
+    })
+    .from(categories)
+    .leftJoin(storeCategories, eq(categories.id, storeCategories.categoryId))
+    .where(eq(categories.slug, slug))
+    .groupBy(categories.id)
+
+  if (!category) {
+    throw createError({ statusCode: 404, message: 'Category not found' })
+  }
+
+  // Get parent category if exists
+  let parent = null
+  if (category.parentId) {
+    const [parentCategory] = await db
+      .select()
+      .from(categories)
+      .where(eq(categories.id, category.parentId))
+    parent = parentCategory || null
+  }
+
+  // Get child categories
+  const children = await db
+    .select({
+      id: categories.id,
+      name: categories.name,
+      slug: categories.slug,
+      icon: categories.icon,
+      parentId: categories.parentId,
+      createdAt: categories.createdAt,
+      updatedAt: categories.updatedAt,
+      storeCount: sql<number>`count(distinct ${storeCategories.storeId})::int`
+    })
+    .from(categories)
+    .leftJoin(storeCategories, eq(categories.id, storeCategories.categoryId))
+    .where(eq(categories.parentId, category.id))
+    .groupBy(categories.id)
+    .orderBy(categories.name)
+
+  return {
+    ...category,
+    parent,
+    children
+  }
+})

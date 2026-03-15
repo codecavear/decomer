@@ -1,0 +1,278 @@
+{
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "signInAccess": "Sign in to access your account",
+    "continueGoogle": "Continue with Google",
+    "agreementText": "By signing in, you agree to our Terms of Service."
+  },
+  "nav": {
+    "search": "Search",
+    "favorites": "Favorites",
+    "myOrders": "My Orders",
+    "panel": "My Store",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "pricing": "Pricing"
+  },
+  "home": {
+    "title": "Discover {highlight} Stores",
+    "titleHighlight": "Vegan & Vegetarian",
+    "description": "Find the best vegan and vegetarian stores near you. Order online, discover new products and support the plant-based lifestyle in Argentina.",
+    "seo": {
+      "title": "Vegy - Discover Vegan & Vegetarian Stores",
+      "description": "Create and manage your vegetarian or vegan store. Platform for plant-based entrepreneurs in Argentina."
+    },
+    "hero": {
+      "searchPlaceholder": "Search by city...",
+      "searchButton": "Search"
+    },
+    "sections": {
+      "production": {
+        "title": "Your store, your way",
+        "description": "Create your online store in minutes. No commissions, no complications."
+      },
+      "developer": {
+        "title": "Built for entrepreneurs",
+        "description": "Simple tools to manage products, orders and customers. Focus on what matters."
+      }
+    },
+    "features": {
+      "discover": {
+        "title": "Discover stores",
+        "description": "Find vegan and vegetarian stores near you with location and category search"
+      },
+      "order": {
+        "title": "Order online",
+        "description": "Place your orders for pickup or delivery from your favorite store"
+      },
+      "review": {
+        "title": "Rate and review",
+        "description": "Share your experience and help the community find the best options"
+      }
+    },
+    "cta": {
+      "title": "Ready to start?",
+      "description": "Create your vegan store today. It is free and takes only a few minutes.",
+      "getStarted": "Create my store",
+      "readDocs": "Learn more",
+      "owner": {
+        "title": "Ready to create your store?",
+        "description": "Join Vegy and reach thousands of customers looking for vegan products.",
+        "button": "Create my store"
+      }
+    },
+    "pricing": {
+      "title": "Simple plans, no commissions",
+      "description": "Keep 100% of your sales. No fine print.",
+      "start": "Start for free",
+      "see": "See plans",
+      "free": {
+        "title": "Free",
+        "products": "100 products",
+        "store": "1 store",
+        "commission": "0% commissions"
+      },
+      "pro": {
+        "products": "1,000 products",
+        "stores": "3 stores",
+        "commission": "0% commissions"
+      },
+      "business": {
+        "products": "Unlimited products",
+        "stores": "Unlimited stores",
+        "commission": "0% commissions"
+      }
+    },
+    "integrations": {
+      "title": "Integrations that simplify your business",
+      "description": "Connect with the tools you already use",
+      "mercadopago": {
+        "title": "MercadoPago",
+        "description": "Accept cards, transfers and cash. Your customers pay however they prefer."
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Get order notifications and communicate directly with your customers."
+      },
+      "google": {
+        "title": "Google Business",
+        "description": "Sync your Google Business to import info, photos and reviews automatically."
+      }
+    },
+    "categories": {
+      "title": "Explore by Category",
+      "description": "Find exactly what you are looking for"
+    },
+    "stores": {
+      "title": "Featured Stores",
+      "description": "The most popular vegan and vegetarian stores"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "Finding your favorite vegan store is easy",
+      "steps": {
+        "search": {
+          "title": "Search",
+          "description": "Enter your city or enable location to find stores near you"
+        },
+        "choose": {
+          "title": "Choose",
+          "description": "Browse stores, check menus and read reviews from other users"
+        },
+        "order": {
+          "title": "Order",
+          "description": "Place your order for pickup or delivery and enjoy"
+        }
+      }
+    },
+    "stats": {
+      "stores": "Active stores",
+      "cities": "Cities",
+      "orders": "Orders placed",
+      "users": "Users"
+    },
+    "testimonials": {
+      "title": "What Our Users Say",
+      "description": "Real experiences from store owners and customers",
+      "items": [
+        {
+          "quote": "Vegy helped me take my store online in minutes. The best part? Zero commissions.",
+          "name": "María García",
+          "store": "La Huerta Verde",
+          "role": "Owner",
+          "location": "Córdoba"
+        },
+        {
+          "quote": "I finally found all the vegan stores in my city in one place. Super convenient.",
+          "name": "Lucas Fernández",
+          "store": "",
+          "role": "Customer",
+          "location": "Buenos Aires"
+        },
+        {
+          "quote": "The ordering system is simple and my customers love it. Highly recommended.",
+          "name": "Valentina Torres",
+          "store": "Green Bowl",
+          "role": "Owner",
+          "location": "Rosario"
+        }
+      ]
+    }
+  },
+  "pricing": {
+    "title": "No fees, no surprises",
+    "description": "Vegy does not charge sales commissions. Pay only a flat subscription and keep 100% of your earnings.",
+    "seo": {
+      "title": "Pricing - Vegy",
+      "description": "Simple plans with no commissions. Create your online store and keep 100% of your sales."
+    },
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "getStarted": "Start for free",
+    "plans": {
+      "basic": {
+        "title": "Free",
+        "description": "Perfect to start your online store.",
+        "priceMonth": "$0",
+        "priceYear": "$0",
+        "features": [
+          "Up to 100 products",
+          "1 store",
+          "0% commissions",
+          "MercadoPago payments",
+          "Email support"
+        ]
+      },
+      "standard": {
+        "title": "Pro",
+        "description": "For growing stores.",
+        "priceMonth": "$9.990",
+        "priceYear": "$99.900",
+        "features": [
+          "Up to 1,000 products",
+          "3 stores",
+          "0% commissions",
+          "Custom domain",
+          "Basic analytics",
+          "Priority support"
+        ]
+      },
+      "premium": {
+        "title": "Business",
+        "description": "For established businesses.",
+        "priceMonth": "$29.990",
+        "priceYear": "$299.900",
+        "features": [
+          "Unlimited products",
+          "Unlimited stores",
+          "0% commissions",
+          "Custom domain",
+          "Advanced analytics",
+          "Multiple users",
+          "Dedicated support"
+        ]
+      }
+    },
+    "trustedBy": "Stores that trust Vegy",
+    "faq": {
+      "title": "Frequently asked questions",
+      "description": "Everything you need to know about our plans.",
+      "items": [
+        {
+          "label": "Do you really not charge commissions?",
+          "content": "Correct. Vegy does not charge any sales commission. You only pay the monthly or yearly subscription and keep 100% of your sales."
+        },
+        {
+          "label": "Can I start for free?",
+          "content": "Yes, the Free plan lets you create a store with up to 100 products at no cost. No credit card, no time limit."
+        },
+        {
+          "label": "What payment methods do my customers have?",
+          "content": "We integrate with MercadoPago, allowing credit cards, debit cards, transfers and cash payments."
+        },
+        {
+          "label": "Can I change plans later?",
+          "content": "Yes, you can upgrade or downgrade at any time. Changes apply immediately."
+        },
+        {
+          "label": "What if I exceed the product limit?",
+          "content": "We will notify you and you can upgrade or remove products. We never delete products without your consent."
+        },
+        {
+          "label": "Do you offer support?",
+          "content": "Yes, all plans include email support. Pro and Business plans have priority support."
+        }
+      ]
+    }
+  },
+  "search": {
+    "title": "Search Stores",
+    "seo": {
+      "title": "Search Stores",
+      "description": "Discover vegan and vegetarian stores near you"
+    },
+    "placeholder": "Search stores, products...",
+    "myLocation": "My location",
+    "searching": "Searching...",
+    "locationActive": "Using your current location",
+    "locationUnavailable": "Geolocation not available",
+    "locationError": "Could not get your location",
+    "filters": "Filters",
+    "clearFilters": "Clear",
+    "storeType": "Store Type",
+    "categories": "Categories",
+    "radius": "Search radius",
+    "results": "{count} store found | {count} stores found",
+    "noResults": "No stores found",
+    "noResultsHint": "Try adjusting your filters or search",
+    "clearAll": "Clear filters",
+    "list": "List",
+    "map": "Map",
+    "stores": "Stores",
+    "products": "Products",
+    "viewAll": "View all stores",
+    "viewDemo": "View demo"
+  }
+}

@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Block private/auth routes
+Disallow: /panel/
+Disallow: /api/
+Disallow: /carrito
+Disallow: /favoritos
+Disallow: /mis-pedidos
+Disallow: /crear-tienda
+Disallow: /login
+Disallow: /auth/
+
+Sitemap: https://vegy.ar/sitemap.xml

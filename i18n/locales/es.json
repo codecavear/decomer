@@ -1,0 +1,264 @@
+{
+  "auth": {
+    "welcomeBack": "Bienvenido",
+    "signInAccess": "Inicia sesion para acceder a tu cuenta",
+    "continueGoogle": "Continuar con Google",
+    "agreementText": "Al iniciar sesion, aceptas nuestros Terminos de Servicio."
+  },
+  "nav": {
+    "search": "Buscar",
+    "favorites": "Favoritos",
+    "myOrders": "Mis Pedidos",
+    "panel": "Mi Tienda",
+    "login": "Iniciar Sesion",
+    "logout": "Cerrar Sesion",
+    "pricing": "Precios"
+  },
+  "home": {
+    "title": "Descubri Tiendas {highlight}",
+    "titleHighlight": "Veganas y Vegetarianas",
+    "description": "Encontra las mejores tiendas veganas y vegetarianas cerca tuyo. Pedi online, descubri nuevos productos y apoya el estilo de vida plant-based en Argentina.",
+    "seo": {
+      "title": "Vegy - Descubri Tiendas Veganas y Vegetarianas",
+      "description": "Crea y gestiona tu tienda vegetariana o vegana. Plataforma para emprendedores plant-based en Argentina."
+    },
+    "hero": {
+      "searchPlaceholder": "Buscar por ciudad...",
+      "searchButton": "Buscar"
+    },
+    "features": {
+      "discover": {
+        "title": "Descubri tiendas",
+        "description": "Encontra tiendas veganas y vegetarianas cerca tuyo con busqueda por ubicacion y categoria"
+      },
+      "order": {
+        "title": "Pedi online",
+        "description": "Hace tus pedidos para retiro o delivery desde tu tienda favorita"
+      },
+      "review": {
+        "title": "Deja tu opinion",
+        "description": "Comparti tu experiencia y ayuda a otros a descubrir las mejores tiendas"
+      }
+    },
+    "categories": {
+      "title": "Explora por Categoria",
+      "description": "Encontra exactamente lo que estas buscando"
+    },
+    "stores": {
+      "title": "Tiendas Destacadas",
+      "description": "Descubri las tiendas mas populares de la comunidad"
+    },
+    "cta": {
+      "owner": {
+        "title": "Tenes una tienda?",
+        "description": "Suma tu negocio a Vegy y llega a miles de personas interesadas en productos veganos y vegetarianos",
+        "button": "Crear Tienda"
+      }
+    },
+    "howItWorks": {
+      "title": "Como funciona",
+      "description": "En 3 simples pasos",
+      "steps": {
+        "search": {
+          "title": "Busca",
+          "description": "Encontra tiendas veganas cerca tuyo por ubicacion o categoria"
+        },
+        "choose": {
+          "title": "Elegi",
+          "description": "Explora productos, lee reseñas y agrega al carrito"
+        },
+        "order": {
+          "title": "Pedi",
+          "description": "Confirma tu pedido para retiro o delivery"
+        }
+      }
+    },
+    "stats": {
+      "stores": "Tiendas",
+      "cities": "Ciudades",
+      "orders": "Pedidos",
+      "users": "Usuarios"
+    },
+    "testimonials": {
+      "title": "Lo que dicen nuestros vendedores",
+      "description": "Historias reales de emprendedores que crecieron con Vegy",
+      "items": [
+        {
+          "quote": "Antes perdía horas respondiendo WhatsApp. Ahora mis clientes piden directo desde Vegy y yo me enfoco en cocinar. Las ventas crecieron un 40% en 3 meses.",
+          "name": "Mariana Gutiérrez",
+          "role": "Fundadora",
+          "store": "Tierra Verde Deli",
+          "location": "Córdoba"
+        },
+        {
+          "quote": "Lo mejor es que no cobran comisión. Con otras plataformas perdía el 15% de cada venta. Acá pago solo la suscripción y me quedo con todo.",
+          "name": "Lucas Fernández",
+          "role": "Dueño",
+          "store": "Raíces Plant-Based",
+          "location": "Buenos Aires"
+        },
+        {
+          "quote": "Mis clientes aman poder ver todo el menú con fotos y precios. Antes preguntaban mil veces lo mismo. Ahora el proceso es súper fluido.",
+          "name": "Valentina Torres",
+          "role": "Chef & Owner",
+          "store": "Brotes Cocina Vegana",
+          "location": "Rosario"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Planes simples, sin comisiones",
+      "description": "Quédate con el 100% de tus ventas. Sin letra chica.",
+      "start": "Empezar gratis",
+      "see": "Ver planes",
+      "free": {
+        "title": "Gratis",
+        "products": "100 productos",
+        "store": "1 tienda",
+        "commission": "0% comisiones"
+      },
+      "pro": {
+        "products": "1.000 productos",
+        "stores": "3 tiendas",
+        "commission": "0% comisiones"
+      },
+      "business": {
+        "products": "Productos ilimitados",
+        "stores": "Tiendas ilimitadas",
+        "commission": "0% comisiones"
+      }
+    },
+    "integrations": {
+      "title": "Integraciones que facilitan tu negocio",
+      "description": "Conecta con las herramientas que ya usas",
+      "mercadopago": {
+        "title": "MercadoPago",
+        "description": "Cobra con tarjetas, transferencias y efectivo. Tus clientes pagan como prefieran."
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Recibí notificaciones de pedidos y comunicate directo con tus clientes."
+      },
+      "google": {
+        "title": "Google Business",
+        "description": "Sincronizá tu negocio de Google para importar info, fotos y reseñas automáticamente."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Sin comisiones, sin sorpresas",
+    "description": "Vegy no cobra comisiones por venta. Paga solo una suscripcion fija y quédate con el 100% de tus ganancias.",
+    "seo": {
+      "title": "Precios",
+      "description": "Planes simples sin comisiones. Crea tu tienda online y quédate con el 100% de tus ventas."
+    },
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "perMonth": "/mes",
+    "perYear": "/año",
+    "getStarted": "Comenzar gratis",
+    "plans": {
+      "basic": {
+        "title": "Gratis",
+        "description": "Perfecto para empezar tu tienda online.",
+        "priceMonth": "$0",
+        "priceYear": "$0",
+        "features": [
+          "Hasta 100 productos",
+          "1 tienda",
+          "0% comisiones",
+          "Pagos con MercadoPago",
+          "Soporte por email"
+        ]
+      },
+      "standard": {
+        "title": "Pro",
+        "description": "Para tiendas en crecimiento.",
+        "priceMonth": "$9.990",
+        "priceYear": "$99.900",
+        "features": [
+          "Hasta 1.000 productos",
+          "3 tiendas",
+          "0% comisiones",
+          "Dominio personalizado",
+          "Analytics básicos",
+          "Soporte prioritario"
+        ]
+      },
+      "premium": {
+        "title": "Business",
+        "description": "Para negocios establecidos.",
+        "priceMonth": "$29.990",
+        "priceYear": "$299.900",
+        "features": [
+          "Productos ilimitados",
+          "Tiendas ilimitadas",
+          "0% comisiones",
+          "Dominio personalizado",
+          "Analytics avanzados",
+          "Múltiples usuarios",
+          "Soporte dedicado"
+        ]
+      }
+    },
+    "trustedBy": "Tiendas que confían en Vegy",
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "description": "Todo lo que necesitas saber sobre nuestros planes.",
+      "items": [
+        {
+          "label": "Realmente no cobran comisiones?",
+          "content": "Correcto. Vegy no cobra comisión por venta. Solo pagas la suscripción mensual o anual y te quedas con el 100% de tus ventas."
+        },
+        {
+          "label": "Puedo empezar gratis?",
+          "content": "Si, el plan Gratis te permite crear una tienda con hasta 100 productos sin costo. Sin tarjeta de crédito, sin límite de tiempo."
+        },
+        {
+          "label": "Qué métodos de pago aceptan mis clientes?",
+          "content": "Integramos con MercadoPago, permitiendo tarjetas de crédito, débito, transferencias y pagos en efectivo."
+        },
+        {
+          "label": "Puedo cambiar de plan después?",
+          "content": "Si, puedes subir o bajar de plan en cualquier momento. Los cambios se aplican inmediatamente."
+        },
+        {
+          "label": "Qué pasa si supero el límite de productos?",
+          "content": "Te notificaremos y podrás subir de plan o eliminar productos. Nunca eliminamos productos sin tu consentimiento."
+        },
+        {
+          "label": "Ofrecen soporte?",
+          "content": "Si, todos los planes incluyen soporte por email. Los planes Pro y Business tienen soporte prioritario."
+        }
+      ]
+    }
+  },
+  "search": {
+    "title": "Buscar Tiendas",
+    "seo": {
+      "title": "Buscar Tiendas",
+      "description": "Descubrí tiendas veganas y vegetarianas cerca tuyo"
+    },
+    "placeholder": "Buscar tiendas, productos...",
+    "myLocation": "Mi ubicación",
+    "searching": "Buscando...",
+    "locationActive": "Usando tu ubicación actual",
+    "locationUnavailable": "Geolocalización no disponible",
+    "locationError": "No se pudo obtener tu ubicación",
+    "filters": "Filtros",
+    "clearFilters": "Limpiar",
+    "storeType": "Tipo de Tienda",
+    "categories": "Categorías",
+    "radius": "Radio de búsqueda",
+    "results": "{count} tienda encontrada | {count} tiendas encontradas",
+    "noResults": "No se encontraron tiendas",
+    "noResultsHint": "Intentá ajustar tus filtros o búsqueda",
+    "clearAll": "Limpiar filtros",
+    "list": "Lista",
+    "map": "Mapa",
+    "stores": "Tiendas",
+    "products": "Productos",
+    "viewAll": "Ver todas las tiendas",
+    "viewDemo": "Ver demo"
+  }
+}

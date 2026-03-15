@@ -1,0 +1,13 @@
+{
+  "name": "Vegy",
+  "tagline": "Tiendas veganas cerca tuyo.",
+  "icon": "lucide:leaf",
+  "colors": {
+    "primary": "#22c55e",
+    "background": "#0a0a0a",
+    "text": "#ffffff",
+    "textMuted": "#9ca3af"
+  },
+  "output": "/root/vegy/public",
+  "iconRotation": 119
+}

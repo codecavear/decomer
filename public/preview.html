@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegy - Brand Assets Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #0f172a; 
+      color: #e2e8f0;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 8px; }
+    .subtitle { color: #94a3b8; margin-bottom: 40px; }
+    .section { margin-bottom: 48px; }
+    .section-title { 
+      font-size: 1.25rem; 
+      font-weight: 600; 
+      margin-bottom: 16px;
+      color: #f8fafc;
+    }
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+    .card .name { font-weight: 600; margin-bottom: 4px; }
+    .card .size { color: #64748b; font-size: 0.875rem; }
+    .checkerboard {
+      background-image: 
+        linear-gradient(45deg, #374151 25%, transparent 25%),
+        linear-gradient(-45deg, #374151 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #374151 75%),
+        linear-gradient(-45deg, transparent 75%, #374151 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      padding: 20px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+    .og-preview {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    }
+    .color-swatch {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vegy</h1>
+  <p class="subtitle">Tiendas veganas cerca tuyo.</p>
+
+  <div class="section">
+    <h2 class="section-title">🎨 Colores</h2>
+    <div class="color-swatch">
+      <div class="swatch" style="background: #22c55e; color: #000;">#22c55e</div>
+      <div class="swatch" style="background: #0a0a0a; color: #fff; border: 1px solid #374151;">#0a0a0a</div>
+      <div class="swatch" style="background: #ffffff; color: #000;">#ffffff</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">🖼️ OG Image (1200x630)</h2>
+    <img src="og-image.png" class="og-preview" style="max-width: 600px;" />
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">✨ Logo Symbol</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="checkerboard"><img src="logo-symbol.png" style="width: 128px;" /></div>
+        <div class="name">PNG 512x512</div>
+        <div class="size">logo-symbol.png</div>
+      </div>
+      <div class="card">
+        <div class="checkerboard"><img src="logo-symbol.svg" style="width: 128px;" /></div>
+        <div class="name">SVG Vector</div>
+        <div class="size">logo-symbol.svg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">📱 Favicons & App Icons</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="checkerboard"><img src="favicon-16x16.png" style="width: 16px;" /></div>
+        <div class="name">16x16</div>
+        <div class="size">favicon-16x16.png</div>
+      </div>
+      <div class="card">
+        <div class="checkerboard"><img src="favicon-32x32.png" style="width: 32px;" /></div>
+        <div class="name">32x32</div>
+        <div class="size">favicon-32x32.png</div>
+      </div>
+      <div class="card">
+        <div class="checkerboard"><img src="favicon-96x96.png" style="width: 96px;" /></div>
+        <div class="name">96x96</div>
+        <div class="size">favicon-96x96.png</div>
+      </div>
+      <div class="card">
+        <div class="checkerboard"><img src="apple-touch-icon.png" style="width: 90px;" /></div>
+        <div class="name">180x180</div>
+        <div class="size">apple-touch-icon.png</div>
+      </div>
+      <div class="card">
+        <div class="checkerboard"><img src="web-app-manifest-192x192.png" style="width: 96px;" /></div>
+        <div class="name">192x192</div>
+        <div class="size">web-app-manifest-192x192.png</div>
+      </div>
+      <div class="card">
+        <div class="checkerboard"><img src="web-app-manifest-512x512.png" style="width: 128px;" /></div>
+        <div class="name">512x512</div>
+        <div class="size">web-app-manifest-512x512.png</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">📋 Cómo usar</h2>
+    <div class="card" style="text-align: left; max-width: 600px;">
+      <pre style="background: #0f172a; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.875rem;">
+# Copiar al proyecto
+cp *.png *.svg /path/to/project/public/
+
+# En nuxt.config.ts
+app: {
+  head: {
+    link: [
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+    ],
+    meta: [
+      { property: 'og:image', content: '/og-image.png' }
+    ]
+  }
+}</pre>
+    </div>
+  </div>
+</body>
+</html>
