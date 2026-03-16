@@ -1,4 +1,4 @@
-import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core'
+import { pgTable, uuid, text, timestamp, jsonb } from 'drizzle-orm/pg-core'
 
 export const userRoleEnum = ['user', 'store_owner', 'admin'] as const
 
@@ -9,6 +9,13 @@ export const users = pgTable('decomer_users', {
   name: text('name'),
   avatarUrl: text('avatar_url'),
   role: text('role', { enum: userRoleEnum }).default('user').notNull(),
+  // Profile fields
+  phone: text('phone'),
+  deliveryAddress: text('delivery_address'),
+  deliveryNeighborhood: text('delivery_neighborhood'),
+  deliveryNotes: text('delivery_notes'),
+  allergies: jsonb('allergies').$type<string[]>().default([]),
+  preferences: jsonb('preferences').$type<string[]>().default([]),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })
