@@ -1,42 +1,6 @@
 {
-  "lastRun": "2026-03-16T09:02:00.000Z",
-  "completedTasks": [
-    {
-      "id": "eb8e6382-248a-4835-b963-c0dbd891dda0",
-      "identifier": "DECOMER-6",
-      "title": "Catalogo de viandas con macros y filtros",
-      "status": "code_complete",
-      "blocker": "CI pre-existing lint errors (62 errors)",
-      "commit": "1123818",
-      "note": "Waiting for Docta decision on lint fix approach"
-    },
-    {
-      "id": "b0a74bd9-7c67-4c4b-89e2-5ddd31f5021e",
-      "identifier": "GUARDIAS-M-DICAS-9",
-      "title": "Validación de matrícula médica (colegio/provincia)",
-      "status": "in_review",
-      "commit": "77d9249",
-      "deliverable": "guardias-medicas/docs/MATRICULA_VALIDATION.md"
-    },
-    {
-      "id": "5d2feb17-3269-4aa6-bd05-382d33c02fe7",
-      "identifier": "DECOMER-8",
-      "title": "Emails transaccionales con Resend",
-      "status": "in_review",
-      "commit": "ac6b721",
-      "deliverable": "6 email templates + Resend integration"
-    },
-    {
-      "id": "6be57d45-bd6f-44c8-8301-9476523351a7",
-      "identifier": "DECOMER-11",
-      "title": "Panel admin para cocina",
-      "status": "partial",
-      "commit": "2d49da4",
-      "note": "Backend APIs complete, frontend UI should be assigned to Pixel"
-    }
-  ],
-  "remainingBacklog": [
-    "DECOMER-12: Delivery tracking basico (low priority)",
-    "DECOMER-9: Notificaciones WhatsApp/SMS (low priority)"
-  ]
+  "lastCheck": "2026-03-16T11:06:00.000Z",
+  "lastTaskCompleted": "DECOMER-6",
+  "tasksInProgress": [],
+  "notes": "DECOMER-6 moved to in_review: Backend complete (DB schema, API endpoints /api/viandas + /api/weekly-menu/current, seed data with 10 viandas). Build successful. Ready for Pixel (frontend) + QA."
 }
