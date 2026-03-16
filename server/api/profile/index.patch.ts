@@ -10,7 +10,8 @@ const updateProfileSchema = z.object({
   deliveryNeighborhood: z.string().max(100).optional().nullable(),
   deliveryNotes: z.string().max(300).optional().nullable(),
   allergies: z.array(z.string()).optional(),
-  preferences: z.array(z.string()).optional()
+  preferences: z.array(z.string()).optional(),
+  deliverySchedule: z.object({ start: z.string(), end: z.string() }).nullable().optional()
 })
 
 export default defineEventHandler(async (event) => {

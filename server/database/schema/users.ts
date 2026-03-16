@@ -16,6 +16,7 @@ export const users = pgTable('decomer_users', {
   deliveryNotes: text('delivery_notes'),
   allergies: jsonb('allergies').$type<string[]>().default([]),
   preferences: jsonb('preferences').$type<string[]>().default([]),
+  deliverySchedule: jsonb('delivery_schedule').$type<{ start: string; end: string } | null>().default(null),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })
