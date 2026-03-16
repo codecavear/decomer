@@ -1,7 +1,7 @@
-# Delivery Tracking Implementation
+# Delivery Tracking Implementation — DECOMER-12
 
 ## Overview
-Sistema de tracking de pedidos con notificaciones push en cada cambio de estado.
+Sistema completo de tracking de pedidos con notificaciones push automáticas en cada cambio de estado. Implementado con Web Push API, service workers, y backend en Nitro.
 
 ## Order Status Flow
 
@@ -110,8 +110,94 @@ Cuando un pedido cambia a `en_route` y el `deliveryType` es `delivery`:
 4. Cambiar estado de un pedido en admin panel
 5. Verificar que llega la notificación
 
+## Frontend Implementation
+
+### Service Worker
+`public/sw.js` — Maneja:
+- PWA caching (menu, static assets)
+- Push event listener
+- Notification click handler
+- Custom notification actions por tipo
+
+Auto-registrado via plugin `app/plugins/sw.client.ts`.
+
+### Composable
+`app/composables/usePushNotifications.ts` — Expone:
+
+```typescript
+const {
+  permission,        // NotificationPermission reactive state
+  isSubscribed,      // Boolean reactive state
+  requestPermission, // () => Promise<NotificationPermission>
+  subscribeToPush,   // () => Promise<boolean>
+  unsubscribe,       // () => Promise<boolean>
+  checkSubscription  // () => Promise<void>
+} = usePushNotifications()
+```
+
+### Usage Example
+```vue
+<script setup>
+const { isSubscribed, subscribeToPush } = usePushNotifications()
+
+async function enableNotifications() {
+  const success = await subscribeToPush()
+  if (success) {
+    console.log('Push enabled!')
+  }
+}
+</script>
+
+<template>
+  <UButton v-if="!isSubscribed" @click="enableNotifications">
+    Activar notificaciones
+  </UButton>
+</template>
+```
+
+## Deployment Checklist
+
+✅ Backend APIs implemented:
+- `/api/push/subscribe` ✅
+- `/api/push/unsubscribe` ✅
+- `/api/push/vapid-key` ✅
+- Order status update with push trigger ✅
+
+✅ Frontend:
+- Service worker registered ✅
+- Push composable available ✅
+- VAPID public key in runtime config ✅
+
+⚠️ Environment Variables (`.env`):
+```env
+VAPID_PUBLIC_KEY=your_public_key_here
+VAPID_PRIVATE_KEY=your_private_key_here
+VAPID_SUBJECT=mailto:info@decomer.ar
+```
+
+🚨 Generate VAPID keys if not set:
+```bash
+npx web-push generate-vapid-keys
+```
+
+## Database Schema
+
+### `decomer_push_subscriptions`
+```sql
+id: uuid PRIMARY KEY
+user_id: uuid NOT NULL REFERENCES decomer_users(id) ON DELETE CASCADE
+endpoint: text NOT NULL UNIQUE
+p256dh: text NOT NULL
+auth: text NOT NULL
+created_at: timestamp DEFAULT now()
+```
+
+Index: `push_subscriptions_user_idx` on `user_id`
+
 ## Notes
 
 - Push subscriptions expiradas se eliminan automáticamente (status 410/404)
 - Las notificaciones NO bloquean la actualización del pedido (try/catch)
 - Múltiples dispositivos soportados por usuario
+- El service worker cachea el menú para offline-first UX
+- Notification actions personalizadas según tipo de mensaje
