@@ -30,7 +30,12 @@ async function runMigrations() {
 
       const db = drizzle(client)
 
-      await migrate(db, { migrationsFolder: './drizzle/migrations' })
+      const migrationsFolder = process.env.RAILWAY_ENVIRONMENT
+        ? '/app/drizzle/migrations'
+        : './drizzle/migrations'
+
+      console.log(`[migrate] Using migrations folder: ${migrationsFolder}`)
+      await migrate(db, { migrationsFolder })
 
       console.log('[migrate] Migrations completed successfully!')
 
