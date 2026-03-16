@@ -11,7 +11,8 @@ useSeoMeta({
   ogLocale: 'es_AR',
   twitterCard: 'summary_large_image',
   twitterTitle: 'DeComer — Viandas frescas por suscripción',
-  twitterDescription: 'Comida real, cocinada hoy, en tu puerta mañana. Sin congelar. Córdoba Capital.'
+  twitterDescription: 'Comida real, cocinada hoy, en tu puerta mañana. Sin congelar. Córdoba Capital.',
+  twitterImage: 'https://decomer.codecave.ar/og-image.png'
 })
 
 useHead({
@@ -21,11 +22,11 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FoodEstablishment',
-        name: 'DeComer',
-        description: 'Viandas frescas por suscripción en Córdoba Capital',
-        url: 'https://decomer.codecave.ar',
-        servesCuisine: 'Healthy',
-        areaServed: 'Córdoba Capital, Argentina'
+        'name': 'DeComer',
+        'description': 'Viandas frescas por suscripción en Córdoba Capital',
+        'url': 'https://decomer.codecave.ar',
+        'servesCuisine': 'Healthy',
+        'areaServed': 'Córdoba Capital, Argentina'
       })
     }
   ]
@@ -35,12 +36,12 @@ const activeTag = ref('Todos')
 const tags = ['Todos', 'Proteína', 'Vegetariano', 'Low carb', 'Comfort food']
 
 const menuItems = [
-  { name: 'Pollo al limón con quinoa', tag: 'Proteína', macros: '38g prot · 42g carb · 12g grasa', kcal: '432 kcal' },
-  { name: 'Bowl veggie con hummus y tabulé', tag: 'Vegetariano', macros: '18g prot · 55g carb · 14g grasa', kcal: '418 kcal' },
-  { name: 'Lomo con vegetales salteados', tag: 'Low carb', macros: '44g prot · 12g carb · 18g grasa', kcal: '388 kcal' },
-  { name: 'Pasta casera con salsa bolognesa', tag: 'Comfort food', macros: '32g prot · 68g carb · 16g grasa', kcal: '548 kcal' },
-  { name: 'Salmón con puré de coliflor', tag: 'Proteína', macros: '40g prot · 18g carb · 22g grasa', kcal: '426 kcal' },
-  { name: 'Milanesa de soja con ensalada', tag: 'Vegetariano', macros: '24g prot · 38g carb · 10g grasa', kcal: '338 kcal' }
+  { name: 'Pollo al limón con quinoa', tag: 'Proteína', macros: '38g prot · 42g carb · 12g grasa', kcal: '432 kcal', image: '/images/demo/vegetables.jpg' },
+  { name: 'Bowl veggie con hummus y tabulé', tag: 'Vegetariano', macros: '18g prot · 55g carb · 14g grasa', kcal: '418 kcal', image: '/images/demo/veggie-bowl.jpg' },
+  { name: 'Lomo con vegetales salteados', tag: 'Low carb', macros: '44g prot · 12g carb · 18g grasa', kcal: '388 kcal', image: '/images/demo/burger.jpg' },
+  { name: 'Pasta casera con salsa bolognesa', tag: 'Comfort food', macros: '32g prot · 68g carb · 16g grasa', kcal: '548 kcal', image: '/images/demo/bread.jpg' },
+  { name: 'Salmón con puré de coliflor', tag: 'Proteína', macros: '40g prot · 18g carb · 22g grasa', kcal: '426 kcal', image: '/images/demo/nuts.jpg' },
+  { name: 'Milanesa de soja con ensalada', tag: 'Vegetariano', macros: '24g prot · 38g carb · 10g grasa', kcal: '338 kcal', image: '/images/demo/tofu.jpg' }
 ]
 
 const filteredMenu = computed(() =>
@@ -122,11 +123,14 @@ const faqs = [
 
 <template>
   <div class="min-h-screen bg-white dark:bg-neutral-950">
-
     <!-- HERO -->
     <section class="relative overflow-hidden pt-24 pb-20 px-6">
       <div class="max-w-5xl mx-auto text-center">
-        <UBadge color="primary" variant="solid" class="mb-6 text-sm font-semibold px-4 py-1.5">
+        <UBadge
+          color="primary"
+          variant="solid"
+          class="mb-6 text-sm font-semibold px-4 py-1.5"
+        >
           📍 La única app de viandas de Córdoba Capital
         </UBadge>
 
@@ -162,37 +166,68 @@ const faqs = [
     <section class="py-16 px-6 bg-neutral-50 dark:bg-neutral-900">
       <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
         <div class="text-center">
-          <div class="text-4xl mb-4">🍳</div>
-          <h3 class="font-bold text-lg mb-2">Cocinado hoy</h3>
-          <p class="text-neutral-500 dark:text-neutral-400">Preparamos todo fresco. Nada sale del freezer, todo sale de la cocina.</p>
+          <div class="text-4xl mb-4">
+            🍳
+          </div>
+          <h3 class="font-bold text-lg mb-2">
+            Cocinado HOY
+          </h3>
+          <p class="text-neutral-600 dark:text-neutral-300 font-medium">
+            Preparamos todo fresco, hoy. <span class="text-neutral-500 dark:text-neutral-400">En tu puerta mañana. Sin freezer, sin microondazos industriales.</span>
+          </p>
         </div>
         <div class="text-center">
-          <div class="text-4xl mb-4">🚴</div>
-          <h3 class="font-bold text-lg mb-2">En tu puerta</h3>
-          <p class="text-neutral-500 dark:text-neutral-400">Delivery en Córdoba Capital. Llega frío, listo para calentar y comer.</p>
+          <div class="text-4xl mb-4">
+            🚴
+          </div>
+          <h3 class="font-bold text-lg mb-2">
+            En tu puerta MAÑANA
+          </h3>
+          <p class="text-neutral-600 dark:text-neutral-300 font-medium">
+            Delivery en Córdoba Capital. <span class="text-neutral-500 dark:text-neutral-400">Llega frío, listo para calentar y comer.</span>
+          </p>
         </div>
         <div class="text-center">
-          <div class="text-4xl mb-4">📅</div>
-          <h3 class="font-bold text-lg mb-2">Vos elegís</h3>
-          <p class="text-neutral-500 dark:text-neutral-400">Suscripción semanal, mensual o pedido único. Pausás cuando quieras.</p>
+          <div class="text-4xl mb-4">
+            📅
+          </div>
+          <h3 class="font-bold text-lg mb-2">
+            Vos DECIDÍS
+          </h3>
+          <p class="text-neutral-600 dark:text-neutral-300 font-medium">
+            Elegís cada vianda del menú. <span class="text-neutral-500 dark:text-neutral-400">Pausá, cambiá o cancelá cuando quieras. Sin vueltas.</span>
+          </p>
         </div>
       </div>
     </section>
 
     <!-- CÓMO FUNCIONA -->
-    <section id="como-funciona" class="py-20 px-6">
+    <section
+      id="como-funciona"
+      class="py-20 px-6"
+    >
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-14">
-          <h2 class="text-4xl font-bold mb-3">Tres pasos. Cero drama.</h2>
+          <h2 class="text-4xl font-bold mb-3">
+            Tres pasos. Cero drama.
+          </h2>
         </div>
 
         <div class="grid md:grid-cols-3 gap-10">
-          <div v-for="(step, i) in steps" :key="i" class="relative">
+          <div
+            v-for="(step, i) in steps"
+            :key="i"
+            class="relative"
+          >
             <div class="text-6xl font-bold text-primary-100 dark:text-primary-900 mb-4 select-none">
               {{ step.n }}
             </div>
-            <h3 class="text-xl font-bold mb-2">{{ step.title }}</h3>
-            <p class="text-neutral-500 dark:text-neutral-400">{{ step.desc }}</p>
+            <h3 class="text-xl font-bold mb-2">
+              {{ step.title }}
+            </h3>
+            <p class="text-neutral-500 dark:text-neutral-400">
+              {{ step.desc }}
+            </p>
           </div>
         </div>
       </div>
@@ -202,8 +237,12 @@ const faqs = [
     <section class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-4">
-          <p class="text-sm text-primary-500 font-semibold uppercase tracking-wider mb-2">Detrás de cada vianda, un chef</p>
-          <h2 class="text-4xl font-bold mb-3">Lighuen cocina todo</h2>
+          <p class="text-sm text-primary-500 font-semibold uppercase tracking-wider mb-2">
+            Detrás de cada vianda, un chef
+          </p>
+          <h2 class="text-4xl font-bold mb-3">
+            Lighuen cocina todo
+          </h2>
           <p class="text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto">
             Esto no es una fábrica. Es una cocina real con un chef que le pone ganas a cada plato.
           </p>
@@ -215,10 +254,17 @@ const faqs = [
             <div class="absolute top-0 right-0 w-32 h-32 bg-primary-400 rounded-full -translate-y-8 translate-x-8 opacity-50" />
             <div class="relative">
               <div class="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
-                <UIcon name="i-lucide-chef-hat" class="w-10 h-10 text-white" />
+                <UIcon
+                  name="i-lucide-chef-hat"
+                  class="w-10 h-10 text-white"
+                />
               </div>
-              <h3 class="text-2xl font-bold mb-1">Lighuen</h3>
-              <p class="text-primary-100 text-sm mb-6">Chef DeComer</p>
+              <h3 class="text-2xl font-bold mb-1">
+                Lighuen
+              </h3>
+              <p class="text-primary-100 text-sm mb-6">
+                Chef DeComer
+              </p>
               <blockquote class="border-l-2 border-white/40 pl-4 italic text-primary-50 text-sm leading-relaxed">
                 "Cocino cada vianda como si fuera para mi familia. No me gusta la comida triste de tupper — me gusta que la gente coma bien de verdad."
               </blockquote>
@@ -229,32 +275,59 @@ const faqs = [
           <div class="space-y-5">
             <div class="flex gap-4 items-start">
               <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center shrink-0">
-                <UIcon name="i-lucide-flame" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                <UIcon
+                  name="i-lucide-flame"
+                  class="w-5 h-5 text-primary-600 dark:text-primary-400"
+                />
               </div>
               <div>
-                <h4 class="font-bold mb-1">Cocinero desde los 15</h4>
-                <p class="text-neutral-500 dark:text-neutral-400 text-sm">Pasó por varios restaurantes de Córdoba antes de fundar DeComer. Sabe lo que hace.</p>
+                <h4 class="font-bold mb-1">
+                  Cocinero desde los 15
+                </h4>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm">
+                  Pasó por varios restaurantes de Córdoba antes de fundar DeComer. Sabe lo que hace.
+                </p>
               </div>
             </div>
             <div class="flex gap-4 items-start">
               <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center shrink-0">
-                <UIcon name="i-lucide-heart" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                <UIcon
+                  name="i-lucide-heart"
+                  class="w-5 h-5 text-primary-600 dark:text-primary-400"
+                />
               </div>
               <div>
-                <h4 class="font-bold mb-1">Comida real, no de fábrica</h4>
-                <p class="text-neutral-500 dark:text-neutral-400 text-sm">Se cansó de que su comida llegara fría o recalentada. DeComer es su forma de hacer comida real que llegue fresca.</p>
+                <h4 class="font-bold mb-1">
+                  Comida real, no de fábrica
+                </h4>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm">
+                  Se cansó de que su comida llegara fría o recalentada. DeComer es su forma de hacer comida real que llegue fresca.
+                </p>
               </div>
             </div>
             <div class="flex gap-4 items-start">
               <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center shrink-0">
-                <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="w-5 h-5 text-primary-600 dark:text-primary-400"
+                />
               </div>
               <div>
-                <h4 class="font-bold mb-1">Si no la comería él, no sale</h4>
-                <p class="text-neutral-500 dark:text-neutral-400 text-sm">Lighuen cocina personalmente cada vianda. Cada plato pasa por su control antes de salir.</p>
+                <h4 class="font-bold mb-1">
+                  Si no la comería él, no sale
+                </h4>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm">
+                  Lighuen cocina personalmente cada vianda. Cada plato pasa por su control antes de salir.
+                </p>
               </div>
             </div>
-            <UButton to="/buscar" label="Ver el menú de Lighuen" icon="i-lucide-arrow-right" trailing class="mt-4" />
+            <UButton
+              to="/buscar"
+              label="Ver el menú de Lighuen"
+              icon="i-lucide-arrow-right"
+              trailing
+              class="mt-4"
+            />
           </div>
         </div>
       </div>
@@ -267,21 +340,35 @@ const faqs = [
           <div class="absolute inset-0 bg-gradient-to-br from-primary-600/20 to-transparent pointer-events-none" />
           <div class="relative">
             <div class="inline-flex items-center gap-2 bg-primary-500/20 text-primary-300 text-sm font-semibold px-4 py-2 rounded-full mb-6">
-              <UIcon name="i-lucide-map-pin" class="w-4 h-4" />
+              <UIcon
+                name="i-lucide-map-pin"
+                class="w-4 h-4"
+              />
               Solo en Córdoba Capital
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Hechos en Córdoba, para Córdoba</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Hechos en Córdoba, para Córdoba
+            </h2>
             <p class="text-neutral-300 max-w-2xl mb-8 text-lg">
               Somos los <strong class="text-white">únicos</strong> con una app de viandas en Córdoba Capital. Cocinamos acá, entregamos acá. Conocemos los barrios, los horarios, lo que le gusta comer a la gente.
             </p>
             <div class="flex flex-wrap gap-2 mb-8">
-              <span v-for="barrio in ['Nueva Córdoba', 'Centro', 'Cerro de las Rosas', 'Cofico', 'General Paz', 'Alto Alberdi', 'Alberdi', 'Jardín', 'Urca', 'Poeta Lugones', 'Villa Cabrera']" :key="barrio"
-                class="bg-white/10 text-white/80 text-sm px-3 py-1 rounded-full">
+              <span
+                v-for="barrio in ['Nueva Córdoba', 'Centro', 'Cerro de las Rosas', 'Cofico', 'General Paz', 'Alto Alberdi', 'Alberdi', 'Jardín', 'Urca', 'Poeta Lugones', 'Villa Cabrera']"
+                :key="barrio"
+                class="bg-white/10 text-white/80 text-sm px-3 py-1 rounded-full"
+              >
                 {{ barrio }}
               </span>
               <span class="bg-white/10 text-white/60 text-sm px-3 py-1 rounded-full">y alrededores</span>
             </div>
-            <UButton to="/buscar" label="Ver si llegamos a tu zona" icon="i-lucide-map-pin" color="primary" size="lg" />
+            <UButton
+              to="/buscar"
+              label="Ver si llegamos a tu zona"
+              icon="i-lucide-map-pin"
+              color="primary"
+              size="lg"
+            />
           </div>
         </div>
       </div>
@@ -291,7 +378,9 @@ const faqs = [
     <section class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-14">
-          <h2 class="text-4xl font-bold">Por qué DeComer</h2>
+          <h2 class="text-4xl font-bold">
+            Por qué DeComer
+          </h2>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
@@ -300,10 +389,17 @@ const faqs = [
             :key="item.title"
             class="flex gap-4 p-6 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
           >
-            <UIcon :name="item.icon" class="w-6 h-6 text-primary-500 shrink-0 mt-1" />
+            <UIcon
+              :name="item.icon"
+              class="w-6 h-6 text-primary-500 shrink-0 mt-1"
+            />
             <div>
-              <h3 class="font-bold mb-1">{{ item.title }}</h3>
-              <p class="text-neutral-500 dark:text-neutral-400 text-sm">{{ item.desc }}</p>
+              <h3 class="font-bold mb-1">
+                {{ item.title }}
+              </h3>
+              <p class="text-neutral-500 dark:text-neutral-400 text-sm">
+                {{ item.desc }}
+              </p>
             </div>
           </div>
         </div>
@@ -314,8 +410,12 @@ const faqs = [
     <section class="py-20 px-6">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10">
-          <h2 class="text-4xl font-bold mb-3">Nuestro menú</h2>
-          <p class="text-neutral-500 dark:text-neutral-400">Platos clásicos que siempre están. Elegí los que más te gusten.</p>
+          <h2 class="text-4xl font-bold mb-3">
+            Nuestro menú
+          </h2>
+          <p class="text-neutral-500 dark:text-neutral-400">
+            Platos clásicos que siempre están. Elegí los que más te gusten.
+          </p>
         </div>
 
         <div class="flex flex-wrap gap-2 justify-center mb-10">
@@ -334,27 +434,59 @@ const faqs = [
           <div
             v-for="item in filteredMenu"
             :key="item.name"
-            class="p-5 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800"
+            class="group rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 overflow-hidden hover:shadow-lg transition-shadow"
           >
-            <UBadge :label="item.tag" color="primary" variant="subtle" class="mb-3" />
-            <h4 class="font-semibold mb-2">{{ item.name }}</h4>
-            <p class="text-xs text-neutral-400 mb-1">{{ item.macros }}</p>
-            <p class="text-xs font-medium text-primary-500">{{ item.kcal }}</p>
+            <div class="aspect-[4/3] overflow-hidden bg-neutral-100 dark:bg-neutral-700">
+              <img
+                :src="item.image"
+                :alt="item.name"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              >
+            </div>
+            <div class="p-5">
+              <UBadge
+                :label="item.tag"
+                color="primary"
+                variant="subtle"
+                class="mb-3"
+              />
+              <h4 class="font-semibold mb-2">
+                {{ item.name }}
+              </h4>
+              <p class="text-xs text-neutral-400 mb-1">
+                {{ item.macros }}
+              </p>
+              <p class="text-xs font-medium text-primary-500">
+                {{ item.kcal }}
+              </p>
+            </div>
           </div>
         </div>
 
         <div class="text-center mt-10">
-          <UButton to="/buscar" label="Ver menú completo" icon="i-lucide-arrow-right" trailing />
+          <UButton
+            to="/buscar"
+            label="Ver menú completo"
+            icon="i-lucide-arrow-right"
+            trailing
+          />
         </div>
       </div>
     </section>
 
     <!-- PLANES -->
-    <section class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900">
+    <section
+      id="pricing"
+      class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900"
+    >
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-14">
-          <h2 class="text-4xl font-bold mb-3">Elegí tu ritmo</h2>
-          <p class="text-neutral-500 dark:text-neutral-400">Más viandas = mejor precio. Envío siempre incluido.</p>
+          <h2 class="text-4xl font-bold mb-3">
+            Elegí tu ritmo
+          </h2>
+          <p class="text-neutral-500 dark:text-neutral-400">
+            Más viandas = mejor precio. Envío siempre incluido.
+          </p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -368,13 +500,22 @@ const faqs = [
                 : 'bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700'
             ]"
           >
-            <div v-if="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2">
-              <UBadge label="⭐ Más popular" color="neutral" class="shadow" />
+            <div
+              v-if="plan.highlight"
+              class="absolute -top-3 left-1/2 -translate-x-1/2"
+            >
+              <UBadge
+                label="⭐ Más popular"
+                color="neutral"
+                class="shadow"
+              />
             </div>
 
             <div class="mb-4">
               <div class="flex items-center gap-2 mb-1">
-                <h3 class="font-bold text-lg">{{ plan.name }}</h3>
+                <h3 class="font-bold text-lg">
+                  {{ plan.name }}
+                </h3>
                 <UBadge
                   v-if="plan.discount"
                   :label="plan.discount"
@@ -384,17 +525,33 @@ const faqs = [
                   :class="plan.highlight ? 'bg-white/20 text-white' : ''"
                 />
               </div>
-              <p :class="plan.highlight ? 'text-primary-100' : 'text-neutral-500'" class="text-sm">{{ plan.subtitle }}</p>
+              <p
+                :class="plan.highlight ? 'text-primary-100' : 'text-neutral-500'"
+                class="text-sm"
+              >
+                {{ plan.subtitle }}
+              </p>
             </div>
 
             <div class="mb-6">
               <span class="text-3xl font-bold">{{ plan.price }}</span>
-              <span :class="plan.highlight ? 'text-primary-100' : 'text-neutral-400'" class="text-sm ml-1">{{ plan.unit }}</span>
+              <span
+                :class="plan.highlight ? 'text-primary-100' : 'text-neutral-400'"
+                class="text-sm ml-1"
+              >{{ plan.unit }}</span>
             </div>
 
             <ul class="space-y-2 mb-8 flex-1">
-              <li v-for="f in plan.features" :key="f" class="flex items-start gap-2 text-sm">
-                <UIcon name="i-lucide-check" :class="plan.highlight ? 'text-white' : 'text-primary-500'" class="w-4 h-4 mt-0.5 shrink-0" />
+              <li
+                v-for="f in plan.features"
+                :key="f"
+                class="flex items-start gap-2 text-sm"
+              >
+                <UIcon
+                  name="i-lucide-check"
+                  :class="plan.highlight ? 'text-white' : 'text-primary-500'"
+                  class="w-4 h-4 mt-0.5 shrink-0"
+                />
                 <span :class="plan.highlight ? 'text-primary-50' : 'text-neutral-600 dark:text-neutral-300'">{{ f }}</span>
               </li>
             </ul>
@@ -419,7 +576,9 @@ const faqs = [
     <section class="py-20 px-6">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-14">
-          <h2 class="text-4xl font-bold">Lo que dicen</h2>
+          <h2 class="text-4xl font-bold">
+            Lo que dicen
+          </h2>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
@@ -428,10 +587,16 @@ const faqs = [
             :key="testimonial.name"
             class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
           >
-            <p class="text-neutral-700 dark:text-neutral-300 mb-4 italic">"{{ testimonial.text }}"</p>
+            <p class="text-neutral-700 dark:text-neutral-300 mb-4 italic">
+              "{{ testimonial.text }}"
+            </p>
             <div>
-              <p class="font-semibold">{{ testimonial.name }}</p>
-              <p class="text-sm text-neutral-400">{{ testimonial.location }}</p>
+              <p class="font-semibold">
+                {{ testimonial.name }}
+              </p>
+              <p class="text-sm text-neutral-400">
+                {{ testimonial.location }}
+              </p>
             </div>
           </div>
         </div>
@@ -442,18 +607,27 @@ const faqs = [
     <section class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-14">
-          <h2 class="text-4xl font-bold">Preguntas frecuentes</h2>
+          <h2 class="text-4xl font-bold">
+            Preguntas frecuentes
+          </h2>
         </div>
 
-        <UAccordion :items="faqs.map(f => ({ label: f.q, content: f.a }))" />
+        <UAccordion
+          :items="faqs.map(f => ({ label: f.q, content: f.a }))"
+          :default-value="[0]"
+        />
       </div>
     </section>
 
     <!-- CTA FINAL -->
     <section class="py-24 px-6 text-center">
       <div class="max-w-2xl mx-auto">
-        <h2 class="text-4xl font-bold mb-4">¿Listo para comer bien?</h2>
-        <p class="text-neutral-500 dark:text-neutral-400 mb-10">Primera semana sin compromiso. Cancelás cuando querés.</p>
+        <h2 class="text-4xl font-bold mb-4">
+          ¿Listo para comer bien?
+        </h2>
+        <p class="text-neutral-500 dark:text-neutral-400 mb-10">
+          Primera semana sin compromiso. Cancelás cuando querés.
+        </p>
         <UButton
           to="/login"
           size="xl"
@@ -463,6 +637,5 @@ const faqs = [
         />
       </div>
     </section>
-
   </div>
 </template>
