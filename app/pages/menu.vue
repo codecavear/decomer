@@ -9,18 +9,22 @@ useSeoMeta({
 interface Vianda {
   id: string
   name: string
+  slug: string
   description: string | null
   price: string
   imageUrl: string | null
+  imagePublicId: string | null
   isAvailable: boolean
+  isVegetarian: boolean
   isVegan: boolean
-  category: string | null
-  // macros — pendiente de schema migration
-  calories?: number
-  protein?: number
-  carbs?: number
-  fat?: number
-  tags?: string[]
+  isGlutenFree: boolean
+  isLowCarb: boolean
+  isHighProtein: boolean
+  ingredients: string[] | null
+  calories: number | null
+  protein: string | null // decimal stored as string
+  carbs: string | null
+  fats: string | null
 }
 
 // Filters
@@ -29,40 +33,32 @@ const searchQuery = ref('')
 
 const filters = [
   { id: 'todos', label: 'Todos' },
-  { id: 'veggie', label: '🥦 Vegetariano' },
-  { id: 'proteico', label: '💪 Proteico' },
-  { id: 'low-carb', label: '⚡ Low Carb' },
-  { id: 'sin-gluten', label: '🌾 Sin Gluten' }
+  { id: 'vegetarian', label: '🥦 Vegetariano' },
+  { id: 'vegan', label: '🌱 Vegano' },
+  { id: 'highProtein', label: '💪 Proteico' },
+  { id: 'lowCarb', label: '⚡ Low Carb' },
+  { id: 'glutenFree', label: '🌾 Sin Gluten' }
 ]
 
-// Fetch viandas — uses /api/products with available filter
-// TODO: add storeId once DeComer store is seeded; for now fetches public catalog
-const { data, pending, error } = await useFetch<{ products: Vianda[] }>('/api/catalog', {
-  query: computed(() => ({
-    available: true,
-    category: activeFilter.value !== 'todos' ? activeFilter.value : undefined
-  }))
+// Fetch viandas
+const { data, pending, error } = await useFetch<{ viandas: Vianda[], total: number }>('/api/viandas', {
+  query: computed(() => {
+    const params: Record<string, string> = {}
+
+    if (searchQuery.value.trim()) {
+      params.q = searchQuery.value.trim()
+    }
+
+    // Apply active filter
+    if (activeFilter.value !== 'todos') {
+      params[activeFilter.value] = 'true'
+    }
+
+    return params
+  })
 })
 
-const viandas = computed(() => data.value?.products ?? [])
-
-const filteredViandas = computed(() => {
-  let list = viandas.value
-
-  if (searchQuery.value.trim()) {
-    const q = searchQuery.value.toLowerCase()
-    list = list.filter(v =>
-      v.name.toLowerCase().includes(q)
-      || v.description?.toLowerCase().includes(q)
-    )
-  }
-
-  if (activeFilter.value === 'veggie') {
-    list = list.filter(v => v.isVegan)
-  }
-
-  return list
-})
+const viandas = computed(() => data.value?.viandas ?? [])
 
 const formatPrice = (price: string) =>
   new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(Number(price))
@@ -181,7 +177,7 @@ const cartCount = computed(() =>
         class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <div
-          v-for="vianda in filteredViandas"
+          v-for="vianda in viandas"
           :key="vianda.id"
           class="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 overflow-hidden flex flex-col"
         >
@@ -204,30 +200,61 @@ const cartCount = computed(() =>
               />
             </div>
 
-            <!-- Vegan badge -->
-            <UBadge
-              v-if="vianda.isVegan"
-              label="🥦 Veggie"
-              color="primary"
-              variant="solid"
-              class="absolute top-3 left-3"
-            />
+            <!-- Tags/badges -->
+            <div class="absolute top-3 left-3 flex gap-2 flex-wrap">
+              <UBadge
+                v-if="vianda.isVegan"
+                label="🌱 Vegano"
+                color="success"
+                variant="solid"
+                size="xs"
+              />
+              <UBadge
+                v-if="vianda.isVegetarian && !vianda.isVegan"
+                label="🥦 Vegetariano"
+                color="success"
+                variant="solid"
+                size="xs"
+              />
+              <UBadge
+                v-if="vianda.isGlutenFree"
+                label="🌾 Sin Gluten"
+                color="primary"
+                variant="solid"
+                size="xs"
+              />
+              <UBadge
+                v-if="vianda.isLowCarb"
+                label="⚡ Low Carb"
+                color="warning"
+                variant="solid"
+                size="xs"
+              />
+              <UBadge
+                v-if="vianda.isHighProtein"
+                label="💪 Proteico"
+                color="error"
+                variant="solid"
+                size="xs"
+              />
+            </div>
           </div>
 
           <!-- Info -->
           <div class="p-5 flex flex-col flex-1">
-            <div class="flex items-start justify-between gap-2 mb-2">
-              <h3 class="font-semibold text-base leading-tight">
-                {{ vianda.name }}
-              </h3>
-              <UBadge
-                v-if="vianda.category"
-                :label="vianda.category"
-                color="neutral"
-                variant="subtle"
-                size="xs"
-                class="shrink-0"
-              />
+            <h3 class="font-semibold text-base leading-tight mb-2">
+              {{ vianda.name }}
+            </h3>
+
+            <!-- Macros (if available) -->
+            <div
+              v-if="vianda.calories || vianda.protein || vianda.carbs || vianda.fats"
+              class="flex gap-3 text-xs text-neutral-500 dark:text-neutral-400 mb-3"
+            >
+              <span v-if="vianda.calories">{{ vianda.calories }} kcal</span>
+              <span v-if="vianda.protein">P: {{ vianda.protein }}g</span>
+              <span v-if="vianda.carbs">C: {{ vianda.carbs }}g</span>
+              <span v-if="vianda.fats">G: {{ vianda.fats }}g</span>
             </div>
 
             <p
