@@ -12,12 +12,14 @@ RUN npx nuxt build
 FROM node:22-slim
 WORKDIR /app
 
+# Copy build output, migrations, and scripts
 COPY --from=build /app/.output .output
 COPY --from=build /app/drizzle drizzle
 COPY --from=build /app/scripts/migrate.mjs scripts/migrate.mjs
 COPY --from=build /app/package.json .
-COPY --from=build /app/node_modules/drizzle-orm node_modules/drizzle-orm
-COPY --from=build /app/node_modules/postgres node_modules/postgres
+
+# Copy node_modules entirely to avoid issues with dependency resolution
+COPY --from=build /app/node_modules node_modules
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
