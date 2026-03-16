@@ -4,7 +4,7 @@ import { viandas } from '../../../database/schema'
 import { slugify } from '../../../utils/slug'
 
 export default defineEventHandler(async (event) => {
-  // TODO: Add admin auth middleware
+  await requireAdminRole(event)
   const db = getDb()
   const id = getRouterParam(event, 'id')
   const body = await readBody(event)

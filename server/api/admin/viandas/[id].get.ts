@@ -3,7 +3,7 @@ import { getDb } from '../../../utils/db'
 import { viandas } from '../../../database/schema'
 
 export default defineEventHandler(async (event) => {
-  // TODO: Add admin auth middleware
+  await requireAdminRole(event)
   const db = getDb()
   const id = getRouterParam(event, 'id')
 
