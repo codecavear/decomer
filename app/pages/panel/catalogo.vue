@@ -380,7 +380,7 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
         >
           <UInput
             v-model="productForm.name"
-            placeholder="Ej: Hamburguesa vegana"
+            placeholder="Ej: Pollo al limón con quinoa"
             icon="i-lucide-package"
           />
         </UFormField>
@@ -537,3 +537,4 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
     </UModal>
   </div>
 </template>
+

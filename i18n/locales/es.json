@@ -1,29 +1,29 @@
 {
   "auth": {
     "welcomeBack": "Bienvenido",
-    "signInAccess": "Inicia sesion para acceder a tu cuenta",
+    "signInAccess": "Iniciá sesión para acceder a tu cuenta",
     "continueGoogle": "Continuar con Google",
-    "agreementText": "Al iniciar sesion, aceptas nuestros Terminos de Servicio."
+    "agreementText": "Al iniciar sesión, aceptás nuestros Términos de Servicio."
   },
   "nav": {
-    "search": "Buscar",
+    "search": "Menú",
     "favorites": "Favoritos",
     "myOrders": "Mis Pedidos",
     "panel": "Mi cuenta",
-    "login": "Iniciar Sesion",
-    "logout": "Cerrar Sesion",
-    "pricing": "Precios"
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "pricing": "Planes"
   },
   "home": {
     "title": "Comes bien. {highlight}",
     "titleHighlight": "Nosotros cocinamos.",
-    "description": "Viandas frescas, nunca congeladas. En tu puerta cuando las necesites. Suscripción semanal o pedido único en Córdoba Capital.",
+    "description": "Viandas frescas, nunca congeladas. En tu puerta cuando las necesités. Suscripción semanal o pedido único en Córdoba Capital.",
     "seo": {
       "title": "DeComer | Viandas frescas por suscripción en Córdoba",
       "description": "Viandas saludables, cocinadas hoy, en tu puerta mañana. Sin congelar. Delivery en Córdoba Capital."
     },
     "hero": {
-      "searchPlaceholder": "Buscar por ciudad...",
+      "searchPlaceholder": "Buscar en el menú...",
       "searchButton": "Buscar"
     },
     "features": {
@@ -41,12 +41,12 @@
       }
     },
     "categories": {
-      "title": "Explora por Categoria",
-      "description": "Encontra exactamente lo que estas buscando"
+      "title": "Explorá por categoría",
+      "description": "Encontrá exactamente lo que estás buscando"
     },
     "stores": {
-      "title": "Tiendas Destacadas",
-      "description": "Descubri las tiendas mas populares de la comunidad"
+      "title": "Esta semana cocinamos",
+      "description": "El menú rota cada semana. Siempre hay opciones para todos."
     },
     "cta": {
       "owner": {
@@ -56,190 +56,183 @@
       }
     },
     "howItWorks": {
-      "title": "Como funciona",
+      "title": "Cómo funciona",
       "description": "En 3 simples pasos",
       "steps": {
         "search": {
-          "title": "Busca",
-          "description": "Encontra tiendas veganas cerca tuyo por ubicacion o categoria"
+          "title": "Elegís tu plan",
+          "description": "5 o 10 viandas por semana. O pedí cuando quieras, sin compromiso."
         },
         "choose": {
-          "title": "Elegi",
-          "description": "Explora productos, lee reseñas y agrega al carrito"
+          "title": "Armás tu semana",
+          "description": "Mirá el menú y elegí las viandas que querés. Cambiá cada semana."
         },
         "order": {
-          "title": "Pedi",
-          "description": "Confirma tu pedido para retiro o delivery"
+          "title": "Te las llevamos",
+          "description": "Llegan frescas a tu puerta. Calentá y comé. Eso es todo."
         }
       }
     },
     "stats": {
-      "stores": "Tiendas",
-      "cities": "Ciudades",
-      "orders": "Pedidos",
-      "users": "Usuarios"
+      "stores": "Viandas por semana",
+      "cities": "Barrios con delivery",
+      "orders": "Pedidos entregados",
+      "users": "Clientes"
     },
     "testimonials": {
-      "title": "Lo que dicen nuestros vendedores",
-      "description": "Historias reales de emprendedores que crecieron con DeComer",
+      "title": "Lo que dicen",
+      "description": "Experiencias reales de nuestros clientes",
       "items": [
         {
-          "quote": "Antes perdía horas respondiendo WhatsApp. Ahora mis clientes piden directo desde DeComer y yo me enfoco en cocinar. Las ventas crecieron un 40% en 3 meses.",
-          "name": "Mariana Gutiérrez",
-          "role": "Fundadora",
-          "store": "Tierra Verde Deli",
-          "location": "Córdoba"
+          "quote": "Por fin una app de viandas que funciona. Pido el domingo, llega el lunes. Así de simple.",
+          "name": "Martina",
+          "role": "Clienta",
+          "store": "",
+          "location": "Nueva Córdoba"
         },
         {
-          "quote": "Lo mejor es que no cobran comisión. Con otras plataformas perdía el 15% de cada venta. Acá pago solo la suscripción y me quedo con todo.",
-          "name": "Lucas Fernández",
-          "role": "Dueño",
-          "store": "Raíces Plant-Based",
-          "location": "Buenos Aires"
+          "quote": "Se nota que es fresco. No tiene ese gusto a recalentado de otras viandas.",
+          "name": "Tomás",
+          "role": "Cliente",
+          "store": "",
+          "location": "Cerro de las Rosas"
         },
         {
-          "quote": "Mis clientes aman poder ver todo el menú con fotos y precios. Antes preguntaban mil veces lo mismo. Ahora el proceso es súper fluido.",
-          "name": "Valentina Torres",
-          "role": "Chef & Owner",
-          "store": "Brotes Cocina Vegana",
-          "location": "Rosario"
+          "quote": "Trabajo desde casa y no tengo tiempo de cocinar. DeComer me salva la semana.",
+          "name": "Lucía",
+          "role": "Clienta",
+          "store": "",
+          "location": "General Paz"
         }
       ]
     },
     "pricing": {
-      "title": "Planes simples, sin comisiones",
-      "description": "Quédate con el 100% de tus ventas. Sin letra chica.",
-      "start": "Empezar gratis",
+      "title": "Elegí tu ritmo",
+      "description": "Más viandas = mejor precio. Envío siempre incluido.",
+      "start": "Empezar",
       "see": "Ver planes",
       "free": {
-        "title": "Gratis",
-        "products": "100 productos",
-        "store": "1 tienda",
-        "commission": "0% comisiones"
+        "title": "Pedido Único",
+        "products": "Mínimo 3 viandas",
+        "store": "Sin suscripción",
+        "commission": "Envío incluido"
       },
       "pro": {
-        "products": "1.000 productos",
-        "stores": "3 tiendas",
-        "commission": "0% comisiones"
+        "products": "5 viandas/semana",
+        "stores": "1 entrega semanal",
+        "commission": "Envío incluido"
       },
       "business": {
-        "products": "Productos ilimitados",
-        "stores": "Tiendas ilimitadas",
-        "commission": "0% comisiones"
+        "products": "10 viandas/semana",
+        "stores": "2 entregas semanales",
+        "commission": "Envío incluido"
       }
     },
     "integrations": {
-      "title": "Integraciones que facilitan tu negocio",
-      "description": "Conecta con las herramientas que ya usas",
+      "title": "Todo lo que necesitás en un lugar",
+      "description": "Simple, rápido, sin complicaciones",
       "mercadopago": {
-        "title": "MercadoPago",
-        "description": "Cobra con tarjetas, transferencias y efectivo. Tus clientes pagan como prefieran."
+        "title": "Pago online",
+        "description": "Pagá con tarjeta, transferencia o efectivo. Como prefieras."
       },
       "whatsapp": {
         "title": "WhatsApp",
-        "description": "Recibí notificaciones de pedidos y comunicate directo con tus clientes."
+        "description": "Recibí confirmaciones y novedades por WhatsApp."
       },
       "google": {
-        "title": "Google Business",
-        "description": "Sincronizá tu negocio de Google para importar info, fotos y reseñas automáticamente."
+        "title": "App móvil",
+        "description": "Gestioná tu suscripción, pausá o cambiá viandas desde la app."
       }
     }
   },
   "pricing": {
-    "title": "Sin comisiones, sin sorpresas",
-    "description": "DeComer no cobra comisiones por venta. Paga solo una suscripcion fija y quédate con el 100% de tus ganancias.",
+    "title": "Elegí tu ritmo",
+    "description": "Más viandas = mejor precio. Todos los planes incluyen envío en Córdoba Capital.",
     "seo": {
-      "title": "Precios",
-      "description": "Planes simples sin comisiones. Crea tu tienda online y quédate con el 100% de tus ventas."
+      "title": "Planes",
+      "description": "Suscripción semanal de viandas frescas. Desde $10.560 por vianda con envío incluido."
     },
-    "monthly": "Mensual",
-    "yearly": "Anual",
-    "perMonth": "/mes",
-    "perYear": "/año",
-    "getStarted": "Comenzar gratis",
+    "monthly": "Semanal",
+    "yearly": "Mensual",
+    "perMonth": "/vianda",
+    "perYear": "/vianda",
+    "getStarted": "Suscribirme",
     "plans": {
       "basic": {
-        "title": "Gratis",
-        "description": "Perfecto para empezar tu tienda online.",
-        "priceMonth": "$0",
-        "priceYear": "$0",
+        "title": "Pedido Único",
+        "description": "Para probar sin compromiso.",
+        "priceMonth": "$12.000",
+        "priceYear": "$12.000",
         "features": [
-          "Hasta 100 productos",
-          "1 tienda",
-          "0% comisiones",
-          "Pagos con MercadoPago",
-          "Soporte por email"
+          "Sin suscripción",
+          "Mínimo 3 viandas",
+          "Envío incluido"
         ]
       },
       "standard": {
-        "title": "Pro",
-        "description": "Para tiendas en crecimiento.",
-        "priceMonth": "$9.990",
-        "priceYear": "$99.900",
+        "title": "Básico",
+        "description": "5 viandas por semana.",
+        "priceMonth": "$11.400",
+        "priceYear": "$11.400",
         "features": [
-          "Hasta 1.000 productos",
-          "3 tiendas",
-          "0% comisiones",
-          "Dominio personalizado",
-          "Analytics básicos",
-          "Soporte prioritario"
+          "5 viandas/semana",
+          "Entrega 1 vez por semana",
+          "Elegís del menú semanal",
+          "Envío incluido"
         ]
       },
       "premium": {
-        "title": "Business",
-        "description": "Para negocios establecidos.",
-        "priceMonth": "$29.990",
-        "priceYear": "$299.900",
+        "title": "Full",
+        "description": "10 viandas por semana.",
+        "priceMonth": "$10.800",
+        "priceYear": "$10.800",
         "features": [
-          "Productos ilimitados",
-          "Tiendas ilimitadas",
-          "0% comisiones",
-          "Dominio personalizado",
-          "Analytics avanzados",
-          "Múltiples usuarios",
-          "Soporte dedicado"
+          "10 viandas/semana",
+          "Entrega 2 veces por semana",
+          "Elegís del menú semanal",
+          "Envío incluido"
         ]
       }
     },
-    "trustedBy": "Tiendas que confían en DeComer",
+    "trustedBy": "Clientes que confían en DeComer",
     "faq": {
       "title": "Preguntas frecuentes",
-      "description": "Todo lo que necesitas saber sobre nuestros planes.",
+      "description": "Todo lo que necesitás saber.",
       "items": [
         {
-          "label": "Realmente no cobran comisiones?",
-          "content": "Correcto. DeComer no cobra comisión por venta. Solo pagas la suscripción mensual o anual y te quedas con el 100% de tus ventas."
+          "label": "¿Las viandas vienen congeladas?",
+          "content": "No. Nunca congelamos nada. Cocinamos hoy, te entregamos mañana."
         },
         {
-          "label": "Puedo empezar gratis?",
-          "content": "Si, el plan Gratis te permite crear una tienda con hasta 100 productos sin costo. Sin tarjeta de crédito, sin límite de tiempo."
+          "label": "¿Dónde hacen delivery?",
+          "content": "Córdoba Capital. Barrios: Nueva Córdoba, Centro, Cerro, Urca, Cofico, Alberdi, General Paz y alrededores."
         },
         {
-          "label": "Qué métodos de pago aceptan mis clientes?",
-          "content": "Integramos con MercadoPago, permitiendo tarjetas de crédito, débito, transferencias y pagos en efectivo."
+          "label": "¿Puedo elegir las viandas?",
+          "content": "Sí. Cada semana publicamos el menú y vos elegís cuáles querés."
         },
         {
-          "label": "Puedo cambiar de plan después?",
-          "content": "Si, puedes subir o bajar de plan en cualquier momento. Los cambios se aplican inmediatamente."
+          "label": "¿Puedo pausar mi suscripción?",
+          "content": "Sí, cuando quieras. Desde la app pausás o cancelás sin drama."
         },
         {
-          "label": "Qué pasa si supero el límite de productos?",
-          "content": "Te notificaremos y podrás subir de plan o eliminar productos. Nunca eliminamos productos sin tu consentimiento."
+          "label": "¿Puedo cambiar de plan?",
+          "content": "Sí, podés subir o bajar de plan en cualquier momento."
         },
         {
-          "label": "Ofrecen soporte?",
-          "content": "Si, todos los planes incluyen soporte por email. Los planes Pro y Business tienen soporte prioritario."
+          "label": "¿Ofrecen soporte?",
+          "content": "Sí, por WhatsApp y email. Respondemos rápido."
         }
       ]
     }
   },
   "search": {
-    "title": "Buscar Tiendas",
+    "title": "Menú de la semana",
     "seo": {
-      "title": "Buscar Tiendas",
-      "description": "Descubrí tiendas veganas y vegetarianas cerca tuyo"
+      "title": "Menú",
+      "description": "Mirá las viandas de esta semana. Fresco, rico, listo para comer."
     },
-    "placeholder": "Buscar tiendas, productos...",
+    "placeholder": "Buscar vianda...",
     "myLocation": "Mi ubicación",
     "searching": "Buscando...",
     "locationActive": "Usando tu ubicación actual",
@@ -247,18 +240,18 @@
     "locationError": "No se pudo obtener tu ubicación",
     "filters": "Filtros",
     "clearFilters": "Limpiar",
-    "storeType": "Tipo de Tienda",
+    "storeType": "Categoría",
     "categories": "Categorías",
     "radius": "Radio de búsqueda",
-    "results": "{count} tienda encontrada | {count} tiendas encontradas",
-    "noResults": "No se encontraron tiendas",
-    "noResultsHint": "Intentá ajustar tus filtros o búsqueda",
+    "results": "{count} vianda encontrada | {count} viandas encontradas",
+    "noResults": "No hay viandas que coincidan",
+    "noResultsHint": "Intentá ajustar los filtros",
     "clearAll": "Limpiar filtros",
     "list": "Lista",
     "map": "Mapa",
-    "stores": "Tiendas",
+    "stores": "Viandas",
     "products": "Productos",
-    "viewAll": "Ver todas las tiendas",
+    "viewAll": "Ver menú completo",
     "viewDemo": "Ver demo"
   }
 }

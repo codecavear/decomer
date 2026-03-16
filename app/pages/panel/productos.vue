@@ -341,7 +341,7 @@ const toggleAvailability = async (product: any) => {
             <UFormField label="Nombre del producto" required>
               <UInput
                 v-model="productForm.name"
-                placeholder="Ej: Hamburguesa vegana"
+                placeholder="Ej: Pollo al limón con quinoa"
                 icon="i-lucide-package"
               />
             </UFormField>
@@ -430,3 +430,4 @@ const toggleAvailability = async (product: any) => {
     </template>
   </UDashboardPanel>
 </template>
+

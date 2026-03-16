@@ -9,7 +9,7 @@ definePageMeta({
 
 useSeoMeta({
   title: 'Crear Tienda',
-  description: 'Crea tu tienda vegana o vegetariana en DeComer'
+  description: 'Crea tu cuenta de DeComer en DeComer'
 })
 
 const router = useRouter()
@@ -382,7 +382,7 @@ watch(() => [formData.latitude, formData.longitude], () => {
         <UFormField label="Nombre de la tienda" required>
           <UInput
             v-model="formData.name"
-            placeholder="Mi Tienda Vegana"
+            placeholder="Mi DeComer"
           />
         </UFormField>
 
@@ -576,3 +576,4 @@ watch(() => [formData.latitude, formData.longitude], () => {
     </template>
   </UDashboardPanel>
 </template>
+

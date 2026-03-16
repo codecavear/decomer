@@ -6,254 +6,237 @@
     "agreementText": "By signing in, you agree to our Terms of Service."
   },
   "nav": {
-    "search": "Search",
+    "search": "Menu",
     "favorites": "Favorites",
     "myOrders": "My Orders",
-    "panel": "My Store",
+    "panel": "My Account",
     "login": "Sign In",
     "logout": "Sign Out",
-    "pricing": "Pricing"
+    "pricing": "Plans"
   },
   "home": {
-    "title": "Discover {highlight} Stores",
-    "titleHighlight": "Vegan & Vegetarian",
-    "description": "Find the best vegan and vegetarian stores near you. Order online, discover new products and support the plant-based lifestyle in Argentina.",
+    "title": "Eat well. {highlight}",
+    "titleHighlight": "We cook for you.",
+    "description": "Fresh meals, never frozen. At your door when you need them. Weekly subscription or one-time order in Córdoba.",
     "seo": {
-      "title": "DeComer - Discover Vegan & Vegetarian Stores",
-      "description": "Create and manage your vegetarian or vegan store. Platform for plant-based entrepreneurs in Argentina."
+      "title": "DeComer | Fresh meal subscription in Córdoba",
+      "description": "Healthy meals, cooked today, at your door tomorrow. Never frozen. Delivery in Córdoba Capital."
     },
     "hero": {
-      "searchPlaceholder": "Search by city...",
+      "searchPlaceholder": "Search the menu...",
       "searchButton": "Search"
-    },
-    "sections": {
-      "production": {
-        "title": "Your store, your way",
-        "description": "Create your online store in minutes. No commissions, no complications."
-      },
-      "developer": {
-        "title": "Built for entrepreneurs",
-        "description": "Simple tools to manage products, orders and customers. Focus on what matters."
-      }
     },
     "features": {
       "discover": {
-        "title": "Discover stores",
-        "description": "Find vegan and vegetarian stores near you with location and category search"
+        "title": "Cooked today",
+        "description": "Everything is prepared fresh. Nothing leaves the freezer, everything comes from the kitchen."
       },
       "order": {
-        "title": "Order online",
-        "description": "Place your orders for pickup or delivery from your favorite store"
+        "title": "At your door",
+        "description": "Delivery in Córdoba Capital. Arrives cold, ready to heat and eat."
       },
       "review": {
-        "title": "Rate and review",
-        "description": "Share your experience and help the community find the best options"
-      }
-    },
-    "cta": {
-      "title": "Ready to start?",
-      "description": "Create your vegan store today. It is free and takes only a few minutes.",
-      "getStarted": "Create my store",
-      "readDocs": "Learn more",
-      "owner": {
-        "title": "Ready to create your store?",
-        "description": "Join DeComer and reach thousands of customers looking for vegan products.",
-        "button": "Create my store"
-      }
-    },
-    "pricing": {
-      "title": "Simple plans, no commissions",
-      "description": "Keep 100% of your sales. No fine print.",
-      "start": "Start for free",
-      "see": "See plans",
-      "free": {
-        "title": "Free",
-        "products": "100 products",
-        "store": "1 store",
-        "commission": "0% commissions"
-      },
-      "pro": {
-        "products": "1,000 products",
-        "stores": "3 stores",
-        "commission": "0% commissions"
-      },
-      "business": {
-        "products": "Unlimited products",
-        "stores": "Unlimited stores",
-        "commission": "0% commissions"
-      }
-    },
-    "integrations": {
-      "title": "Integrations that simplify your business",
-      "description": "Connect with the tools you already use",
-      "mercadopago": {
-        "title": "MercadoPago",
-        "description": "Accept cards, transfers and cash. Your customers pay however they prefer."
-      },
-      "whatsapp": {
-        "title": "WhatsApp",
-        "description": "Get order notifications and communicate directly with your customers."
-      },
-      "google": {
-        "title": "Google Business",
-        "description": "Sync your Google Business to import info, photos and reviews automatically."
+        "title": "Your plan, your pace",
+        "description": "Flexible subscription. Pause, change or cancel whenever you want."
       }
     },
     "categories": {
-      "title": "Explore by Category",
+      "title": "Browse by category",
       "description": "Find exactly what you are looking for"
     },
     "stores": {
-      "title": "Featured Stores",
-      "description": "The most popular vegan and vegetarian stores"
+      "title": "This week we cooked",
+      "description": "The menu rotates every week. Always options for everyone."
+    },
+    "cta": {
+      "title": "Ready to eat well?",
+      "description": "First week, no commitment. Choose your plan and start eating well without cooking.",
+      "getStarted": "Get started",
+      "readDocs": "Learn more",
+      "owner": {
+        "title": "Ready to eat well?",
+        "description": "First week, no commitment. Choose your plan and start eating well without cooking.",
+        "button": "See plans"
+      }
     },
     "howItWorks": {
-      "title": "How It Works",
-      "description": "Finding your favorite vegan store is easy",
+      "title": "How it works",
+      "description": "Three steps, zero drama",
       "steps": {
         "search": {
-          "title": "Search",
-          "description": "Enter your city or enable location to find stores near you"
+          "title": "Choose your plan",
+          "description": "5 or 10 meals per week. Or order whenever you want, no commitment."
         },
         "choose": {
-          "title": "Choose",
-          "description": "Browse stores, check menus and read reviews from other users"
+          "title": "Build your week",
+          "description": "Browse the menu and pick what you want. Change every week."
         },
         "order": {
-          "title": "Order",
-          "description": "Place your order for pickup or delivery and enjoy"
+          "title": "We deliver",
+          "description": "Arrives fresh at your door. Heat and eat. That is it."
         }
       }
     },
     "stats": {
-      "stores": "Active stores",
-      "cities": "Cities",
-      "orders": "Orders placed",
-      "users": "Users"
+      "stores": "Meals per week",
+      "cities": "Neighbourhoods with delivery",
+      "orders": "Orders delivered",
+      "users": "Customers"
     },
     "testimonials": {
-      "title": "What Our Users Say",
-      "description": "Real experiences from store owners and customers",
+      "title": "What they say",
+      "description": "Real experiences from our customers",
       "items": [
         {
-          "quote": "DeComer helped me take my store online in minutes. The best part? Zero commissions.",
-          "name": "María García",
-          "store": "La Huerta Verde",
-          "role": "Owner",
-          "location": "Córdoba"
-        },
-        {
-          "quote": "I finally found all the vegan stores in my city in one place. Super convenient.",
-          "name": "Lucas Fernández",
-          "store": "",
+          "quote": "Finally a meal app that works. I order Sunday, it arrives Monday. Simple as that.",
+          "name": "Martina",
           "role": "Customer",
-          "location": "Buenos Aires"
+          "store": "",
+          "location": "Nueva Córdoba"
         },
         {
-          "quote": "The ordering system is simple and my customers love it. Highly recommended.",
-          "name": "Valentina Torres",
-          "store": "Green Bowl",
-          "role": "Owner",
-          "location": "Rosario"
+          "quote": "You can tell it is fresh. None of that reheated taste from other meal services.",
+          "name": "Tomás",
+          "role": "Customer",
+          "store": "",
+          "location": "Cerro de las Rosas"
+        },
+        {
+          "quote": "I work from home and have no time to cook. DeComer saves my week.",
+          "name": "Lucía",
+          "role": "Customer",
+          "store": "",
+          "location": "General Paz"
         }
       ]
+    },
+    "pricing": {
+      "title": "Choose your pace",
+      "description": "More meals = better price. Delivery always included.",
+      "start": "Get started",
+      "see": "See plans",
+      "free": {
+        "title": "One-time",
+        "products": "Min. 3 meals",
+        "store": "No subscription",
+        "commission": "Delivery included"
+      },
+      "pro": {
+        "products": "5 meals/week",
+        "stores": "1 delivery per week",
+        "commission": "Delivery included"
+      },
+      "business": {
+        "products": "10 meals/week",
+        "stores": "2 deliveries per week",
+        "commission": "Delivery included"
+      }
+    },
+    "integrations": {
+      "title": "Everything you need in one place",
+      "description": "Simple, fast, no hassle",
+      "mercadopago": {
+        "title": "Online payment",
+        "description": "Pay by card, transfer or cash. However you prefer."
+      },
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Get order confirmations and updates via WhatsApp."
+      },
+      "google": {
+        "title": "Mobile app",
+        "description": "Manage your subscription, pause or swap meals from the app."
+      }
     }
   },
   "pricing": {
-    "title": "No fees, no surprises",
-    "description": "DeComer does not charge sales commissions. Pay only a flat subscription and keep 100% of your earnings.",
+    "title": "Choose your pace",
+    "description": "More meals = better price. All plans include delivery in Córdoba Capital.",
     "seo": {
-      "title": "Pricing - DeComer",
-      "description": "Simple plans with no commissions. Create your online store and keep 100% of your sales."
+      "title": "Plans - DeComer",
+      "description": "Weekly fresh meal subscription. From $10,560 per meal with delivery included."
     },
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "perMonth": "/month",
-    "perYear": "/year",
-    "getStarted": "Start for free",
+    "monthly": "Weekly",
+    "yearly": "Monthly",
+    "perMonth": "/meal",
+    "perYear": "/meal",
+    "getStarted": "Subscribe",
     "plans": {
       "basic": {
-        "title": "Free",
-        "description": "Perfect to start your online store.",
-        "priceMonth": "$0",
-        "priceYear": "$0",
+        "title": "One-time",
+        "description": "Try it with no commitment.",
+        "priceMonth": "$12,000",
+        "priceYear": "$12,000",
         "features": [
-          "Up to 100 products",
-          "1 store",
-          "0% commissions",
-          "MercadoPago payments",
-          "Email support"
+          "No subscription",
+          "Minimum 3 meals",
+          "Delivery included"
         ]
       },
       "standard": {
-        "title": "Pro",
-        "description": "For growing stores.",
-        "priceMonth": "$9.990",
-        "priceYear": "$99.900",
+        "title": "Basic",
+        "description": "5 meals per week.",
+        "priceMonth": "$11,400",
+        "priceYear": "$11,400",
         "features": [
-          "Up to 1,000 products",
-          "3 stores",
-          "0% commissions",
-          "Custom domain",
-          "Basic analytics",
-          "Priority support"
+          "5 meals/week",
+          "1 delivery per week",
+          "You pick from the weekly menu",
+          "Delivery included"
         ]
       },
       "premium": {
-        "title": "Business",
-        "description": "For established businesses.",
-        "priceMonth": "$29.990",
-        "priceYear": "$299.900",
+        "title": "Full",
+        "description": "10 meals per week.",
+        "priceMonth": "$10,800",
+        "priceYear": "$10,800",
         "features": [
-          "Unlimited products",
-          "Unlimited stores",
-          "0% commissions",
-          "Custom domain",
-          "Advanced analytics",
-          "Multiple users",
-          "Dedicated support"
+          "10 meals/week",
+          "2 deliveries per week",
+          "You pick from the weekly menu",
+          "Delivery included"
         ]
       }
     },
-    "trustedBy": "Stores that trust DeComer",
+    "trustedBy": "Customers who trust DeComer",
     "faq": {
       "title": "Frequently asked questions",
-      "description": "Everything you need to know about our plans.",
+      "description": "Everything you need to know.",
       "items": [
         {
-          "label": "Do you really not charge commissions?",
-          "content": "Correct. DeComer does not charge any sales commission. You only pay the monthly or yearly subscription and keep 100% of your sales."
+          "label": "Are the meals frozen?",
+          "content": "No. We never freeze anything. We cook today and deliver tomorrow."
         },
         {
-          "label": "Can I start for free?",
-          "content": "Yes, the Free plan lets you create a store with up to 100 products at no cost. No credit card, no time limit."
+          "label": "Where do you deliver?",
+          "content": "Córdoba Capital. Neighborhoods: Nueva Córdoba, Centro, Cerro, Urca, Cofico, Alberdi, General Paz and surroundings."
         },
         {
-          "label": "What payment methods do my customers have?",
-          "content": "We integrate with MercadoPago, allowing credit cards, debit cards, transfers and cash payments."
+          "label": "Can I choose my meals?",
+          "content": "Yes. Every week we publish the menu and you pick what you want."
         },
         {
-          "label": "Can I change plans later?",
-          "content": "Yes, you can upgrade or downgrade at any time. Changes apply immediately."
+          "label": "Can I pause my subscription?",
+          "content": "Yes, whenever you want. Pause or cancel from the app with no hassle."
         },
         {
-          "label": "What if I exceed the product limit?",
-          "content": "We will notify you and you can upgrade or remove products. We never delete products without your consent."
+          "label": "Can I change plans?",
+          "content": "Yes, you can upgrade or downgrade at any time."
         },
         {
           "label": "Do you offer support?",
-          "content": "Yes, all plans include email support. Pro and Business plans have priority support."
+          "content": "Yes, via WhatsApp and email. We respond quickly."
         }
       ]
     }
   },
   "search": {
-    "title": "Search Stores",
+    "title": "Weekly menu",
     "seo": {
-      "title": "Search Stores",
-      "description": "Discover vegan and vegetarian stores near you"
+      "title": "Menu",
+      "description": "See this week's meals. Fresh, delicious, ready to eat."
     },
-    "placeholder": "Search stores, products...",
+    "placeholder": "Search meals...",
     "myLocation": "My location",
     "searching": "Searching...",
     "locationActive": "Using your current location",
@@ -261,18 +244,18 @@
     "locationError": "Could not get your location",
     "filters": "Filters",
     "clearFilters": "Clear",
-    "storeType": "Store Type",
+    "storeType": "Category",
     "categories": "Categories",
     "radius": "Search radius",
-    "results": "{count} store found | {count} stores found",
-    "noResults": "No stores found",
-    "noResultsHint": "Try adjusting your filters or search",
+    "results": "{count} meal found | {count} meals found",
+    "noResults": "No meals match your search",
+    "noResultsHint": "Try adjusting your filters",
     "clearAll": "Clear filters",
     "list": "List",
     "map": "Map",
-    "stores": "Stores",
+    "stores": "Meals",
     "products": "Products",
-    "viewAll": "View all stores",
+    "viewAll": "View full menu",
     "viewDemo": "View demo"
   }
 }
