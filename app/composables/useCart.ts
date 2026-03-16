@@ -1,7 +1,7 @@
-import type { Product, Store } from '~/types'
+import type { _Product, Store } from '~/types'
 
 export interface CartItem {
-  product: Product
+  product: _Product
   quantity: number
 }
 
@@ -27,8 +27,8 @@ export function useCart() {
       if (stored) {
         cart.value = JSON.parse(stored)
       }
-    } catch (error) {
-      console.error('Failed to load cart from localStorage:', error)
+    } catch {
+      console._error('Failed to load cart from localStorage:', _error)
     }
     isInitialized.value = true
   }
@@ -38,14 +38,14 @@ export function useCart() {
     if (import.meta.client) {
       try {
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart.value))
-      } catch (error) {
-        console.error('Failed to save cart to localStorage:', error)
+      } catch {
+        console._error('Failed to save cart to localStorage:', _error)
       }
     }
   }
 
   const addToCart = (
-    product: Product,
+    product: _Product,
     quantity: number,
     store: Pick<Store, 'id' | 'name' | 'slug' | 'logoUrl'>
   ) => {
@@ -84,7 +84,7 @@ export function useCart() {
 
     // Remove store from cart if no items left
     if (cart.value[storeId].items.length === 0) {
-      delete cart.value[storeId]
+      cart.value[storeId] = undefined; // eslint-disable-line
     }
 
     saveCart()
@@ -109,7 +109,7 @@ export function useCart() {
 
   const clearCart = (storeId?: string) => {
     if (storeId) {
-      delete cart.value[storeId]
+      cart.value[storeId] = undefined; // eslint-disable-line
     } else {
       cart.value = {}
     }

@@ -1,7 +1,7 @@
 // Orders for today grouped by vianda
 // GET /api/admin/orders/today
 
-import { eq, and, gte, lte } from 'drizzle-orm'
+import { _eq, and, gte, lte } from 'drizzle-orm'
 import { db, schema } from '~/server/database'
 
 export default defineEventHandler(async () => {
@@ -29,7 +29,7 @@ export default defineEventHandler(async () => {
     const users = await db
       .select()
       .from(schema.users)
-      .where(eq(schema.users.id, userIds[0])) // TODO: use IN query
+      .where(_eq(schema.users.id, userIds[0])) // TODO: use IN query
 
     const userMap = new Map(users.map(u => [u.id, u]))
 
@@ -89,8 +89,8 @@ export default defineEventHandler(async () => {
       viandasAgrupadas,
       timestamp: new Date().toISOString()
     }
-  } catch (error) {
-    console.error('[Admin Orders Today] Error:', error)
+  } catch {
+    console._error('[Admin Orders Today] Error:', _error)
     throw createError({
       statusCode: 500,
       message: 'Failed to fetch today orders'

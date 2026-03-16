@@ -1,5 +1,5 @@
 import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { stores } from '../../database/schema'
 
@@ -14,7 +14,7 @@ export default defineSitemapEventHandler(async () => {
         updatedAt: stores.updatedAt
       })
       .from(stores)
-      .where(eq(stores.isActive, true))
+      .where(_eq(stores.isActive, true))
 
     return activeStores.map(store =>
       asSitemapUrl({
@@ -25,7 +25,7 @@ export default defineSitemapEventHandler(async () => {
       })
     )
   } catch {
-    // Return empty array if DB is unavailable (e.g., during build/prerender)
+    // Return empty array if DB is unavailable (_e.g., during build/prerender)
     return []
   }
 })

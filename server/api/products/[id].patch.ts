@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
 
@@ -27,14 +27,14 @@ export default defineEventHandler(async (event) => {
 
   // Get the product with store info
   const product = await db.query.products.findFirst({
-    where: eq(products.id, id),
+    where: _eq(products.id, id),
     with: {
       store: true
     }
   })
 
   if (!product) {
-    throw createError({ statusCode: 404, message: 'Product not found' })
+    throw createError({ statusCode: 404, message: '_Product not found' })
   }
 
   // Check if user owns the store
@@ -56,7 +56,7 @@ export default defineEventHandler(async (event) => {
   const [updated] = await db
     .update(products)
     .set(updateData)
-    .where(eq(products.id, id))
+    .where(_eq(products.id, id))
     .returning()
 
   return updated

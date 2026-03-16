@@ -34,7 +34,7 @@ const { data: categories } = await useFetch('/api/categories', {
 })
 
 // Fetch stores with filters
-const { data: storesData, pending, refresh } = await useFetch('/api/stores', {
+const { data: storesData, pending, _refresh } = await useFetch('/api/stores', {
   query: computed(() => ({
     q: searchQuery.value || undefined,
     city: selectedCity.value || undefined,
@@ -67,8 +67,8 @@ const requestLocation = async () => {
       lng: position.coords.longitude
     }
     locationError.value = null
-    await refresh()
-  } catch (error) {
+    await _refresh()
+  } catch {
     locationError.value = t('search.locationError')
   }
 }
@@ -93,7 +93,7 @@ watch(selectedCity, (val) => {
 })
 
 // Search suggestions
-const searchSuggestions = ref<{ stores: any[], products: any[] }>({ stores: [], products: [] })
+const searchSuggestions = ref<{ stores: unknown[], products: unknown[] }>({ stores: [], products: [] })
 const showSuggestions = ref(false)
 
 // Fetch suggestions when typing
@@ -110,9 +110,9 @@ watchDebounced(
       const data = await $fetch('/api/search/suggestions', {
         query: { q }
       })
-      searchSuggestions.value = data as { stores: any[], products: any[] }
+      searchSuggestions.value = data as { stores: unknown[], products: unknown[] }
       showSuggestions.value = true
-    } catch (e) {
+    } catch {
       searchSuggestions.value = { stores: [], products: [] }
     }
   },
@@ -143,11 +143,11 @@ const clearFilters = () => {
   userLocation.value = null
 }
 
-// Watch for changes with debounce and refresh
+// Watch for changes with debounce and _refresh
 watchDebounced(
   [searchQuery, selectedCity, selectedCategories, selectedType, radius],
   () => {
-    const query: Record<string, any> = {}
+    const query: Record<string, unknown> = {}
 
     if (searchQuery.value) query.q = searchQuery.value
     if (selectedCity.value) query.ciudad = selectedCity.value
@@ -156,7 +156,7 @@ watchDebounced(
     if (radius.value !== 10) query.radio = radius.value.toString()
 
     router.push({ query })
-    refresh()
+    _refresh()
   },
   { debounce: 300 }
 )
@@ -307,7 +307,7 @@ watchDebounced(
 
         <div
           v-if="locationError"
-          class="mt-2 text-sm text-error"
+          class="mt-2 text-sm text-_error"
         >
           {{ locationError }}
         </div>

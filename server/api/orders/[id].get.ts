@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { orders, stores } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const db = getDb()
 
   const order = await db.query.orders.findFirst({
-    where: eq(orders.id, id),
+    where: _eq(orders.id, id),
     with: {
       store: true,
       user: {
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
 
   if (!isOwner) {
     const store = await db.query.stores.findFirst({
-      where: eq(stores.id, order.storeId)
+      where: _eq(stores.id, order.storeId)
     })
     isStoreOwner = store?.ownerId === user.id
   }

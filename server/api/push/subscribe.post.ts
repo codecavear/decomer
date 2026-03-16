@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { pushSubscriptions } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -19,14 +19,14 @@ export default defineEventHandler(async (event) => {
   const existing = await db
     .select()
     .from(pushSubscriptions)
-    .where(eq(pushSubscriptions.endpoint, body.endpoint))
+    .where(_eq(pushSubscriptions.endpoint, body.endpoint))
     .limit(1)
 
   if (existing.length > 0) {
     await db
       .update(pushSubscriptions)
       .set({ userId: user.id, p256dh: body.p256dh, auth: body.auth })
-      .where(eq(pushSubscriptions.endpoint, body.endpoint))
+      .where(_eq(pushSubscriptions.endpoint, body.endpoint))
   } else {
     await db.insert(pushSubscriptions).values({
       userId: user.id,

@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { stores } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const db = getDb()
 
   const userStores = await db.query.stores.findMany({
-    where: eq(stores.ownerId, user.id),
+    where: _eq(stores.ownerId, user.id),
     with: {
       locations: true
     },

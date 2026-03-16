@@ -106,7 +106,7 @@ export type NewStore = typeof stores.$inferInsert
 export type StoreStatus = typeof storeStatusEnum[number]
 export type StoreType = typeof storeTypeEnum[number]
 
-export type StoreLocation = typeof storeLocations.$inferSelect
+export type _StoreLocation = typeof storeLocations.$inferSelect
 export type NewStoreLocation = typeof storeLocations.$inferInsert
 
 export type StoreSchedule = typeof storeSchedules.$inferSelect

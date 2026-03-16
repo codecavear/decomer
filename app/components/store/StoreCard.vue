@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Store, StoreLocation, StoreType } from '~/types'
+import type { Store, _StoreLocation, StoreType } from '~/types'
 
 interface StoreSchedule {
   dayOfWeek: number
@@ -32,9 +32,9 @@ const location = computed(() => props.store.locations?.[0])
 const openStatus = computed(() => getOpenStatus(props.store.schedules))
 const storeType = computed(() => props.store.type ? getStoreType(props.store.type) : null)
 
-const handleFavoriteClick = (e: Event) => {
-  e.preventDefault()
-  e.stopPropagation()
+const handleFavoriteClick = (_e: Event) => {
+  _e.preventDefault()
+  _e.stopPropagation()
   toggleFavorite(props.store.id)
 }
 </script>
@@ -65,7 +65,7 @@ const handleFavoriteClick = (e: Event) => {
           </div>
           <UButton
             :icon="isFavorited(store.id) ? 'i-lucide-heart' : 'i-lucide-heart'"
-            :color="isFavorited(store.id) ? 'error' : 'neutral'"
+            :color="isFavorited(store.id) ? '_error' : 'neutral'"
             :variant="isFavorited(store.id) ? 'soft' : 'ghost'"
             size="sm"
             class="absolute top-2 right-2"

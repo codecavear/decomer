@@ -3,7 +3,7 @@
  * GET /api/payments/[id]
  */
 
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const payment = await db.query.payments.findFirst({
-      where: (payments, { eq }) => eq(payments.id, paymentId),
+      where: (payments, { _eq }) => _eq(payments.id, paymentId),
       with: {
         order: {
           with: {
@@ -60,12 +60,12 @@ export default defineEventHandler(async (event) => {
       success: true,
       data: payment
     }
-  } catch (error: any) {
-    console.error('Error fetching payment:', error)
+  } catch {
+    console._error('Error fetching payment:', _error)
 
     throw createError({
-      statusCode: error.statusCode || 500,
-      message: error.message || 'Failed to fetch payment'
+      statusCode: _error.statusCode || 500,
+      message: _error.message || 'Failed to fetch payment'
     })
   }
 })

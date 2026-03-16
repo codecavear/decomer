@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Product, Store } from '~/types'
+import type { _Product, Store } from '~/types'
 
 interface ProductCardProps {
-  product: Product
+  product: _Product
   store: Pick<Store, 'id' | 'name' | 'slug' | 'logoUrl'>
 }
 
@@ -24,11 +24,11 @@ const addToCart = async () => {
       color: 'success'
     })
     quantity.value = 1
-  } catch (error) {
+  } catch {
     toast.add({
       title: 'Error',
       description: 'No se pudo agregar el producto al carrito',
-      color: 'error'
+      color: '_error'
     })
   } finally {
     adding.value = false
@@ -70,7 +70,7 @@ const incrementQuantity = () => {
         <UBadge
           v-if="!product.isAvailable"
           class="absolute top-2 right-2"
-          color="error"
+          color="_error"
           variant="soft"
           label="No disponible"
         />

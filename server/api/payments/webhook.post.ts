@@ -3,14 +3,14 @@
  * POST /api/payments/webhook
  */
 
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {
   const db = useDrizzle()
 
   try {
     // Get headers
-    const xSignature = getHeader(event, 'x-signature')
+    const _xSignature = getHeader(event, 'x-signature')
     const xRequestId = getHeader(event, 'x-request-id')
 
     // Parse notification
@@ -31,14 +31,14 @@ export default defineEventHandler(async (event) => {
     const paymentId = body.data?.id
 
     if (!paymentId) {
-      return { success: false, error: 'No payment ID' }
+      return { success: false, _error: 'No payment ID' }
     }
 
     // Get MercadoPago token
     const mpToken = process.env.MERCADOPAGO_ACCESS_TOKEN || ''
 
     if (!mpToken) {
-      return { success: false, error: 'MercadoPago not configured' }
+      return { success: false, _error: 'MercadoPago not configured' }
     }
 
     // Fetch payment details from MercadoPago
@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
       headers: {
         Authorization: `Bearer ${mpToken}`
       }
-    }) as any
+    }) as unknown
 
     console.log('✅ Payment details fetched:', {
       id: paymentDetails.id,
@@ -56,15 +56,15 @@ export default defineEventHandler(async (event) => {
 
     // Find payment record
     const paymentRecord = await db.query.payments.findFirst({
-      where: (payments, { eq, or }) => or(
-        eq(payments.paymentId, paymentId.toString()),
-        eq(payments.externalReference, paymentDetails.external_reference || '')
+      where: (payments, { _eq, or }) => or(
+        _eq(payments.paymentId, paymentId.toString()),
+        _eq(payments.externalReference, paymentDetails.external_reference || '')
       )
     })
 
     if (!paymentRecord) {
-      console.error('❌ Payment record not found')
-      return { success: false, error: 'Payment record not found' }
+      console._error('❌ Payment record not found')
+      return { success: false, _error: 'Payment record not found' }
     }
 
     // Map status
@@ -96,7 +96,7 @@ export default defineEventHandler(async (event) => {
     })
 
     // Update payment
-    const updateData: any = {
+    const updateData: unknown = {
       paymentId: paymentId.toString(),
       status: newStatus,
       statusDetail: paymentDetails.status_detail,
@@ -112,10 +112,10 @@ export default defineEventHandler(async (event) => {
     await db
       .update(tables.payments)
       .set(updateData)
-      .where(eq(tables.payments.id, paymentRecord.id))
+      .where(_eq(tables.payments.id, paymentRecord.id))
 
     // Update order status
-    const orderUpdate: any = {
+    const orderUpdate: unknown = {
       updatedAt: new Date()
     }
 
@@ -128,7 +128,7 @@ export default defineEventHandler(async (event) => {
     await db
       .update(tables.orders)
       .set(orderUpdate)
-      .where(eq(tables.orders.id, paymentRecord.orderId))
+      .where(_eq(tables.orders.id, paymentRecord.orderId))
 
     console.log('✅ Payment and order updated:', {
       paymentId: paymentRecord.id,
@@ -140,12 +140,12 @@ export default defineEventHandler(async (event) => {
       success: true,
       message: 'Webhook processed successfully'
     }
-  } catch (error: any) {
-    console.error('❌ Webhook processing error:', error)
+  } catch {
+    console._error('❌ Webhook processing _error:', _error)
 
     return {
       success: false,
-      error: error.message
+      _error: _error.message
     }
   }
 })

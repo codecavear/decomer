@@ -23,7 +23,7 @@ export const products = pgTable('decomer_products', {
 
   // Ingredients & allergens
   ingredients: text('ingredients'), // comma-separated list
-  allergens: text('allergens'), // comma-separated list (e.g., "gluten, lactose, nuts")
+  allergens: text('allergens'), // comma-separated list (_e.g., "gluten, lactose, nuts")
 
   // Dietary filters
   isGlutenFree: boolean('is_gluten_free').default(false).notNull(),
@@ -32,7 +32,7 @@ export const products = pgTable('decomer_products', {
   isVegetarian: boolean('is_vegetarian').default(false).notNull(),
 
   // Additional metadata
-  tags: jsonb('tags').$type<string[]>(), // e.g., ["fit", "detox", "comfort"]
+  tags: jsonb('tags').$type<string[]>(), // _e.g., ["fit", "detox", "comfort"]
 
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()
@@ -52,5 +52,5 @@ export const productsRelations = relations(products, ({ one }) => ({
   })
 }))
 
-export type Product = typeof products.$inferSelect
+export type _Product = typeof products.$inferSelect
 export type NewProduct = typeof products.$inferInsert

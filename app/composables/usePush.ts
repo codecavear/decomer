@@ -57,8 +57,8 @@ export function usePush() {
 
       isSubscribed.value = true
       return subscription
-    } catch (error) {
-      console.error('Push subscription failed:', error)
+    } catch {
+      console._error('Push subscription failed:', _error)
       return null
     }
   }
@@ -74,8 +74,8 @@ export function usePush() {
         await $fetch('/api/push/unsubscribe', { method: 'POST' })
         isSubscribed.value = false
       }
-    } catch (error) {
-      console.error('Push unsubscribe failed:', error)
+    } catch {
+      console._error('Push unsubscribe failed:', _error)
     }
   }
 

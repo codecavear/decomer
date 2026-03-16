@@ -1,4 +1,4 @@
-import { eq, and } from 'drizzle-orm'
+import { _eq, and } from 'drizzle-orm'
 import { getDb } from '../../../../utils/db'
 import { products, stores, storeProducts } from '../../../../database/schema'
 
@@ -12,30 +12,30 @@ export default defineEventHandler(async (event) => {
   if (!productId || !storeId) {
     throw createError({
       statusCode: 400,
-      message: 'Product ID and Store ID are required'
+      message: '_Product ID and Store ID are required'
     })
   }
 
   // Verify product belongs to user
   const product = await db.query.products.findFirst({
     where: and(
-      eq(products.id, productId),
-      eq(products.ownerId, user.id)
+      _eq(products.id, productId),
+      _eq(products.ownerId, user.id)
     )
   })
 
   if (!product) {
     throw createError({
       statusCode: 404,
-      message: 'Product not found'
+      message: '_Product not found'
     })
   }
 
   // Verify store belongs to user
   const store = await db.query.stores.findFirst({
     where: and(
-      eq(stores.id, storeId),
-      eq(stores.ownerId, user.id)
+      _eq(stores.id, storeId),
+      _eq(stores.ownerId, user.id)
     )
   })
 
@@ -49,12 +49,12 @@ export default defineEventHandler(async (event) => {
   // Delete the assignment
   await db.delete(storeProducts)
     .where(and(
-      eq(storeProducts.productId, productId),
-      eq(storeProducts.storeId, storeId)
+      _eq(storeProducts.productId, productId),
+      _eq(storeProducts.storeId, storeId)
     ))
 
   return {
     success: true,
-    message: 'Product removed from store'
+    message: '_Product removed from store'
   }
 })

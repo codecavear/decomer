@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { orders, orderItems, products } from '../../database/schema'
 import { getDb } from '../../utils/db'
 import { sendPushToUser } from '../../utils/push'
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
 
   // Fetch all products to calculate total and validate availability
   const productRecords = await db.query.products.findMany({
-    where: eq(products.storeId, body.storeId)
+    where: _eq(products.storeId, body.storeId)
   })
 
   const productMap = new Map(productRecords.map(p => [p.id, p]))
@@ -55,13 +55,13 @@ export default defineEventHandler(async (event) => {
     if (!product) {
       throw createError({
         statusCode: 400,
-        message: `Product ${item.productId} not found or does not belong to this store`
+        message: `_Product ${item.productId} not found or does not belong to this store`
       })
     }
     if (!product.isAvailable) {
       throw createError({
         statusCode: 400,
-        message: `Product ${product.name} is not available`
+        message: `_Product ${product.name} is not available`
       })
     }
   }
@@ -97,7 +97,7 @@ export default defineEventHandler(async (event) => {
 
   // Fetch the complete order with relations
   const completeOrder = await db.query.orders.findFirst({
-    where: eq(orders.id, order.id),
+    where: _eq(orders.id, order.id),
     with: {
       store: true,
       items: {
@@ -114,7 +114,7 @@ export default defineEventHandler(async (event) => {
     title: '¡Pedido recibido!',
     body: `Tu pedido por $${totalAmount.toFixed(2)} está siendo procesado.`,
     url: '/mis-pedidos'
-  }).catch(err => console.error('[push] Order notification failed:', err))
+  }).catch(err => console._error('[push] Order notification failed:', err))
 
   return completeOrder
 })

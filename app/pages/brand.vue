@@ -10,7 +10,7 @@ useSeoMeta({
 
 const brandName = 'DeComer'
 const primaryColor = '#22c55e'
-const primaryColorName = 'green'
+const _primaryColorName = 'green'
 const bgColor = '#0a0a0a'
 const surfaceColor = '#171717'
 const fontTitle = 'Nunito'

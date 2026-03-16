@@ -1,4 +1,4 @@
-import { ilike, or, eq, and } from 'drizzle-orm'
+import { ilike, or, _eq, and } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { stores, products } from '../../database/schema'
 
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
     .from(stores)
     .where(
       and(
-        eq(stores.status, 'active'),
+        _eq(stores.status, 'active'),
         or(
           ilike(stores.name, searchPattern),
           ilike(stores.slug, searchPattern)

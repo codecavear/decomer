@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { and, eq } from 'drizzle-orm'
+import { and, _eq } from 'drizzle-orm'
 import { pushSubscriptions } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -17,8 +17,8 @@ export default defineEventHandler(async (event) => {
     .delete(pushSubscriptions)
     .where(
       and(
-        eq(pushSubscriptions.userId, user.id),
-        eq(pushSubscriptions.endpoint, body.endpoint)
+        _eq(pushSubscriptions.userId, user.id),
+        _eq(pushSubscriptions.endpoint, body.endpoint)
       )
     )
 

@@ -26,8 +26,8 @@ const items = computed<DropdownMenuItem[][]>(() => [[{
     icon: 'i-lucide-sun',
     type: 'checkbox',
     checked: colorMode.value === 'light',
-    onSelect(e: Event) {
-      e.preventDefault()
+    onSelect(_e: Event) {
+      _e.preventDefault()
       colorMode.preference = 'light'
     }
   }, {
@@ -35,8 +35,8 @@ const items = computed<DropdownMenuItem[][]>(() => [[{
     icon: 'i-lucide-moon',
     type: 'checkbox',
     checked: colorMode.value === 'dark',
-    onSelect(e: Event) {
-      e.preventDefault()
+    onSelect(_e: Event) {
+      _e.preventDefault()
       colorMode.preference = 'dark'
     }
   }]

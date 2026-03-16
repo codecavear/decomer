@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { eq, and } from 'drizzle-orm'
+import { _eq, and } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { favorites, stores } from '../../database/schema'
 
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
   // Check if store exists
   const store = await db.query.stores.findFirst({
-    where: eq(stores.id, body.storeId)
+    where: _eq(stores.id, body.storeId)
   })
 
   if (!store) {
@@ -25,12 +25,12 @@ export default defineEventHandler(async (event) => {
   // Check if already favorited
   const existing = await db.query.favorites.findFirst({
     where: and(
-      eq(favorites.userId, user.id),
-      eq(favorites.storeId, body.storeId)
+      _eq(favorites.userId, user.id),
+      _eq(favorites.storeId, body.storeId)
     )
   })
 
-  // If already favorited, don't error - just return success
+  // If already favorited, don't _error - just return success
   if (existing) {
     return { success: true, alreadyFavorited: true }
   }

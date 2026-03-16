@@ -69,7 +69,7 @@ const products = ref([
     category: 'Proteínas',
     isActive: true,
     badge: '-17%',
-    badgeColor: 'error' as const
+    badgeColor: '_error' as const
   },
   {
     id: 'demo-5',
@@ -112,7 +112,7 @@ const formatPrice = (price: number) => {
 }
 
 const handleAddToCart = (product: typeof products.value[0]) => {
-  // Adaptar al tipo Product esperado por el carrito
+  // Adaptar al tipo _Product esperado por el carrito
   const cartProduct = {
     ...product,
     isAvailable: product.isActive,
@@ -313,7 +313,7 @@ const trustBadges = [
               class="overflow-hidden group hover:shadow-lg transition-all duration-300"
               :class="{ 'opacity-60': !product.isActive }"
             >
-              <!-- Product Image -->
+              <!-- _Product Image -->
               <div class="relative aspect-square overflow-hidden bg-elevated">
                 <img
                   v-if="product.imageUrl"

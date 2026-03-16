@@ -136,7 +136,7 @@ async function seed() {
 
     // Get user ID (either new or existing)
     const userId = testUser?.id || (await db.query.users.findFirst({
-      where: (users, { eq }) => eq(users.email, 'demo@decomer.ar')
+      where: (users, { _eq }) => _eq(users.email, 'demo@decomer.ar')
     }))?.id
 
     if (!userId) {
@@ -202,8 +202,8 @@ async function seed() {
     console.log(`✅ ${sampleStores.length} stores seeded`)
 
     console.log('✨ Seed completed successfully!')
-  } catch (error) {
-    console.error('❌ Seed failed:', error)
+  } catch {
+    console._error('❌ Seed failed:', _error)
     process.exit(1)
   } finally {
     await client.end()

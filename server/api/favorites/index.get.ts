@@ -1,4 +1,4 @@
-import { eq, desc } from 'drizzle-orm'
+import { _eq, desc } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { favorites, storeLocations } from '../../database/schema'
 
@@ -12,12 +12,12 @@ export default defineEventHandler(async (event) => {
   const db = getDb()
 
   const favoriteStores = await db.query.favorites.findMany({
-    where: eq(favorites.userId, user.id),
+    where: _eq(favorites.userId, user.id),
     with: {
       store: {
         with: {
           locations: {
-            where: eq(storeLocations.isPrimary, true),
+            where: _eq(storeLocations.isPrimary, true),
             limit: 1
           }
         }

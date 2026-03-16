@@ -47,7 +47,7 @@ export interface Store {
   updatedAt: Date | string
 }
 
-export interface StoreLocation {
+export interface _StoreLocation {
   id: string
   storeId: string
   address: string
@@ -84,7 +84,7 @@ export interface StoreContact {
 }
 
 export interface StoreWithRelations extends Store {
-  locations?: StoreLocation[]
+  locations?: _StoreLocation[]
   schedules?: StoreSchedule[]
   contacts?: StoreContact[]
   owner?: User
@@ -101,8 +101,8 @@ export interface Category {
   updatedAt: Date | string
 }
 
-// Product types
-export interface Product {
+// _Product types
+export interface _Product {
   id: string
   storeId: string
   name: string
@@ -129,7 +129,7 @@ export interface StoreProduct {
   }
 }
 
-export interface ProductWithStoreAssignments extends Product {
+export interface ProductWithStoreAssignments extends _Product {
   storeAssignments?: StoreProduct[]
 }
 
@@ -144,7 +144,7 @@ export interface CatalogLimits {
   message: string
 }
 
-export interface ProductWithStore extends Product {
+export interface ProductWithStore extends _Product {
   store?: Store
 }
 
@@ -209,7 +209,7 @@ export interface OrderItem {
 }
 
 export interface OrderItemWithProduct extends OrderItem {
-  product?: Product
+  product?: _Product
 }
 
 export interface OrderWithRelations extends Order {
@@ -220,7 +220,7 @@ export interface OrderWithRelations extends Order {
 
 // Cart types (frontend only)
 export interface CartItem {
-  product: Product
+  product: _Product
   store: Store
   quantity: number
 }
@@ -252,7 +252,7 @@ export const orderStatusColors: Record<OrderStatus, string> = {
   preparing: 'info',
   ready: 'success',
   delivered: 'success',
-  cancelled: 'error'
+  cancelled: '_error'
 }
 
 // Status labels (Spanish)

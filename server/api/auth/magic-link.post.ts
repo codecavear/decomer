@@ -1,4 +1,4 @@
-import { eq, and, gt } from 'drizzle-orm'
+import { _eq, and, gt } from 'drizzle-orm'
 import { z } from 'zod'
 import { randomBytes } from 'node:crypto'
 import { getDb } from '../../utils/db'
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   if (!result.success) {
     throw createError({
       statusCode: 400,
-      message: result.error.issues[0].message
+      message: result._error.issues[0].message
     })
   }
 
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
   // Rate limiting: max 3 tokens per email in last 15 minutes
   const recentTokens = await db.query.magicLinkTokens.findMany({
     where: and(
-      eq(magicLinkTokens.email, normalizedEmail),
+      _eq(magicLinkTokens.email, normalizedEmail),
       gt(magicLinkTokens.createdAt, new Date(Date.now() - 15 * 60 * 1000))
     )
   })
@@ -56,13 +56,13 @@ export default defineEventHandler(async (event) => {
 
   // Check if user exists (for email personalization)
   const existingUser = await db.query.users.findFirst({
-    where: eq(users.email, normalizedEmail)
+    where: _eq(users.email, normalizedEmail)
   })
 
   // Send email via Resend
   const resendApiKey = process.env.RESEND_API_KEY
   if (!resendApiKey) {
-    console.error('RESEND_API_KEY not configured')
+    console._error('RESEND_API_KEY not configured')
     throw createError({
       statusCode: 500,
       message: 'Error al enviar el email. Intentá más tarde.'
@@ -119,8 +119,8 @@ export default defineEventHandler(async (event) => {
 </html>
       `.trim()
     }
-  }).catch((error) => {
-    console.error('Resend error:', error)
+  }).catch((_error) => {
+    console._error('Resend _error:', _error)
     throw createError({
       statusCode: 500,
       message: 'Error al enviar el email. Intentá más tarde.'

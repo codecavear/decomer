@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../../utils/db'
 import { stores, storeContacts, contactTypeEnum } from '../../../database/schema'
 
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
   // Check if store exists and user is the owner
   const store = await db.query.stores.findFirst({
-    where: eq(stores.id, id)
+    where: _eq(stores.id, id)
   })
 
   if (!store) {
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
       .update(storeContacts)
       .set({ isPrimary: false })
       .where(
-        eq(storeContacts.storeId, id)
+        _eq(storeContacts.storeId, id)
       )
   }
 

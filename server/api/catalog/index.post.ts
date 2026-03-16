@@ -1,4 +1,4 @@
-import { eq, count } from 'drizzle-orm'
+import { _eq, count } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
-      message: parsed.error.errors[0].message
+      message: parsed._error.errors[0].message
     })
   }
 
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
   const [{ productCount }] = await db
     .select({ productCount: count() })
     .from(products)
-    .where(eq(products.ownerId, user.id))
+    .where(_eq(products.ownerId, user.id))
 
   if (productCount >= FREE_TIER_PRODUCT_LIMIT) {
     throw createError({

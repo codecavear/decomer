@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
 
     // Get order
     const order = await db.query.orders.findFirst({
-      where: (orders, { eq }) => eq(orders.id, body.orderId),
+      where: (orders, { _eq }) => _eq(orders.id, body.orderId),
       with: {
         store: true,
         items: {
@@ -62,9 +62,9 @@ export default defineEventHandler(async (event) => {
 
     // Check if order already has a pending payment
     const existingPayment = await db.query.payments.findFirst({
-      where: (payments, { eq, and }) => and(
-        eq(payments.orderId, body.orderId),
-        eq(payments.status, 'pending')
+      where: (payments, { _eq, and }) => and(
+        _eq(payments.orderId, body.orderId),
+        _eq(payments.status, 'pending')
       )
     })
 
@@ -152,7 +152,7 @@ export default defineEventHandler(async (event) => {
         status: 'pending',
         updatedAt: new Date()
       })
-      .where(eq(tables.orders.id, order.id))
+      .where(_eq(tables.orders.id, order.id))
 
     return {
       success: true,
@@ -163,12 +163,12 @@ export default defineEventHandler(async (event) => {
         sandboxInitPoint: response.sandbox_init_point
       }
     }
-  } catch (error: any) {
-    console.error('Error creating payment:', error)
+  } catch {
+    console._error('Error creating payment:', _error)
 
     throw createError({
-      statusCode: error.statusCode || 500,
-      message: error.message || 'Failed to create payment'
+      statusCode: _error.statusCode || 500,
+      message: _error.message || 'Failed to create payment'
     })
   }
 })

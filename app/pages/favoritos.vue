@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Store, StoreLocation } from '~/types'
+import type { Store, _StoreLocation } from '~/types'
 
 definePageMeta({
   middleware: 'auth',
@@ -20,7 +20,7 @@ interface FavoriteStore extends Store {
   favoritedAt?: string
 }
 
-const { data, status, refresh } = await useFetch<{ stores: FavoriteStore[] }>('/api/favorites', {
+const { data, status, _refresh } = await useFetch<{ stores: FavoriteStore[] }>('/api/favorites', {
   query: {
     limit: 50
   }

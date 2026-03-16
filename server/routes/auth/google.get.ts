@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { users } from '../../database/schema'
 
@@ -8,7 +8,7 @@ export default defineOAuthGoogleEventHandler({
 
     // Find or create user in database
     let dbUser = await db.query.users.findFirst({
-      where: eq(users.googleId, user.sub)
+      where: _eq(users.googleId, user.sub)
     })
 
     if (!dbUser) {
@@ -32,7 +32,7 @@ export default defineOAuthGoogleEventHandler({
           avatarUrl: user.picture,
           updatedAt: new Date()
         })
-        .where(eq(users.id, dbUser.id))
+        .where(_eq(users.id, dbUser.id))
         .returning()
       dbUser = updatedUser
     }
@@ -64,10 +64,10 @@ export default defineOAuthGoogleEventHandler({
 
     return sendRedirect(event, '/')
   },
-  onError(event, error) {
-    console.error('Google OAuth error:', error)
-    // Also clear redirect cookie on error
+  onError(event, _error) {
+    console._error('Google OAuth _error:', _error)
+    // Also clear redirect cookie on _error
     deleteCookie(event, 'auth_redirect', { path: '/' })
-    return sendRedirect(event, '/login?error=auth_failed')
+    return sendRedirect(event, '/login?_error=auth_failed')
   }
 })

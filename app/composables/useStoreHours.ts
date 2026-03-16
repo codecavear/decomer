@@ -24,7 +24,7 @@ export function useStoreHours() {
   const getOpenStatus = (schedules: StoreSchedule[] | undefined): {
     isOpen: boolean
     label: string
-    color: 'success' | 'error' | 'neutral'
+    color: 'success' | '_error' | 'neutral'
   } => {
     if (!schedules || schedules.length === 0) {
       return { isOpen: false, label: 'Sin horarios', color: 'neutral' }
@@ -34,7 +34,7 @@ export function useStoreHours() {
     return {
       isOpen: open,
       label: open ? 'Abierto' : 'Cerrado',
-      color: open ? 'success' : 'error'
+      color: open ? 'success' : '_error'
     }
   }
 

@@ -1,4 +1,4 @@
-import { eq, and, like, or, count } from 'drizzle-orm'
+import { _eq, and, like, or, count } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { viandas } from '../../database/schema'
 
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
   const highProtein = query.highProtein === 'true'
 
   // Build where conditions
-  const conditions = [eq(viandas.isAvailable, true)]
+  const conditions = [_eq(viandas.isAvailable, true)]
 
   if (search) {
     conditions.push(or(
@@ -27,11 +27,11 @@ export default defineEventHandler(async (event) => {
     ))
   }
 
-  if (vegetarian) conditions.push(eq(viandas.isVegetarian, true))
-  if (vegan) conditions.push(eq(viandas.isVegan, true))
-  if (glutenFree) conditions.push(eq(viandas.isGlutenFree, true))
-  if (lowCarb) conditions.push(eq(viandas.isLowCarb, true))
-  if (highProtein) conditions.push(eq(viandas.isHighProtein, true))
+  if (vegetarian) conditions.push(_eq(viandas.isVegetarian, true))
+  if (vegan) conditions.push(_eq(viandas.isVegan, true))
+  if (glutenFree) conditions.push(_eq(viandas.isGlutenFree, true))
+  if (lowCarb) conditions.push(_eq(viandas.isLowCarb, true))
+  if (highProtein) conditions.push(_eq(viandas.isHighProtein, true))
 
   // Fetch viandas
   const items = await db.query.viandas.findMany({

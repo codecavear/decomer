@@ -1,4 +1,4 @@
-import { eq, sql } from 'drizzle-orm'
+import { _eq, sql } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { stores, products } from '../../database/schema'
 
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const isUUID = UUID_REGEX.test(identifier)
 
   const store = await db.query.stores.findFirst({
-    where: isUUID ? eq(stores.id, identifier) : eq(stores.slug, identifier),
+    where: isUUID ? _eq(stores.id, identifier) : _eq(stores.slug, identifier),
     with: {
       locations: true,
       schedules: true,
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
   const [productCount] = await db
     .select({ count: sql<number>`count(*)::int` })
     .from(products)
-    .where(eq(products.storeId, store.id))
+    .where(_eq(products.storeId, store.id))
 
   return {
     ...store,

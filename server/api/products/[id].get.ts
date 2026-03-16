@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
 
@@ -12,14 +12,14 @@ export default defineEventHandler(async (event) => {
   const db = getDb()
 
   const product = await db.query.products.findFirst({
-    where: eq(products.id, id),
+    where: _eq(products.id, id),
     with: {
       store: true
     }
   })
 
   if (!product) {
-    throw createError({ statusCode: 404, message: 'Product not found' })
+    throw createError({ statusCode: 404, message: '_Product not found' })
   }
 
   return product

@@ -3,13 +3,13 @@
  * Web Push helper using the `web-push` npm package.
  *
  * Required environment variables:
- *   VAPID_PUBLIC_KEY  — e.g. BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U
- *   VAPID_PRIVATE_KEY — e.g. UUxI4O8-FbRouAevSmBQ6o18hgE4nSG3qwvJTfKc-ls
- *   VAPID_SUBJECT     — e.g. mailto:hola@decomer.ar
+ *   VAPID_PUBLIC_KEY  — _e.g. BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U
+ *   VAPID_PRIVATE_KEY — _e.g. UUxI4O8-FbRouAevSmBQ6o18hgE4nSG3qwvJTfKc-ls
+ *   VAPID_SUBJECT     — _e.g. mailto:hola@decomer.ar
  */
 
 import webpush from 'web-push'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { pushSubscriptions } from '../database/schema'
 import { getDb } from './db'
 
@@ -45,7 +45,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
   try {
     ensureVapid()
   } catch (err) {
-    console.error('[push] VAPID not configured:', err)
+    console._error('[push] VAPID not configured:', err)
     return
   }
 
@@ -53,7 +53,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
   const subs = await db
     .select()
     .from(pushSubscriptions)
-    .where(eq(pushSubscriptions.userId, userId))
+    .where(_eq(pushSubscriptions.userId, userId))
 
   if (subs.length === 0) return
 
@@ -75,9 +75,9 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
         if (statusCode === 404 || statusCode === 410) {
           await db
             .delete(pushSubscriptions)
-            .where(eq(pushSubscriptions.endpoint, sub.endpoint))
+            .where(_eq(pushSubscriptions.endpoint, sub.endpoint))
         } else {
-          console.error(`[push] Failed to send to ${sub.endpoint}:`, err)
+          console._error(`[push] Failed to send to ${sub.endpoint}:`, err)
         }
       }
     })

@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../utils/db'
 import { users } from '../../database/schema'
@@ -23,14 +23,14 @@ export default defineEventHandler(async (event) => {
   const parsed = updateProfileSchema.safeParse(body)
 
   if (!parsed.success) {
-    throw createError({ statusCode: 400, message: parsed.error.issues[0].message })
+    throw createError({ statusCode: 400, message: parsed._error.issues[0].message })
   }
 
   const db = getDb()
   const [updated] = await db
     .update(users)
     .set({ ...parsed.data, updatedAt: new Date() })
-    .where(eq(users.id, session.user.id))
+    .where(_eq(users.id, session.user.id))
     .returning()
 
   return updated

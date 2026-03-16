@@ -40,7 +40,7 @@ export function formatDate(date: Date | string): string {
 }
 
 /**
- * Format relative time (e.g., "hace 2 horas")
+ * Format relative time (_e.g., "hace 2 horas")
  */
 export function formatRelativeTime(date: Date | string): string {
   const d = typeof date === 'string' ? new Date(date) : date

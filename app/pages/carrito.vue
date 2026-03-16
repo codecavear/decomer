@@ -106,12 +106,14 @@ const handleWhatsAppCheckout = (storeId: string) => {
     })
     // Clear cart after opening WhatsApp
     clearCart(storeId)
+
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete storeOrders.value[storeId]
   } else {
     toast.add({
       title: 'WhatsApp no disponible',
       description: 'Esta tienda no tiene WhatsApp configurado',
-      color: 'error'
+      color: '_error'
     })
   }
 }
@@ -170,7 +172,7 @@ const confirmOrder = async (storeId: string) => {
     toast.add({
       title: 'Información incompleta',
       description: 'Por favor completa la información de entrega',
-      color: 'error'
+      color: '_error'
     })
     return
   }
@@ -206,17 +208,18 @@ const confirmOrder = async (storeId: string) => {
     })
 
     clearCart(storeId)
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete storeOrders.value[storeId]
 
     // Navigate to orders page if cart is empty
     if (Object.keys(cart.value).length === 0) {
       router.push('/mis-pedidos')
     }
-  } catch (error: any) {
+  } catch {
     toast.add({
       title: 'Error',
-      description: error.data?.message || 'No se pudo confirmar el pedido',
-      color: 'error'
+      description: _error.data?.message || 'No se pudo confirmar el pedido',
+      color: '_error'
     })
   } finally {
     submittingOrders.value[storeId] = false
@@ -299,7 +302,7 @@ const confirmOrder = async (storeId: string) => {
 
               <UButton
                 icon="i-lucide-trash-2"
-                color="error"
+                color="_error"
                 variant="ghost"
                 size="sm"
                 @click="handleClearStore(storeCart.store.id)"
@@ -316,7 +319,7 @@ const confirmOrder = async (storeId: string) => {
               :key="item.product.id"
               class="flex gap-4 p-4 border rounded-lg"
             >
-              <!-- Product Image -->
+              <!-- _Product Image -->
               <div class="size-20 rounded-lg overflow-hidden bg-elevated flex-shrink-0">
                 <img
                   v-if="item.product.imageUrl"
@@ -335,7 +338,7 @@ const confirmOrder = async (storeId: string) => {
                 </div>
               </div>
 
-              <!-- Product Info -->
+              <!-- _Product Info -->
               <div class="flex-1 flex flex-col gap-2">
                 <div>
                   <h3 class="font-semibold">
@@ -379,7 +382,7 @@ const confirmOrder = async (storeId: string) => {
 
                     <UButton
                       icon="i-lucide-trash-2"
-                      color="error"
+                      color="_error"
                       variant="ghost"
                       size="sm"
                       @click="handleRemoveItem(storeCart.store.id, item.product.id)"

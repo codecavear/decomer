@@ -25,14 +25,14 @@ const statusOptions = [
 ]
 
 const queryParams = computed(() => {
-  const params: any = { limit: 50 }
+  const params: unknown = { limit: 50 }
   if (selectedStatus.value !== 'all') {
     params.status = selectedStatus.value
   }
   return params
 })
 
-const { data: orders, status, refresh } = await useFetch<OrderWithRelations[]>('/api/orders', {
+const { data: orders, status, _refresh } = await useFetch<OrderWithRelations[]>('/api/orders', {
   query: queryParams
 })
 
@@ -58,7 +58,7 @@ const getStatusColor = (status: OrderStatus) => {
     preparing: 'primary',
     ready: 'success',
     delivered: 'success',
-    cancelled: 'error'
+    cancelled: '_error'
   }
   return colors[status]
 }

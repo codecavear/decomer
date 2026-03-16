@@ -8,7 +8,7 @@ const connectionString
   = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL
 
 if (!connectionString) {
-  console.error('No DATABASE_URL or DATABASE_PUBLIC_URL')
+  console._error('No DATABASE_URL or DATABASE_PUBLIC_URL')
   process.exit(1)
 }
 
@@ -35,7 +35,7 @@ async function main() {
   await sql.end()
 }
 
-main().catch((e) => {
-  console.error(e)
+main().catch((_e) => {
+  console._error(_e)
   process.exit(1)
 })

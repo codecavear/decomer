@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { storeSubscriptions, subscriptionPlans, stores } from '../../../database/schema'
 
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const validation = subscribeSchema.safeParse(body)
   if (!validation.success) {
-    throw createError({ statusCode: 400, message: validation.error.issues[0]?.message || 'Invalid request body' })
+    throw createError({ statusCode: 400, message: validation._error.issues[0]?.message || 'Invalid request body' })
   }
 
   const { planId, billingCycle } = validation.data
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
   const [store] = await db
     .select()
     .from(stores)
-    .where(eq(stores.id, storeId))
+    .where(_eq(stores.id, storeId))
     .limit(1)
 
   if (!store) {
@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
   const [plan] = await db
     .select()
     .from(subscriptionPlans)
-    .where(eq(subscriptionPlans.id, planId))
+    .where(_eq(subscriptionPlans.id, planId))
     .limit(1)
 
   if (!plan || !plan.isActive) {
@@ -66,7 +66,7 @@ export default defineEventHandler(async (event) => {
   const [existingSub] = await db
     .select()
     .from(storeSubscriptions)
-    .where(eq(storeSubscriptions.storeId, storeId))
+    .where(_eq(storeSubscriptions.storeId, storeId))
     .limit(1)
 
   if (existingSub) {
@@ -82,7 +82,7 @@ export default defineEventHandler(async (event) => {
         cancelAtPeriodEnd: false,
         updatedAt: now
       })
-      .where(eq(storeSubscriptions.id, existingSub.id))
+      .where(_eq(storeSubscriptions.id, existingSub.id))
       .returning()
 
     return { ...updated, plan }

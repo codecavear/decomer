@@ -35,7 +35,7 @@ const route = useRoute()
 const storeId = route.params.id as string
 
 // Load store
-const { data: storeData, error: storeError } = await useFetch<StoreData>(`/api/stores/${storeId}`)
+const { data: storeData, _error: storeError } = await useFetch<StoreData>(`/api/stores/${storeId}`)
 if (storeError.value || !storeData.value) {
   throw createError({ statusCode: 404, message: 'Tienda no encontrada' })
 }
@@ -159,8 +159,8 @@ const handleLogoSelect = (event: Event) => {
     storeInfo.logo = file
     // Create preview
     const reader = new FileReader()
-    reader.onload = (e) => {
-      logoPreview.value = e.target?.result as string
+    reader.onload = (_e) => {
+      logoPreview.value = _e.target?.result as string
     }
     reader.readAsDataURL(file)
   }
@@ -173,8 +173,8 @@ const handleBannerSelect = (event: Event) => {
     storeInfo.banner = file
     // Create preview
     const reader = new FileReader()
-    reader.onload = (e) => {
-      bannerPreview.value = e.target?.result as string
+    reader.onload = (_e) => {
+      bannerPreview.value = _e.target?.result as string
     }
     reader.readAsDataURL(file)
   }
@@ -191,8 +191,8 @@ const uploadImage = async (file: File): Promise<{ url: string, publicId: string 
     })
 
     return { url: response.url, publicId: response.publicId }
-  } catch (error) {
-    console.error('Error uploading image:', error)
+  } catch {
+    console._error('Error uploading image:', _error)
     return null
   }
 }
@@ -238,9 +238,9 @@ const saveInfo = async () => {
       }
     })
     infoToast.add({ title: 'Guardado', description: 'Los datos de la tienda se actualizaron correctamente.', color: 'success' })
-  } catch (e: unknown) {
-    const error = e as { data?: { message?: string } }
-    infoToast.add({ title: 'Error', description: error?.data?.message || 'No se pudieron guardar los cambios.', color: 'error' })
+  } catch (_e: unknown) {
+    const _error = _e as { data?: { message?: string } }
+    infoToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudieron guardar los cambios.', color: '_error' })
   } finally {
     isSavingInfo.value = false
   }
@@ -305,7 +305,7 @@ const initLocationMap = async () => {
       title: storeInfo.name
     })
   } catch (err) {
-    console.error('Error loading location map:', err)
+    console._error('Error loading location map:', err)
   }
 }
 
@@ -731,7 +731,7 @@ const saveContacts = async () => {
                 </div>
                 <UButton
                   v-if="contacts.length > 1"
-                  color="error"
+                  color="_error"
                   variant="ghost"
                   icon="i-lucide-trash-2"
                   size="xs"

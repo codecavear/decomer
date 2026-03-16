@@ -19,9 +19,9 @@ export const usePWA = () => {
       = window.matchMedia('(display-mode: standalone)').matches
         || ('standalone' in window.navigator && (window.navigator as { standalone?: boolean }).standalone === true)
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault()
-      deferredPrompt = e as BeforeInstallPromptEvent
+    window.addEventListener('beforeinstallprompt', (_e) => {
+      _e.preventDefault()
+      deferredPrompt = _e as BeforeInstallPromptEvent
       canInstall.value = true
     })
 

@@ -32,7 +32,7 @@ const getOpenStatus = (schedules: StoreSchedule[] | undefined) => {
   return {
     isOpen: open,
     label: open ? 'Abierto' : 'Cerrado',
-    color: open ? 'success' : 'error'
+    color: open ? 'success' : '_error'
   }
 }
 
@@ -116,7 +116,7 @@ describe('useStoreHours', () => {
       expect(status.color).toBe('success')
     })
 
-    it('returns error status when closed', () => {
+    it('returns _error status when closed', () => {
       vi.setSystemTime(new Date('2024-01-08T20:00:00'))
 
       const schedules: StoreSchedule[] = [
@@ -126,7 +126,7 @@ describe('useStoreHours', () => {
       const status = getOpenStatus(schedules)
       expect(status.isOpen).toBe(false)
       expect(status.label).toBe('Cerrado')
-      expect(status.color).toBe('error')
+      expect(status.color).toBe('_error')
     })
   })
 })

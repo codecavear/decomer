@@ -31,7 +31,7 @@ const isStoreModalOpen = ref(false)
 const editingProduct = ref<ProductWithStoreAssignments | null>(null)
 const assigningProduct = ref<ProductWithStoreAssignments | null>(null)
 
-// Product form
+// _Product form
 const productForm = reactive({
   name: '',
   description: '',
@@ -180,7 +180,7 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
           </p>
           <UProgress
             :model-value="(productCount / productLimit) * 100"
-            :color="canAddProduct ? 'primary' : 'error'"
+            :color="canAddProduct ? 'primary' : '_error'"
             class="w-32 h-2"
           />
         </div>
@@ -329,7 +329,7 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
               @click="openEditModal(row)"
             />
             <UButton
-              color="error"
+              color="_error"
               variant="ghost"
               icon="i-lucide-trash-2"
               size="sm"
@@ -365,7 +365,7 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
       </div>
     </UCard>
 
-    <!-- Add/Edit Product Modal -->
+    <!-- Add/Edit _Product Modal -->
     <UModal v-model:open="isProductModalOpen">
       <template #header>
         <h3 class="text-lg font-semibold">

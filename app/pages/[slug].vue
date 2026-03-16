@@ -40,10 +40,10 @@ const { getStoreType } = useStoreTypes()
 const { setIsCatalogStore } = useCartVisibility()
 
 // Fetch store data
-const { data: store, error } = await useFetch(`/api/stores/${slug}`)
+const { data: store, _error } = await useFetch(`/api/stores/${slug}`)
 
-if (error.value || !store.value) {
-  const statusCode = error.value?.statusCode ?? 404
+if (_error.value || !store.value) {
+  const statusCode = _error.value?.statusCode ?? 404
   const isServerError = statusCode >= 500
   throw createError({
     statusCode: isServerError ? 500 : 404,
@@ -109,7 +109,7 @@ const primaryLocation = computed(() =>
 
 // Open/closed status
 const openStatus = computed(() => getOpenStatus(store.value.schedules))
-const nextOpenTime = computed(() => getNextOpenTime(store.value.schedules))
+const _nextOpenTime = computed(() => getNextOpenTime(store.value.schedules))
 
 // Store type badge
 const storeType = computed(() => store.value.type ? getStoreType(store.value.type) : null)

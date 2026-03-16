@@ -1,7 +1,7 @@
 // Admin dashboard stats
 // GET /api/admin/dashboard
 
-import { eq, and, gte, lte, count, sum } from 'drizzle-orm'
+import { _eq, and, gte, lte, count, sum } from 'drizzle-orm'
 import { db, schema } from '~/server/database'
 
 export default defineEventHandler(async () => {
@@ -37,7 +37,7 @@ export default defineEventHandler(async () => {
         and(
           gte(schema.orders.createdAt, today),
           lte(schema.orders.createdAt, tomorrow),
-          eq(schema.orders.status, 'confirmed')
+          _eq(schema.orders.status, 'confirmed')
         )
       )
 
@@ -69,7 +69,7 @@ export default defineEventHandler(async () => {
         and(
           gte(schema.orders.createdAt, weekStart),
           lte(schema.orders.createdAt, weekEnd),
-          eq(schema.orders.status, 'confirmed')
+          _eq(schema.orders.status, 'confirmed')
         )
       )
 
@@ -85,8 +85,8 @@ export default defineEventHandler(async () => {
       activeCustomers: activeCustomers.length,
       timestamp: new Date().toISOString()
     }
-  } catch (error) {
-    console.error('[Admin Dashboard] Error:', error)
+  } catch {
+    console._error('[Admin Dashboard] Error:', _error)
     throw createError({
       statusCode: 500,
       message: 'Failed to fetch dashboard stats'

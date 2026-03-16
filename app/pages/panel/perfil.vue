@@ -21,7 +21,7 @@ const PREFERENCES_OPTIONS = [
 ]
 
 // Fetch profile
-const { data: profile, refresh } = await useFetch('/api/profile')
+const { data: profile, _refresh } = await useFetch('/api/profile')
 
 const form = reactive({
   name: profile.value?.name ?? '',
@@ -66,11 +66,11 @@ const save = async () => {
       method: 'PATCH',
       body: form
     })
-    await refresh()
+    await _refresh()
     toast.add({ title: 'Perfil actualizado', color: 'success' })
-  } catch (e: unknown) {
-    const error = e as { data?: { message?: string } }
-    toast.add({ title: 'Error', description: error.data?.message || 'No se pudo guardar', color: 'error' })
+  } catch (_e: unknown) {
+    const _error = _e as { data?: { message?: string } }
+    toast.add({ title: 'Error', description: _error.data?.message || 'No se pudo guardar', color: '_error' })
   } finally {
     isSaving.value = false
   }
@@ -187,7 +187,7 @@ const togglePreference = (p: string) => {
     <!-- Alergias -->
     <div>
       <h2 class="text-lg font-semibold mb-1">
-        Alergias e intolerancias
+        Alergias _e intolerancias
       </h2>
       <p class="text-sm text-neutral-500 mb-4">
         Seleccioná lo que querés que tengamos en cuenta.
@@ -197,7 +197,7 @@ const togglePreference = (p: string) => {
           v-for="a in ALLERGIES_OPTIONS"
           :key="a"
           :label="a"
-          :color="form.allergies.includes(a) ? 'error' : 'neutral'"
+          :color="form.allergies.includes(a) ? '_error' : 'neutral'"
           :variant="form.allergies.includes(a) ? 'solid' : 'outline'"
           size="sm"
           @click="toggleAllergy(a)"

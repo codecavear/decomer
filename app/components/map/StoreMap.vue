@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /// <reference types="@types/google.maps" />
 
-interface StoreLocation {
+interface _StoreLocation {
   latitude: string
   longitude: string
   address: string
@@ -13,7 +13,7 @@ interface StoreWithLocation {
   name: string
   slug: string
   logoUrl: string | null
-  locations?: StoreLocation[]
+  locations?: _StoreLocation[]
 }
 
 interface Props {
@@ -32,12 +32,12 @@ const map = ref<google.maps.Map | null>(null)
 const markers = ref<google.maps.Marker[]>([])
 const infoWindows = ref<google.maps.InfoWindow[]>([])
 const loading = ref(true)
-const error = ref<string | null>(null)
+const _error = ref<string | null>(null)
 
 const initializeMap = async () => {
   try {
     loading.value = true
-    error.value = null
+    _error.value = null
 
     // Load Google Maps script
     await loadGoogleMaps()
@@ -133,8 +133,8 @@ const initializeMap = async () => {
 
     loading.value = false
   } catch (err) {
-    console.error('Error initializing map:', err)
-    error.value = 'Failed to load map. Please try again later.'
+    console._error('Error initializing map:', err)
+    _error.value = 'Failed to load map. Please try again later.'
     loading.value = false
   }
 }
@@ -184,17 +184,17 @@ onUnmounted(() => {
 
     <!-- Error State -->
     <UCard
-      v-else-if="error"
+      v-else-if="_error"
       class="h-[400px] lg:h-[600px]"
     >
       <div class="flex items-center justify-center h-full">
         <div class="text-center">
           <UIcon
             name="i-lucide-alert-circle"
-            class="w-8 h-8 text-error mx-auto mb-3"
+            class="w-8 h-8 text-_error mx-auto mb-3"
           />
           <p class="text-sm text-muted">
-            {{ error }}
+            {{ _error }}
           </p>
         </div>
       </div>
@@ -220,7 +220,7 @@ onUnmounted(() => {
 
     <!-- Map Container -->
     <div
-      v-show="!loading && !error && stores.length > 0"
+      v-show="!loading && !_error && stores.length > 0"
       ref="mapContainer"
       class="w-full h-[400px] lg:h-[600px] rounded-lg"
     />

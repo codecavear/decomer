@@ -39,7 +39,7 @@ async function notifyDiscord(user: {
       },
       body: JSON.stringify({ content })
     })
-  } catch (e) {
-    console.error('[Notify] Discord send failed:', e)
+  } catch {
+    console._error('[Notify] Discord send failed:', _e)
   }
 }

@@ -1,4 +1,4 @@
-import type { Product, ProductWithStoreAssignments, StoreProduct, CatalogLimits } from '~/types'
+import type { _Product, ProductWithStoreAssignments, StoreProduct, CatalogLimits } from '~/types'
 
 export function useCatalog() {
   const toast = useToast()
@@ -28,12 +28,12 @@ export function useCatalog() {
       products.value = catalogData
       limits.value = limitsData
       isInitialized.value = true
-    } catch (error) {
-      console.error('Failed to fetch catalog:', error)
+    } catch {
+      console._error('Failed to fetch catalog:', _error)
       toast.add({
         title: 'Error',
         description: 'No se pudo cargar el catálogo',
-        color: 'error'
+        color: '_error'
       })
     } finally {
       isLoading.value = false
@@ -47,8 +47,8 @@ export function useCatalog() {
       const data = await $fetch<CatalogLimits>('/api/catalog/limits')
       limits.value = data
       return data
-    } catch (error) {
-      console.error('Failed to fetch limits:', error)
+    } catch {
+      console._error('Failed to fetch limits:', _error)
       return null
     }
   }
@@ -94,12 +94,12 @@ export function useCatalog() {
       })
 
       return product
-    } catch (error: any) {
-      console.error('Failed to create product:', error)
+    } catch {
+      console._error('Failed to create product:', _error)
       toast.add({
         title: 'Error',
-        description: error.data?.message || 'No se pudo crear el producto',
-        color: 'error'
+        description: _error.data?.message || 'No se pudo crear el producto',
+        color: '_error'
       })
       return null
     }
@@ -133,12 +133,12 @@ export function useCatalog() {
       })
 
       return product
-    } catch (error: any) {
-      console.error('Failed to update product:', error)
+    } catch {
+      console._error('Failed to update product:', _error)
       toast.add({
         title: 'Error',
-        description: error.data?.message || 'No se pudo actualizar el producto',
-        color: 'error'
+        description: _error.data?.message || 'No se pudo actualizar el producto',
+        color: '_error'
       })
       return null
     }
@@ -160,12 +160,12 @@ export function useCatalog() {
       })
 
       return true
-    } catch (error: any) {
-      console.error('Failed to delete product:', error)
+    } catch {
+      console._error('Failed to delete product:', _error)
       toast.add({
         title: 'Error',
-        description: error.data?.message || 'No se pudo eliminar el producto',
-        color: 'error'
+        description: _error.data?.message || 'No se pudo eliminar el producto',
+        color: '_error'
       })
       return false
     }
@@ -193,12 +193,12 @@ export function useCatalog() {
       })
 
       return assignments
-    } catch (error: any) {
-      console.error('Failed to assign stores:', error)
+    } catch {
+      console._error('Failed to assign stores:', _error)
       toast.add({
         title: 'Error',
-        description: error.data?.message || 'No se pudo asignar a las tiendas',
-        color: 'error'
+        description: _error.data?.message || 'No se pudo asignar a las tiendas',
+        color: '_error'
       })
       return null
     }
@@ -222,12 +222,12 @@ export function useCatalog() {
       })
 
       return true
-    } catch (error: any) {
-      console.error('Failed to remove from store:', error)
+    } catch {
+      console._error('Failed to remove from store:', _error)
       toast.add({
         title: 'Error',
-        description: error.data?.message || 'No se pudo remover de la tienda',
-        color: 'error'
+        description: _error.data?.message || 'No se pudo remover de la tienda',
+        color: '_error'
       })
       return false
     }
@@ -256,7 +256,7 @@ export function useCatalog() {
       })
 
       return true
-    } catch (error: any) {
+    } catch {
       // Revert optimistic update
       if (productIndex !== -1 && products.value[productIndex].storeAssignments) {
         const assignmentIndex = products.value[productIndex].storeAssignments!.findIndex(
@@ -268,11 +268,11 @@ export function useCatalog() {
         }
       }
 
-      console.error('Failed to toggle availability:', error)
+      console._error('Failed to toggle availability:', _error)
       toast.add({
         title: 'Error',
-        description: error.data?.message || 'No se pudo cambiar la disponibilidad',
-        color: 'error'
+        description: _error.data?.message || 'No se pudo cambiar la disponibilidad',
+        color: '_error'
       })
       return false
     }

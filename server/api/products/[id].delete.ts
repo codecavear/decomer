@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
 
@@ -14,14 +14,14 @@ export default defineEventHandler(async (event) => {
 
   // Get the product with store info
   const product = await db.query.products.findFirst({
-    where: eq(products.id, id),
+    where: _eq(products.id, id),
     with: {
       store: true
     }
   })
 
   if (!product) {
-    throw createError({ statusCode: 404, message: 'Product not found' })
+    throw createError({ statusCode: 404, message: '_Product not found' })
   }
 
   // Check if user owns the store
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
   // Hard delete the product
   await db
     .delete(products)
-    .where(eq(products.id, id))
+    .where(_eq(products.id, id))
 
-  return { success: true, message: 'Product deleted successfully' }
+  return { success: true, message: '_Product deleted successfully' }
 })

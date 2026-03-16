@@ -1,4 +1,4 @@
-import { eq, and } from 'drizzle-orm'
+import { _eq, and } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../../../utils/db'
 import { products, stores, storeProducts } from '../../../../database/schema'
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
   if (!productId || !storeId) {
     throw createError({
       statusCode: 400,
-      message: 'Product ID and Store ID are required'
+      message: '_Product ID and Store ID are required'
     })
   }
 
@@ -29,30 +29,30 @@ export default defineEventHandler(async (event) => {
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
-      message: parsed.error.errors[0].message
+      message: parsed._error.errors[0].message
     })
   }
 
   // Verify product belongs to user
   const product = await db.query.products.findFirst({
     where: and(
-      eq(products.id, productId),
-      eq(products.ownerId, user.id)
+      _eq(products.id, productId),
+      _eq(products.ownerId, user.id)
     )
   })
 
   if (!product) {
     throw createError({
       statusCode: 404,
-      message: 'Product not found'
+      message: '_Product not found'
     })
   }
 
   // Verify store belongs to user
   const store = await db.query.stores.findFirst({
     where: and(
-      eq(stores.id, storeId),
-      eq(stores.ownerId, user.id)
+      _eq(stores.id, storeId),
+      _eq(stores.ownerId, user.id)
     )
   })
 
@@ -66,20 +66,20 @@ export default defineEventHandler(async (event) => {
   // Check assignment exists
   const existingAssignment = await db.query.storeProducts.findFirst({
     where: and(
-      eq(storeProducts.productId, productId),
-      eq(storeProducts.storeId, storeId)
+      _eq(storeProducts.productId, productId),
+      _eq(storeProducts.storeId, storeId)
     )
   })
 
   if (!existingAssignment) {
     throw createError({
       statusCode: 404,
-      message: 'Product is not assigned to this store'
+      message: '_Product is not assigned to this store'
     })
   }
 
   // Build update object
-  const updateData: Record<string, any> = {
+  const updateData: Record<string, unknown> = {
     updatedAt: new Date()
   }
 
@@ -90,15 +90,15 @@ export default defineEventHandler(async (event) => {
   await db.update(storeProducts)
     .set(updateData)
     .where(and(
-      eq(storeProducts.productId, productId),
-      eq(storeProducts.storeId, storeId)
+      _eq(storeProducts.productId, productId),
+      _eq(storeProducts.storeId, storeId)
     ))
 
   // Return updated assignment
   const updatedAssignment = await db.query.storeProducts.findFirst({
     where: and(
-      eq(storeProducts.productId, productId),
-      eq(storeProducts.storeId, storeId)
+      _eq(storeProducts.productId, productId),
+      _eq(storeProducts.storeId, storeId)
     ),
     with: {
       store: {

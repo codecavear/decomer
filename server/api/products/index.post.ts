@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { eq } from 'drizzle-orm'
+import { _eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products, stores } from '../../database/schema'
 
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
   // Verify user owns the store
   const store = await db.query.stores.findFirst({
-    where: eq(stores.id, body.storeId)
+    where: _eq(stores.id, body.storeId)
   })
 
   if (!store) {

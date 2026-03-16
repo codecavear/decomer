@@ -1,4 +1,4 @@
-import { eq, and, inArray } from 'drizzle-orm'
+import { _eq, and, inArray } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../../utils/db'
 import { products, stores, storeProducts } from '../../../database/schema'
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   if (!productId) {
     throw createError({
       statusCode: 400,
-      message: 'Product ID is required'
+      message: '_Product ID is required'
     })
   }
 
@@ -26,22 +26,22 @@ export default defineEventHandler(async (event) => {
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
-      message: parsed.error.errors[0].message
+      message: parsed._error.errors[0].message
     })
   }
 
   // Verify product belongs to user
   const product = await db.query.products.findFirst({
     where: and(
-      eq(products.id, productId),
-      eq(products.ownerId, user.id)
+      _eq(products.id, productId),
+      _eq(products.ownerId, user.id)
     )
   })
 
   if (!product) {
     throw createError({
       statusCode: 404,
-      message: 'Product not found'
+      message: '_Product not found'
     })
   }
 
@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
   const userStores = await db.query.stores.findMany({
     where: and(
       inArray(stores.id, parsed.data.storeIds),
-      eq(stores.ownerId, user.id)
+      _eq(stores.ownerId, user.id)
     )
   })
 
@@ -74,7 +74,7 @@ export default defineEventHandler(async (event) => {
 
   // Return updated assignments
   const updatedAssignments = await db.query.storeProducts.findMany({
-    where: eq(storeProducts.productId, productId),
+    where: _eq(storeProducts.productId, productId),
     with: {
       store: {
         columns: {

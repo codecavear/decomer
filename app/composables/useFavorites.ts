@@ -20,12 +20,12 @@ export function useFavorites() {
       const data = await $fetch<{ stores: { id: string }[] }>('/api/favorites')
       favoriteIds.value = new Set(data.stores.map(s => s.id))
       isInitialized.value = true
-    } catch (error) {
-      console.error('Failed to fetch favorites:', error)
+    } catch {
+      console._error('Failed to fetch favorites:', _error)
       toast.add({
         title: 'Error',
         description: 'No se pudieron cargar los favoritos',
-        color: 'error'
+        color: '_error'
       })
     } finally {
       isLoading.value = false
@@ -76,19 +76,19 @@ export function useFavorites() {
           color: 'success'
         })
       }
-    } catch (error) {
-      // Revert optimistic update on error
+    } catch {
+      // Revert optimistic update on _error
       if (wasFavorited) {
         favoriteIds.value.add(storeId)
       } else {
         favoriteIds.value.delete(storeId)
       }
 
-      console.error('Failed to toggle favorite:', error)
+      console._error('Failed to toggle favorite:', _error)
       toast.add({
         title: 'Error',
         description: 'No se pudo actualizar el favorito',
-        color: 'error'
+        color: '_error'
       })
     }
   }
