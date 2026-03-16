@@ -9,10 +9,10 @@ useSeoMeta({
 })
 
 const router = useRouter()
+const toast = useToast()
 const { loggedIn } = useUserSession()
 
-// Redirect if already onboarded (has session)
-// Onboarding is shown once, then skipped via localStorage flag
+// Redirect if already onboarded
 onMounted(() => {
   if (import.meta.client) {
     const done = localStorage.getItem('decomer_onboarding_done')
@@ -53,7 +53,13 @@ const steps = [
     icon: '📍',
     title: '¿Dónde te llevamos?',
     body: 'Por ahora entregamos en Córdoba Capital.',
-    cta: 'Confirmar'
+    cta: 'Continuar'
+  },
+  {
+    icon: '🔑',
+    title: 'Creá tu cuenta',
+    body: 'Guardamos tu plan y dirección. En un click estás adentro.',
+    cta: null // handled manually
   },
   {
     icon: '🎉',
@@ -63,8 +69,17 @@ const steps = [
   }
 ]
 
+const LAST_STEP = steps.length - 1
+const AUTH_STEP = 5
+
+// Step data
 const selectedPlan = ref<string | null>(null)
 const address = ref('')
+
+// Magic link state
+const email = ref('')
+const loadingMagicLink = ref(false)
+const emailSent = ref(false)
 
 const plans = [
   { id: 'unico', label: 'Solo quiero probar', sub: 'Pedido único, mínimo 3 viandas' },
@@ -79,24 +94,61 @@ const canContinue = computed(() => {
   return true
 })
 
+function saveOnboardingData() {
+  if (import.meta.client) {
+    if (selectedPlan.value) localStorage.setItem('decomer_selected_plan', selectedPlan.value)
+    if (address.value) localStorage.setItem('decomer_address', address.value)
+    localStorage.setItem('decomer_onboarding_done', '1')
+  }
+}
+
 const next = () => {
-  if (step.value < steps.length - 1) {
+  if (step.value < LAST_STEP) {
     step.value++
   } else {
-    // Done — save flag and go to menu
-    if (import.meta.client) {
-      localStorage.setItem('decomer_onboarding_done', '1')
-    }
+    saveOnboardingData()
     router.push('/buscar')
   }
 }
 
 const skip = () => {
-  if (import.meta.client) {
-    localStorage.setItem('decomer_onboarding_done', '1')
-  }
+  saveOnboardingData()
   router.push('/buscar')
 }
+
+async function sendMagicLink() {
+  if (!email.value) return
+  loadingMagicLink.value = true
+  try {
+    await $fetch('/api/auth/magic-link', {
+      method: 'POST',
+      body: { email: email.value }
+    })
+    emailSent.value = true
+    toast.add({
+      title: '¡Email enviado!',
+      description: 'Revisá tu bandeja de entrada',
+      color: 'success'
+    })
+  } catch (error: unknown) {
+    const err = error as { data?: { message?: string } }
+    toast.add({
+      title: 'Error',
+      description: err.data?.message || 'No se pudo enviar el email',
+      color: 'error'
+    })
+  } finally {
+    loadingMagicLink.value = false
+  }
+}
+
+// If user already logged in when they reach the auth step, advance automatically
+watch([loggedIn, step], ([logged, s]) => {
+  if (logged && s === AUTH_STEP) {
+    saveOnboardingData()
+    step.value = LAST_STEP
+  }
+})
 </script>
 
 <template>
@@ -114,10 +166,10 @@ const skip = () => {
       />
     </div>
 
-    <!-- Skip button -->
+    <!-- Skip button (hide on auth + final step) -->
     <div class="flex justify-end px-6">
       <UButton
-        v-if="step < steps.length - 1"
+        v-if="step < LAST_STEP && step !== AUTH_STEP"
         label="Saltar"
         color="neutral"
         variant="ghost"
@@ -185,19 +237,106 @@ const skip = () => {
           </p>
         </div>
 
+        <!-- Step 5: Account creation -->
+        <div v-if="step === AUTH_STEP" class="w-full mb-6">
+
+          <!-- Email sent confirmation -->
+          <div
+            v-if="emailSent"
+            class="text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl mb-4"
+          >
+            <UIcon name="i-lucide-mail-check" class="w-12 h-12 text-green-600 mx-auto mb-3" />
+            <p class="font-semibold text-neutral-900 dark:text-white mb-1">¡Revisá tu email!</p>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+              Te enviamos un link a <strong>{{ email }}</strong>
+            </p>
+            <UButton variant="ghost" size="sm" @click="emailSent = false">
+              Usar otro email
+            </UButton>
+          </div>
+
+          <!-- Auth form -->
+          <div v-else class="space-y-4 text-left">
+            <!-- Magic link form -->
+            <form class="space-y-3" @submit.prevent="sendMagicLink">
+              <UFormField label="Email">
+                <UInput
+                  v-model="email"
+                  type="email"
+                  placeholder="tu@email.com"
+                  size="lg"
+                  :disabled="loadingMagicLink"
+                  autocomplete="email"
+                  required
+                />
+              </UFormField>
+              <UButton
+                type="submit"
+                block
+                size="lg"
+                :loading="loadingMagicLink"
+                :disabled="!email"
+              >
+                <UIcon name="i-lucide-mail" class="w-4 h-4 mr-2" />
+                Continuar con email
+              </UButton>
+            </form>
+
+            <!-- Divider -->
+            <div class="relative py-2">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-neutral-200 dark:border-neutral-700" />
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-4 bg-white dark:bg-neutral-950 text-neutral-400">o</span>
+              </div>
+            </div>
+
+            <!-- Google OAuth -->
+            <UButton
+              to="/auth/google"
+              external
+              variant="outline"
+              block
+              size="lg"
+            >
+              <UIcon name="i-simple-icons-google" class="w-5 h-5 mr-2" />
+              Continuar con Google
+            </UButton>
+
+            <!-- Skip account creation -->
+            <p class="text-center">
+              <UButton
+                variant="ghost"
+                size="sm"
+                color="neutral"
+                @click="skip"
+              >
+                Continuar sin cuenta
+              </UButton>
+            </p>
+
+            <p class="text-xs text-center text-neutral-400">
+              Al continuar, aceptás nuestros Términos de Servicio.
+            </p>
+          </div>
+        </div>
+
       </div>
     </Transition>
 
-    <!-- CTA -->
-    <div class="px-8 pb-12 max-w-md mx-auto w-full">
+    <!-- CTA (skip on auth step — buttons are inline) -->
+    <div v-if="step !== AUTH_STEP" class="px-8 pb-12 max-w-md mx-auto w-full">
       <UButton
-        :label="steps[step].cta"
+        :label="steps[step].cta ?? ''"
         :disabled="!canContinue"
         size="xl"
         block
         @click="next"
       />
     </div>
+    <!-- Spacer on auth step to keep layout consistent -->
+    <div v-else class="pb-12" />
 
   </div>
 </template>
