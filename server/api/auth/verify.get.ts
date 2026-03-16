@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const token = query.token as string
 
   if (!token) {
-    return sendRedirect(event, '/login?_error=missing_token')
+    return sendRedirect(event, '/login?error=missing_token')
   }
 
   const db = getDb()
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   })
 
   if (!tokenRecord) {
-    return sendRedirect(event, '/login?_error=invalid_token')
+    return sendRedirect(event, '/login?error=invalid_token')
   }
 
   // Mark token as used
@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (!dbUser) {
-    return sendRedirect(event, '/login?_error=user_creation_failed')
+    return sendRedirect(event, '/login?error=user_creation_failed')
   }
 
   // Create session

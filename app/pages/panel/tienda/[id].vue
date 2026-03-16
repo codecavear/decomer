@@ -35,7 +35,7 @@ const route = useRoute()
 const storeId = route.params.id as string
 
 // Load store
-const { data: storeData, _error: storeError } = await useFetch<StoreData>(`/api/stores/${storeId}`)
+const { data: storeData, error: storeError } = await useFetch<StoreData>(`/api/stores/${storeId}`)
 if (storeError.value || !storeData.value) {
   throw createError({ statusCode: 404, message: 'Tienda no encontrada' })
 }
@@ -192,7 +192,7 @@ const uploadImage = async (file: File): Promise<{ url: string, publicId: string 
 
     return { url: response.url, publicId: response.publicId }
   } catch {
-    console._error('Error uploading image:', _error)
+    console.error('Error uploading image:', error)
     return null
   }
 }
@@ -239,8 +239,8 @@ const saveInfo = async () => {
     })
     infoToast.add({ title: 'Guardado', description: 'Los datos de la tienda se actualizaron correctamente.', color: 'success' })
   } catch {
-    const _error = _e as { data?: { message?: string } }
-    infoToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudieron guardar los cambios.', color: '_error' })
+    const error = _e as { data?: { message?: string } }
+    infoToast.add({ title: 'Error', description: error?.data?.message || 'No se pudieron guardar los cambios.', color: 'error' })
   } finally {
     isSavingInfo.value = false
   }
@@ -305,7 +305,7 @@ const initLocationMap = async () => {
       title: storeInfo.name
     })
   } catch (err) {
-    console._error('Error loading location map:', err)
+    console.error('Error loading location map:', err)
   }
 }
 
@@ -731,7 +731,7 @@ const saveContacts = async () => {
                 </div>
                 <UButton
                   v-if="contacts.length > 1"
-                  color="_error"
+                  color="error"
                   variant="ghost"
                   icon="i-lucide-trash-2"
                   size="xs"

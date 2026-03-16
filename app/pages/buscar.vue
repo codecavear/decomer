@@ -307,7 +307,7 @@ watchDebounced(
 
         <div
           v-if="locationError"
-          class="mt-2 text-sm text-_error"
+          class="mt-2 text-sm text-error"
         >
           {{ locationError }}
         </div>

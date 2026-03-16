@@ -74,11 +74,11 @@ export function useAddressAutocomplete() {
         inputEl.disabled = false
         inputEl.placeholder = originalPlaceholder
         clearInterval(watchdog)
-        console.warn('Google Places API _error detected — autocomplete disabled, input restored')
+        console.warn('Google Places API error detected — autocomplete disabled, input restored')
       }
     }, 500)
 
-    // Stop checking after 10 seconds if no _error
+    // Stop checking after 10 seconds if no error
     setTimeout(() => clearInterval(watchdog), 10000)
 
     autocomplete.addListener('place_changed', () => {

@@ -27,8 +27,8 @@ export function useCart() {
       if (stored) {
         cart.value = JSON.parse(stored)
       }
-    } catch {
-      console._error('Failed to load cart from localStorage:', _error)
+    } catch (error) {
+      console.error('Failed to load cart from localStorage:', error)
     }
     isInitialized.value = true
   }
@@ -38,8 +38,8 @@ export function useCart() {
     if (import.meta.client) {
       try {
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart.value))
-      } catch {
-        console._error('Failed to save cart to localStorage:', _error)
+      } catch (error) {
+        console.error('Failed to save cart to localStorage:', error)
       }
     }
   }
@@ -84,7 +84,7 @@ export function useCart() {
 
     // Remove store from cart if no items left
     if (cart.value[storeId].items.length === 0) {
-      cart.value[storeId] = undefined; // eslint-disable-line
+      delete cart.value[storeId]; // eslint-disable-line
     }
 
     saveCart()
@@ -109,7 +109,7 @@ export function useCart() {
 
   const clearCart = (storeId?: string) => {
     if (storeId) {
-      cart.value[storeId] = undefined; // eslint-disable-line
+      delete cart.value[storeId]; // eslint-disable-line
     } else {
       cart.value = {}
     }

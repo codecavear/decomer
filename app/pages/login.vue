@@ -38,8 +38,8 @@ if (loggedIn.value) {
   }
 }
 
-// Handle _error query params
-const errorParam = route.query._error as string | undefined
+// Handle error query params
+const errorParam = route.query.error as string | undefined
 if (errorParam) {
   const errorMessages: Record<string, string> = {
     missing_token: 'El link no es válido',
@@ -48,8 +48,8 @@ if (errorParam) {
   }
   toast.add({
     title: 'Error de autenticación',
-    description: errorMessages[errorParam] || 'Ocurrió un _error',
-    color: '_error'
+    description: errorMessages[errorParam] || 'Ocurrió un error',
+    color: 'error'
   })
 }
 
@@ -74,11 +74,11 @@ async function sendMagicLink() {
       color: 'success'
     })
   } catch {
-    const err = _error as { data?: { message?: string } }
+    const err = error as { data?: { message?: string } }
     toast.add({
       title: 'Error',
       description: err.data?.message || 'No se pudo enviar el email',
-      color: '_error'
+      color: 'error'
     })
   } finally {
     loading.value = false

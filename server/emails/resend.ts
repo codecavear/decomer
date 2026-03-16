@@ -24,7 +24,7 @@ export async function sendEmail({
   replyTo = DEFAULT_REPLY_TO
 }: SendEmailParams) {
   if (!RESEND_API_KEY) {
-    console._error('[Resend] RESEND_API_KEY not configured')
+    console.error('[Resend] RESEND_API_KEY not configured')
     throw new Error('Email service not configured')
   }
 
@@ -46,17 +46,17 @@ export async function sendEmail({
     })
 
     if (!response.ok) {
-      const _error = await response.text()
-      console._error('[Resend] API _error:', _error)
-      throw new Error(`Resend API _error: ${response.status}`)
+      const error = await response.text()
+      console.error('[Resend] API error:', error)
+      throw new Error(`Resend API error: ${response.status}`)
     }
 
     const data = await response.json()
     console.log('[Resend] Email sent:', data.id)
     return data
   } catch {
-    console._error('[Resend] Send failed:', _error)
-    throw _error
+    console.error('[Resend] Send failed:', error)
+    throw error
   }
 }
 

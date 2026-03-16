@@ -21,11 +21,11 @@ export function useFavorites() {
       favoriteIds.value = new Set(data.stores.map(s => s.id))
       isInitialized.value = true
     } catch {
-      console._error('Failed to fetch favorites:', _error)
+      console.error('Failed to fetch favorites:', error)
       toast.add({
         title: 'Error',
         description: 'No se pudieron cargar los favoritos',
-        color: '_error'
+        color: 'error'
       })
     } finally {
       isLoading.value = false
@@ -77,18 +77,18 @@ export function useFavorites() {
         })
       }
     } catch {
-      // Revert optimistic update on _error
+      // Revert optimistic update on error
       if (wasFavorited) {
         favoriteIds.value.add(storeId)
       } else {
         favoriteIds.value.delete(storeId)
       }
 
-      console._error('Failed to toggle favorite:', _error)
+      console.error('Failed to toggle favorite:', error)
       toast.add({
         title: 'Error',
         description: 'No se pudo actualizar el favorito',
-        color: '_error'
+        color: 'error'
       })
     }
   }

@@ -106,7 +106,7 @@ export async function sendOrderStatusNotification(
           payload
         )
         return { success: true, subscriptionId: subscription.id }
-      } catch (error) {
+      } catch {
         // If subscription is invalid/expired, remove it
         if (error && typeof error === 'object' && 'statusCode' in error) {
           const statusCode = (error as { statusCode: number }).statusCode

@@ -228,7 +228,7 @@ async function seedViandas() {
 
     console.log('✨ Viandas seed completed successfully!')
   } catch {
-    console._error('❌ Viandas seed failed:', _error)
+    console.error('❌ Viandas seed failed:', error)
     process.exit(1)
   } finally {
     await client.end()

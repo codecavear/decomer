@@ -28,7 +28,7 @@ const addToCart = async () => {
     toast.add({
       title: 'Error',
       description: 'No se pudo agregar el producto al carrito',
-      color: '_error'
+      color: 'error'
     })
   } finally {
     adding.value = false
@@ -70,7 +70,7 @@ const incrementQuantity = () => {
         <UBadge
           v-if="!product.isAvailable"
           class="absolute top-2 right-2"
-          color="_error"
+          color="error"
           variant="soft"
           label="No disponible"
         />

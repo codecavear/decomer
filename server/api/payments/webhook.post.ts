@@ -31,14 +31,14 @@ export default defineEventHandler(async (event) => {
     const paymentId = body.data?.id
 
     if (!paymentId) {
-      return { success: false, _error: 'No payment ID' }
+      return { success: false, error: 'No payment ID' }
     }
 
     // Get MercadoPago token
     const mpToken = process.env.MERCADOPAGO_ACCESS_TOKEN || ''
 
     if (!mpToken) {
-      return { success: false, _error: 'MercadoPago not configured' }
+      return { success: false, error: 'MercadoPago not configured' }
     }
 
     // Fetch payment details from MercadoPago
@@ -63,8 +63,8 @@ export default defineEventHandler(async (event) => {
     })
 
     if (!paymentRecord) {
-      console._error('❌ Payment record not found')
-      return { success: false, _error: 'Payment record not found' }
+      console.error('❌ Payment record not found')
+      return { success: false, error: 'Payment record not found' }
     }
 
     // Map status
@@ -141,11 +141,11 @@ export default defineEventHandler(async (event) => {
       message: 'Webhook processed successfully'
     }
   } catch {
-    console._error('❌ Webhook processing _error:', _error)
+    console.error('❌ Webhook processing error:', error)
 
     return {
       success: false,
-      _error: _error.message
+      error: error.message
     }
   }
 })

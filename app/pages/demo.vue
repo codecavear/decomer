@@ -69,7 +69,7 @@ const products = ref([
     category: 'Proteínas',
     isActive: true,
     badge: '-17%',
-    badgeColor: '_error' as const
+    badgeColor: 'error' as const
   },
   {
     id: 'demo-5',

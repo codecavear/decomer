@@ -71,7 +71,7 @@ const getStatusColor = (status: string) => {
     preparing: 'info',
     ready: 'success',
     delivered: 'success',
-    cancelled: '_error'
+    cancelled: 'error'
   }
   return colors[status] || 'neutral'
 }

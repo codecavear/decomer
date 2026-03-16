@@ -164,11 +164,11 @@ export default defineEventHandler(async (event) => {
       }
     }
   } catch {
-    console._error('Error creating payment:', _error)
+    console.error('Error creating payment:', error)
 
     throw createError({
-      statusCode: _error.statusCode || 500,
-      message: _error.message || 'Failed to create payment'
+      statusCode: error.statusCode || 500,
+      message: error.message || 'Failed to create payment'
     })
   }
 })

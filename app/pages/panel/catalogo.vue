@@ -180,7 +180,7 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
           </p>
           <UProgress
             :model-value="(productCount / productLimit) * 100"
-            :color="canAddProduct ? 'primary' : '_error'"
+            :color="canAddProduct ? 'primary' : 'error'"
             class="w-32 h-2"
           />
         </div>
@@ -329,7 +329,7 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
               @click="openEditModal(row)"
             />
             <UButton
-              color="_error"
+              color="error"
               variant="ghost"
               icon="i-lucide-trash-2"
               size="sm"

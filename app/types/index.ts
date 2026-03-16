@@ -252,7 +252,7 @@ export const orderStatusColors: Record<OrderStatus, string> = {
   preparing: 'info',
   ready: 'success',
   delivered: 'success',
-  cancelled: '_error'
+  cancelled: 'error'
 }
 
 // Status labels (Spanish)

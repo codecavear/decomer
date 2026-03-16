@@ -100,7 +100,7 @@ export default defineEventHandler(async (event) => {
 
     return { stores: storeList, limit, offset }
   } catch {
-    console.warn('Stores API: Database connection failed during build, returning empty result:', _error.message)
+    console.warn('Stores API: Database connection failed during build, returning empty result:', error.message)
     // Return empty result during build when database is not available
     return { stores: [], limit, offset }
   }

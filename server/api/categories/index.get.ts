@@ -34,7 +34,7 @@ export default defineEventHandler(async () => {
 
     return hierarchicalCategories
   } catch {
-    console.warn('Categories API: Database connection failed during build, returning empty array:', _error.message)
+    console.warn('Categories API: Database connection failed during build, returning empty array:', error.message)
     // Return empty array during build when database is not available
     return []
   }

@@ -58,7 +58,7 @@ export function usePush() {
       isSubscribed.value = true
       return subscription
     } catch {
-      console._error('Push subscription failed:', _error)
+      console.error('Push subscription failed:', error)
       return null
     }
   }
@@ -75,7 +75,7 @@ export function usePush() {
         isSubscribed.value = false
       }
     } catch {
-      console._error('Push unsubscribe failed:', _error)
+      console.error('Push unsubscribe failed:', error)
     }
   }
 

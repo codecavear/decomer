@@ -40,10 +40,10 @@ const { getStoreType } = useStoreTypes()
 const { setIsCatalogStore } = useCartVisibility()
 
 // Fetch store data
-const { data: store, _error } = await useFetch(`/api/stores/${slug}`)
+const { data: store, error } = await useFetch(`/api/stores/${slug}`)
 
-if (_error.value || !store.value) {
-  const statusCode = _error.value?.statusCode ?? 404
+if (error.value || !store.value) {
+  const statusCode = error.value?.statusCode ?? 404
   const isServerError = statusCode >= 500
   throw createError({
     statusCode: isServerError ? 500 : 404,

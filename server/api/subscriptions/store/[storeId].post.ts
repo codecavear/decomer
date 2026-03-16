@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const validation = subscribeSchema.safeParse(body)
   if (!validation.success) {
-    throw createError({ statusCode: 400, message: validation._error.issues[0]?.message || 'Invalid request body' })
+    throw createError({ statusCode: 400, message: validation.error.issues[0]?.message || 'Invalid request body' })
   }
 
   const { planId, billingCycle } = validation.data

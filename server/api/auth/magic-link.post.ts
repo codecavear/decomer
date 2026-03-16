@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   if (!result.success) {
     throw createError({
       statusCode: 400,
-      message: result._error.issues[0].message
+      message: result.error.issues[0].message
     })
   }
 
@@ -62,7 +62,7 @@ export default defineEventHandler(async (event) => {
   // Send email via Resend
   const resendApiKey = process.env.RESEND_API_KEY
   if (!resendApiKey) {
-    console._error('RESEND_API_KEY not configured')
+    console.error('RESEND_API_KEY not configured')
     throw createError({
       statusCode: 500,
       message: 'Error al enviar el email. Intentá más tarde.'
@@ -119,8 +119,8 @@ export default defineEventHandler(async (event) => {
 </html>
       `.trim()
     }
-  }).catch((_error) => {
-    console._error('Resend _error:', _error)
+  }).catch((error) => {
+    console.error('Resend error:', error)
     throw createError({
       statusCode: 500,
       message: 'Error al enviar el email. Intentá más tarde.'

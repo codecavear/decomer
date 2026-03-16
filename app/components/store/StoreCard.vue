@@ -65,7 +65,7 @@ const handleFavoriteClick = (_e: Event) => {
           </div>
           <UButton
             :icon="isFavorited(store.id) ? 'i-lucide-heart' : 'i-lucide-heart'"
-            :color="isFavorited(store.id) ? '_error' : 'neutral'"
+            :color="isFavorited(store.id) ? 'error' : 'neutral'"
             :variant="isFavorited(store.id) ? 'soft' : 'ghost'"
             size="sm"
             class="absolute top-2 right-2"

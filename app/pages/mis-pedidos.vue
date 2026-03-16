@@ -58,7 +58,7 @@ const getStatusColor = (status: OrderStatus) => {
     preparing: 'primary',
     ready: 'success',
     delivered: 'success',
-    cancelled: '_error'
+    cancelled: 'error'
   }
   return colors[status]
 }

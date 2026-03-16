@@ -30,7 +30,7 @@ const statusOptions = [
   { value: 'preparing', label: 'Preparando', color: 'primary' as const },
   { value: 'ready', label: 'Listo', color: 'success' as const },
   { value: 'delivered', label: 'Entregado', color: 'success' as const },
-  { value: 'cancelled', label: 'Cancelado', color: '_error' as const }
+  { value: 'cancelled', label: 'Cancelado', color: 'error' as const }
 ]
 
 const allOrders = ref<Order[]>([])
@@ -72,8 +72,8 @@ const updateOrderStatus = async (order: Order, newStatus: OrderStatus) => {
     order.status = newStatus
     toast.add({ title: 'Estado actualizado', color: 'success' })
   } catch {
-    const _error = _e as { data?: { message?: string } }
-    toast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo actualizar', color: '_error' })
+    const error = _e as { data?: { message?: string } }
+    toast.add({ title: 'Error', description: error?.data?.message || 'No se pudo actualizar', color: 'error' })
   }
 }
 
@@ -84,7 +84,7 @@ const getNextStatusActions = (currentStatus: OrderStatus) => {
     case 'pending':
       actions.push(
         { status: 'confirmed', label: 'Confirmar', color: 'info' },
-        { status: 'cancelled', label: 'Cancelar', color: '_error' }
+        { status: 'cancelled', label: 'Cancelar', color: 'error' }
       )
       break
     case 'confirmed':

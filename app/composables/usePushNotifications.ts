@@ -67,7 +67,7 @@ export const usePushNotifications = () => {
       isSubscribed.value = true
       return true
     } catch (err) {
-      console._error('[push] Subscribe failed:', err)
+      console.error('[push] Subscribe failed:', err)
       return false
     }
   }
@@ -93,7 +93,7 @@ export const usePushNotifications = () => {
       isSubscribed.value = false
       return true
     } catch (err) {
-      console._error('[push] Unsubscribe failed:', err)
+      console.error('[push] Unsubscribe failed:', err)
       return false
     }
   }

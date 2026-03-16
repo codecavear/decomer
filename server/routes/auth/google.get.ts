@@ -64,10 +64,10 @@ export default defineOAuthGoogleEventHandler({
 
     return sendRedirect(event, '/')
   },
-  onError(event, _error) {
-    console._error('Google OAuth _error:', _error)
-    // Also clear redirect cookie on _error
+  onError(event, error) {
+    console.error('Google OAuth error:', error)
+    // Also clear redirect cookie on error
     deleteCookie(event, 'auth_redirect', { path: '/' })
-    return sendRedirect(event, '/login?_error=auth_failed')
+    return sendRedirect(event, '/login?error=auth_failed')
   }
 })

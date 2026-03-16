@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     )
   })
 
-  // If already favorited, don't _error - just return success
+  // If already favorited, don't error - just return success
   if (existing) {
     return { success: true, alreadyFavorited: true }
   }

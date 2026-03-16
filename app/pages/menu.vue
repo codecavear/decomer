@@ -41,7 +41,7 @@ const filters = [
 ]
 
 // Fetch viandas
-const { data, pending, _error } = await useFetch<{ viandas: Vianda[], total: number }>('/api/viandas', {
+const { data, pending, error } = await useFetch<{ viandas: Vianda[], total: number }>('/api/viandas', {
   query: computed(() => {
     const params: Record<string, string> = {}
 
@@ -144,8 +144,8 @@ const cartCount = computed(() =>
 
       <!-- Error -->
       <UAlert
-        v-else-if="_error"
-        color="_error"
+        v-else-if="error"
+        color="error"
         icon="i-lucide-alert-circle"
         title="No pudimos cargar el menú"
         description="Intentá de nuevo en un momento."
@@ -233,7 +233,7 @@ const cartCount = computed(() =>
               <UBadge
                 v-if="vianda.isHighProtein"
                 label="💪 Proteico"
-                color="_error"
+                color="error"
                 variant="solid"
                 size="xs"
               />

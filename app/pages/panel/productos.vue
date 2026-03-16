@@ -131,7 +131,7 @@ const uploadImage = async (): Promise<{ url: string, publicId: string } | null> 
 
     return { url: response.url, publicId: response.publicId }
   } catch {
-    console._error('Error uploading image:', _error)
+    console.error('Error uploading image:', error)
     return null
   } finally {
     isUploading.value = false
@@ -140,11 +140,11 @@ const uploadImage = async (): Promise<{ url: string, publicId: string } | null> 
 
 const saveProduct = async () => {
   if (!productForm.name?.trim()) {
-    productToast.add({ title: 'Nombre requerido', color: '_error' })
+    productToast.add({ title: 'Nombre requerido', color: 'error' })
     return
   }
   if (productForm.price == null || productForm.price <= 0) {
-    productToast.add({ title: 'Precio debe ser mayor a 0', color: '_error' })
+    productToast.add({ title: 'Precio debe ser mayor a 0', color: 'error' })
     return
   }
 
@@ -192,8 +192,8 @@ const saveProduct = async () => {
     await refreshProducts()
     isSlideoverOpen.value = false
   } catch {
-    const _error = _e as { data?: { message?: string } }
-    productToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo guardar.', color: '_error' })
+    const error = _e as { data?: { message?: string } }
+    productToast.add({ title: 'Error', description: error?.data?.message || 'No se pudo guardar.', color: 'error' })
   } finally {
     isSaving.value = false
   }
@@ -206,8 +206,8 @@ const deleteProduct = async (productId: string) => {
     productToast.add({ title: 'Producto eliminado', color: 'success' })
     await refreshProducts()
   } catch {
-    const _error = _e as { data?: { message?: string } }
-    productToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo eliminar.', color: '_error' })
+    const error = _e as { data?: { message?: string } }
+    productToast.add({ title: 'Error', description: error?.data?.message || 'No se pudo eliminar.', color: 'error' })
   }
 }
 
@@ -221,8 +221,8 @@ const toggleAvailability = async (product: _Product) => {
     product.isAvailable = newValue
     productToast.add({ title: newValue ? 'Producto disponible' : 'Producto no disponible', color: 'success' })
   } catch {
-    const _error = _e as { data?: { message?: string } }
-    productToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo actualizar.', color: '_error' })
+    const error = _e as { data?: { message?: string } }
+    productToast.add({ title: 'Error', description: error?.data?.message || 'No se pudo actualizar.', color: 'error' })
   } finally {
     await refreshProducts()
   }
@@ -312,7 +312,7 @@ const toggleAvailability = async (product: _Product) => {
                 @click="openEditSlideover(row)"
               />
               <UButton
-                color="_error"
+                color="error"
                 variant="ghost"
                 icon="i-lucide-trash-2"
                 size="sm"

@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
   // Send push notification to user about status change
   try {
     await sendOrderStatusNotification(updatedOrder.userId, updatedOrder.id, status)
-  } catch (error) {
+  } catch {
     console.error('Failed to send push notification:', error)
     // Don't fail the request if notification fails
   }

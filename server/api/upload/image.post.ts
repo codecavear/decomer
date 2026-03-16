@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
       height: result.height
     }
   } catch {
-    console._error('Cloudinary upload _error:', _error)
+    console.error('Cloudinary upload error:', error)
     throw createError({ statusCode: 500, message: 'Failed to upload image' })
   }
 })

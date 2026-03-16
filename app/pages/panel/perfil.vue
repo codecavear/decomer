@@ -69,8 +69,8 @@ const save = async () => {
     await _refresh()
     toast.add({ title: 'Perfil actualizado', color: 'success' })
   } catch {
-    const _error = _e as { data?: { message?: string } }
-    toast.add({ title: 'Error', description: _error.data?.message || 'No se pudo guardar', color: '_error' })
+    const error = _e as { data?: { message?: string } }
+    toast.add({ title: 'Error', description: error.data?.message || 'No se pudo guardar', color: 'error' })
   } finally {
     isSaving.value = false
   }
@@ -197,7 +197,7 @@ const togglePreference = (p: string) => {
           v-for="a in ALLERGIES_OPTIONS"
           :key="a"
           :label="a"
-          :color="form.allergies.includes(a) ? '_error' : 'neutral'"
+          :color="form.allergies.includes(a) ? 'error' : 'neutral'"
           :variant="form.allergies.includes(a) ? 'solid' : 'outline'"
           size="sm"
           @click="toggleAllergy(a)"

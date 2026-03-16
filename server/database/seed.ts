@@ -203,7 +203,7 @@ async function seed() {
 
     console.log('✨ Seed completed successfully!')
   } catch {
-    console._error('❌ Seed failed:', _error)
+    console.error('❌ Seed failed:', error)
     process.exit(1)
   } finally {
     await client.end()

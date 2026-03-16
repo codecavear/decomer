@@ -113,7 +113,7 @@ const handleWhatsAppCheckout = (storeId: string) => {
     toast.add({
       title: 'WhatsApp no disponible',
       description: 'Esta tienda no tiene WhatsApp configurado',
-      color: '_error'
+      color: 'error'
     })
   }
 }
@@ -172,7 +172,7 @@ const confirmOrder = async (storeId: string) => {
     toast.add({
       title: 'Información incompleta',
       description: 'Por favor completa la información de entrega',
-      color: '_error'
+      color: 'error'
     })
     return
   }
@@ -218,8 +218,8 @@ const confirmOrder = async (storeId: string) => {
   } catch {
     toast.add({
       title: 'Error',
-      description: _error.data?.message || 'No se pudo confirmar el pedido',
-      color: '_error'
+      description: error.data?.message || 'No se pudo confirmar el pedido',
+      color: 'error'
     })
   } finally {
     submittingOrders.value[storeId] = false
@@ -302,7 +302,7 @@ const confirmOrder = async (storeId: string) => {
 
               <UButton
                 icon="i-lucide-trash-2"
-                color="_error"
+                color="error"
                 variant="ghost"
                 size="sm"
                 @click="handleClearStore(storeCart.store.id)"
@@ -382,7 +382,7 @@ const confirmOrder = async (storeId: string) => {
 
                     <UButton
                       icon="i-lucide-trash-2"
-                      color="_error"
+                      color="error"
                       variant="ghost"
                       size="sm"
                       @click="handleRemoveItem(storeCart.store.id, item.product.id)"

@@ -104,10 +104,10 @@ export default defineEventHandler(async (event) => {
       type
     }
   } catch {
-    console._error('[Email Test] Error:', _error)
+    console.error('[Email Test] Error:', error)
     throw createError({
       statusCode: 500,
-      message: _error instanceof Error ? _error.message : 'Failed to send email'
+      message: error instanceof Error ? error.message : 'Failed to send email'
     })
   }
 })

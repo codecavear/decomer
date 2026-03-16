@@ -45,7 +45,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
   try {
     ensureVapid()
   } catch (err) {
-    console._error('[push] VAPID not configured:', err)
+    console.error('[push] VAPID not configured:', err)
     return
   }
 
@@ -77,7 +77,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
             .delete(pushSubscriptions)
             .where(_eq(pushSubscriptions.endpoint, sub.endpoint))
         } else {
-          console._error(`[push] Failed to send to ${sub.endpoint}:`, err)
+          console.error(`[push] Failed to send to ${sub.endpoint}:`, err)
         }
       }
     })

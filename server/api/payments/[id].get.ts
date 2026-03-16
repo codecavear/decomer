@@ -61,11 +61,11 @@ export default defineEventHandler(async (event) => {
       data: payment
     }
   } catch {
-    console._error('Error fetching payment:', _error)
+    console.error('Error fetching payment:', error)
 
     throw createError({
-      statusCode: _error.statusCode || 500,
-      message: _error.message || 'Failed to fetch payment'
+      statusCode: error.statusCode || 500,
+      message: error.message || 'Failed to fetch payment'
     })
   }
 })

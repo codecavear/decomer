@@ -143,11 +143,11 @@ const validateStep = (step: number) => {
     }
     return true
   } catch {
-    if (_error instanceof z.ZodError) {
+    if (error instanceof z.ZodError) {
       toast.add({
         title: 'Error de validacion',
-        description: _error.errors[0].message,
-        color: '_error'
+        description: error.errors[0].message,
+        color: 'error'
       })
     }
     return false
@@ -233,11 +233,11 @@ const submitStore = async () => {
 
     router.push('/panel')
   } catch (err) {
-    const _error = err as { data?: { message?: string } }
+    const error = err as { data?: { message?: string } }
     toast.add({
       title: 'Error',
-      description: _error.data?.message || 'No se pudo crear la tienda',
-      color: '_error'
+      description: error.data?.message || 'No se pudo crear la tienda',
+      color: 'error'
     })
   } finally {
     submitting.value = false
@@ -317,7 +317,7 @@ async function updateLocationMap() {
       title: formData.name || 'Tu tienda'
     })
   } catch (err) {
-    console._error('Error loading map:', err)
+    console.error('Error loading map:', err)
   }
 }
 
@@ -600,7 +600,7 @@ watch(() => [formData.latitude, formData.longitude], () => {
 
             <UButton
               icon="i-lucide-trash-2"
-              color="_error"
+              color="error"
               variant="ghost"
               :disabled="formData.contacts.length <= 1"
               @click="removeContact(index)"

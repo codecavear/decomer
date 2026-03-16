@@ -34,13 +34,13 @@ export default defineEventHandler(async (event) => {
   try {
     await db.delete(products).where(_eq(products.id, id))
   } catch {
-    if (_error.code === '23503') { // Foreign key violation
+    if (error.code === '23503') { // Foreign key violation
       throw createError({
         statusCode: 409,
         message: 'No se puede eliminar el producto porque tiene pedidos asociados'
       })
     }
-    throw _error
+    throw error
   }
 
   return {
