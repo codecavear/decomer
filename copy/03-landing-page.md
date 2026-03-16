@@ -5,10 +5,10 @@
 ## Hero Section
 
 ### Headline principal
-**Comes bien. Nosotros cocinamos.**
+**Cordoba ya tiene su app de viandas**
 
 ### Subheadline
-Viandas frescas, nunca congeladas. En tu puerta cuando las necesites.
+Viandas frescas, nunca congeladas. Cocinadas por un chef de verdad. En tu puerta cuando las necesites.
 
 ### CTA primario
 **Ver el menu** (o "Empezar")
@@ -17,20 +17,58 @@ Viandas frescas, nunca congeladas. En tu puerta cuando las necesites.
 ¿Como funciona?
 
 ### Badge/Trust signal
-📍 Delivery en Cordoba Capital
+📍 La primera app de viandas de Cordoba Capital
 
 ---
 
 ## Value Props (3 columnas o iconos)
 
-### 🍳 Cocinado hoy
-Preparamos todo fresco. Nada sale del freezer, todo sale de la cocina.
+### 🍳 Cocinado por Lighuen
+Un chef de verdad prepara cada vianda. No es una fabrica, es una cocina.
 
 ### 🚴 En tu puerta
 Delivery en Cordoba Capital. Llega frio, listo para calentar y comer.
 
 ### 📅 Vos elegis
 Suscripcion semanal, mensual o pedido unico. Pausas cuando quieras.
+
+---
+
+## Cordoba Capital
+
+### Titulo seccion
+**Hechos en Cordoba, para Cordoba**
+
+### Copy
+Somos la primera y unica app de viandas de Cordoba Capital. Cocinamos aca, entregamos aca. Conocemos los barrios, los horarios, lo que le gusta comer a la gente.
+
+### Barrios donde entregamos
+Nueva Cordoba · Cerro de las Rosas · Centro · Cofico · General Paz · Alto Alberdi · Alberdi · Jardin · Urca · Poeta Lugones · Jardin Espinosa · Villa Cabrera · y alrededores.
+
+### CTA
+**Ver si llegamos a tu zona**
+
+---
+
+## Conoce al Chef
+
+### Titulo seccion
+**Detras de cada vianda, un chef**
+
+### Headline
+**Lighuen cocina todo**
+
+### Copy
+Esto no es una fabrica. Es una cocina real con un chef que le pone ganas a cada plato. Lighuen cocina personalmente cada vianda que te llega. Si no la comeria el, no sale de su cocina.
+
+### Quote del chef
+> "Cocino cada vianda como si fuera para mi familia. No me gusta la comida triste de tupper — me gusta que la gente coma bien de verdad."
+
+### Bio corta
+Lighuen cocina desde los 15. Paso por varios restaurantes de Cordoba, pero se canso de que su comida llegara fria o recalentada. DeComer es su forma de hacer comida real que llegue fresca a tu mesa.
+
+### CTA
+**Ver el menu**
 
 ---
 
@@ -44,8 +82,8 @@ Suscripcion semanal, mensual o pedido unico. Pausas cuando quieras.
 5 o 10 viandas por semana. O pedi cuando quieras, sin compromiso.
 
 ### Paso 2
-**Armas tu semana**
-Mirá el menu y elegí las viandas que queres. Cambiá cada semana.
+**Elegis del menu**
+Mirá las opciones y elegí las viandas que queres. Siempre disponibles.
 
 ### Paso 3
 **Te las llevamos**
@@ -63,12 +101,12 @@ Llegan frescas a tu puerta. Calentá y comé. Eso es todo.
 Otras marcas congelan y recalientan. Nosotros cocinamos hoy, entregamos mañana. La diferencia se nota.
 
 ### Diferenciador 2: App real
-**Pedí desde la app**
+**La unica app de viandas de Cordoba**
 Nada de WhatsApp ni "te confirmo mañana". Elegí, pagá, listo. Como deberia ser en 2026.
 
 ### Diferenciador 3: Chef real
-**Cocinado por un chef**
-No es una fabrica. Es una cocina con un chef que le pone ganas. Se llama Lighuen.
+**Cocinado por Lighuen**
+Cada vianda pasa por las manos de nuestro chef. No es una linea de produccion, es una cocina de verdad.
 
 ### Diferenciador 4: Flexible
 **Sin ataduras**
@@ -79,10 +117,10 @@ Pausá, cancelá, cambiá de plan. Sin penalidades, sin letra chica.
 ## Menu Preview
 
 ### Titulo seccion
-**Esta semana cocinamos...**
+**Nuestro menu**
 
 ### Subtitulo
-El menu rota cada semana. Siempre hay opciones para todos.
+Platos clasicos que siempre estan. Elegí los que mas te gusten.
 
 ### Tags de categorias
 - Proteina
@@ -101,7 +139,7 @@ El menu rota cada semana. Siempre hay opciones para todos.
 **Elegí tu ritmo**
 
 ### Subtitulo
-Mas viandas = mejor precio. Envio siempre incluido.
+Mas viandas = mejor precio. Envio siempre incluido en Cordoba Capital.
 
 ---
 
@@ -119,7 +157,7 @@ CTA: Pedir ahora
 ### Plan: Basico
 **5 viandas/semana**
 - Entrega 1 vez por semana
-- Elegis del menu semanal
+- Elegis del menu
 - **$11,400 por vianda** (-5%)
 - Envio incluido
 
@@ -130,7 +168,7 @@ CTA: Suscribirme
 ### Plan: Full ⭐ (destacado)
 **10 viandas/semana**
 - Entrega 2 veces por semana
-- Elegis del menu semanal
+- Elegis del menu
 - **$10,800 por vianda** (-10%)
 - Envio incluido
 
@@ -188,12 +226,17 @@ No. Nunca congelamos nada. Cocinamos hoy, te entregamos mañana.
 ---
 
 **¿Donde hacen delivery?**
-Cordoba Capital. Barrios: Nueva Cordoba, Centro, Cerro, Urca, Cofico, Alberdi, General Paz, Alto Alberdi, Jardin, y alrededores.
+Cordoba Capital. Barrios: Nueva Cordoba, Centro, Cerro de las Rosas, Urca, Cofico, Alberdi, General Paz, Alto Alberdi, Jardin, Poeta Lugones, Villa Cabrera, y alrededores.
 
 ---
 
 **¿Puedo elegir las viandas?**
-Si. Cada semana publicamos el menu y vos elegis cuales queres. Si no elegis, te mandamos las mas populares.
+Si. Tenemos un menu fijo con todas las opciones disponibles. Vos elegis cuales queres.
+
+---
+
+**¿El menu cambia?**
+El menu es fijo — los platos que ves siempre estan disponibles. Vamos agregando opciones nuevas, pero no rotamos ni sacamos platos.
 
 ---
 
@@ -222,6 +265,11 @@ No, solo pago online (tarjeta, Mercado Pago). Es mas facil para todos.
 
 ---
 
+**¿Quien cocina?**
+Lighuen, nuestro chef. Cocina personalmente cada vianda. No es una fabrica.
+
+---
+
 ## CTA Final
 
 ### Headline
@@ -231,14 +279,14 @@ No, solo pago online (tarjeta, Mercado Pago). Es mas facil para todos.
 Proba una semana. Si no te gusta, cancelas y listo.
 
 ### CTA
-**Ver el menu de esta semana**
+**Ver el menu**
 
 ---
 
 ## Footer
 
 ### Tagline
-Viandas frescas. Listas. En tu puerta.
+La primera app de viandas de Cordoba. Frescas. Listas. En tu puerta.
 
 ### Links
 - Menu
@@ -248,7 +296,7 @@ Viandas frescas. Listas. En tu puerta.
 - Contacto
 
 ### Contacto
-📍 Cordoba, Argentina
+📍 Cordoba Capital, Argentina
 📱 WhatsApp: [numero]
 📧 hola@decomer.com.ar
 

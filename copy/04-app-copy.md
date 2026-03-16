@@ -4,21 +4,29 @@
 
 ### Pantalla 1: Bienvenida
 **Bienvenido a DeComer**
-Viandas frescas, nunca congeladas. En tu puerta cuando las necesites.
+La primera app de viandas de Cordoba. Frescas, nunca congeladas.
 
 [Continuar]
 
 ---
 
-### Pantalla 2: Como funciona
+### Pantalla 2: Conoce al chef
+**Lighuen cocina todo**
+Cada vianda pasa por las manos de nuestro chef. Cocina real, no una fabrica.
+
+[Continuar]
+
+---
+
+### Pantalla 3: Como funciona
 **Elegis. Cocinamos. Entregamos.**
-Mirá el menu, armá tu semana, y nosotros nos encargamos del resto.
+Mirá el menu, elegí tus viandas favoritas, y nosotros nos encargamos del resto.
 
 [Continuar]
 
 ---
 
-### Pantalla 3: Tu plan
+### Pantalla 4: Tu plan
 **¿Como queres comer?**
 - 5 viandas/semana (Basico)
 - 10 viandas/semana (Full)
@@ -29,20 +37,20 @@ Mirá el menu, armá tu semana, y nosotros nos encargamos del resto.
 
 ---
 
-### Pantalla 4: Ubicacion
+### Pantalla 5: Ubicacion
 **¿Donde te llevamos?**
-Ingresá tu direccion de entrega.
+Ingresá tu direccion de entrega en Cordoba Capital.
 
 [Campo: Direccion]
 [Confirmar ubicacion]
 
-Nota: Por ahora entregamos en Cordoba Capital.
+Nota: Por ahora entregamos en Cordoba Capital (Nueva Cordoba, Cerro, Centro, General Paz, Cofico, y mas).
 
 ---
 
-### Pantalla 5: Listo
+### Pantalla 6: Listo
 **Todo listo 🎉**
-Ya podes ver el menu de esta semana y armar tu primer pedido.
+Ya podes ver el menu y armar tu primer pedido.
 
 [Ver menu]
 
@@ -51,7 +59,7 @@ Ya podes ver el menu de esta semana y armar tu primer pedido.
 ## Estados Vacios (Empty States)
 
 ### Sin viandas seleccionadas
-**Tu semana esta vacia**
+**Tu pedido esta vacio**
 Elegí viandas del menu para armar tu pedido.
 
 [Ver menu]
@@ -76,7 +84,7 @@ Tu primer pedido te esta esperando.
 
 ### Sin direccion
 **Agregá tu direccion**
-Para entregarte necesitamos saber donde estas.
+Para entregarte necesitamos saber donde estas en Cordoba.
 
 [Agregar direccion]
 
@@ -87,14 +95,6 @@ Para entregarte necesitamos saber donde estas.
 Tarjeta o Mercado Pago. Elegí lo que te quede mas comodo.
 
 [Agregar metodo de pago]
-
----
-
-### Menu no disponible (fuera de horario)
-**El menu de esta semana todavia no esta**
-Volvé el domingo para ver las opciones de la semana.
-
-[Avisame cuando este listo]
 
 ---
 
@@ -110,7 +110,7 @@ Estamos en Cordoba Capital por ahora. Te avisamos cuando expandamos.
 
 ### Pedido confirmado
 **¡Listo! Pedido confirmado**
-Cocinamos mañana, te llega [dia] entre [horario].
+Lighuen cocina mañana, te llega [dia] entre [horario].
 
 Pedido #[numero]
 [Ver detalle]
@@ -127,7 +127,7 @@ $[monto] con [metodo de pago]
 **Bienvenido al plan [nombre] 🎉**
 Tu primera entrega es el [dia]. Ya podes elegir tus viandas.
 
-[Armar mi semana]
+[Elegir viandas]
 
 ---
 
@@ -163,12 +163,12 @@ Vamos a tener en cuenta tus restricciones alimentarias.
 
 ### Pedido confirmado
 **Pedido confirmado 🎉**
-Cocinamos mañana, te llega el [dia].
+Lighuen cocina mañana, te llega el [dia].
 
 ---
 
 ### Pedido en preparacion
-**Estamos cocinando tu pedido 👨‍🍳**
+**Lighuen esta cocinando tu pedido 👨‍🍳**
 Mañana sale para tu casa.
 
 ---
@@ -185,15 +185,15 @@ Buen provecho! Acordate de guardarlas en la heladera.
 
 ---
 
-### Menu nuevo disponible
-**Menu nuevo disponible 📋**
-Mirá las opciones de esta semana y elegí tus viandas.
+### Nuevos platos disponibles
+**Nuevos platos en el menu 📋**
+Lighuen sumo opciones nuevas. Entra a verlas.
 
 ---
 
-### Recordatorio de seleccion
-**¿Ya elegiste tus viandas? ⏰**
-Tenes hasta mañana para armar tu semana.
+### Recordatorio de pedido
+**¿Pedimos para esta semana? ⏰**
+Elegí tus viandas y te las llevamos.
 
 ---
 
@@ -205,7 +205,7 @@ Plan [nombre] - $[monto]. Si queres cambiar algo, hacelo hoy.
 
 ### Pago fallido
 **No pudimos procesar tu pago 😕**
-Revisá tu metodo de pago para no perder tu entrega de esta semana.
+Revisá tu metodo de pago para no perder tu entrega.
 
 ---
 
@@ -252,8 +252,8 @@ Ingresá de nuevo para continuar.
 ---
 
 ### Vianda no disponible
-**Esta vianda ya no esta disponible**
-Puede que se haya agotado. Elegí otra del menu.
+**Esta vianda no esta disponible**
+Puede que se haya agotado temporalmente. Elegí otra del menu.
 
 [Ver menu]
 
@@ -315,6 +315,36 @@ Los cambios se pueden hacer hasta 48hs antes de la entrega.
 
 ---
 
+## Menu
+
+### Titulo
+**Menu**
+
+### Subtitulo
+Todos los platos estan siempre disponibles. Elegí los que quieras.
+
+### Filtros
+- Todos
+- Proteina
+- Vegetariano
+- Low carb
+- Comfort food
+
+### Card de vianda
+- [Imagen]
+- Nombre del plato
+- Descripcion corta
+- Calorias (aprox)
+- [Agregar]
+
+### Sin resultados (filtro)
+**No hay viandas con ese filtro**
+Probá con otra categoria o mirá todo el menu.
+
+[Ver todo el menu]
+
+---
+
 ## Perfil / Configuracion
 
 ### Seccion: Mis datos
@@ -343,8 +373,8 @@ Marcá lo que aplique:
 
 ### Seccion: Notificaciones
 - [ ] Pedido en camino
-- [ ] Menu nuevo disponible
-- [ ] Recordatorio de seleccion
+- [ ] Nuevos platos disponibles
+- [ ] Recordatorio de pedido
 - [ ] Promociones y novedades
 
 ### Cerrar sesion
@@ -353,6 +383,12 @@ Marcá lo que aplique:
 ### Ayuda
 ¿Necesitas ayuda?
 [WhatsApp] [Email]
+
+### Conoce al chef
+**Lighuen**
+Nuestro chef cocina personalmente cada vianda. Si no la comeria el, no sale de su cocina.
+
+[Saber mas]
 
 ---
 
@@ -365,10 +401,6 @@ Los valores nutricionales son estimados y pueden variar.
 ### En checkout
 **Horario de entrega**
 Entregamos de 9 a 14hs. Te avisamos cuando este en camino.
-
-### En suscripcion
-**¿Que pasa si no elijo?**
-Si no elegis viandas, te mandamos las mas populares de la semana.
 
 ### En pausar
 **Podes pausar cuando quieras**
