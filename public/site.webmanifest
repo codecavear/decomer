@@ -1,11 +1,11 @@
 {
-  "name": "Vegy",
-  "short_name": "Vegy",
-  "description": "Delivery de productos orgánicos",
+  "name": "DeComer",
+  "short_name": "DeComer",
+  "description": "Viandas frescas por suscripción en Córdoba",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#14532d",
-  "theme_color": "#22c55e",
+  "background_color": "#052E16",
+  "theme_color": "#22C55E",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
