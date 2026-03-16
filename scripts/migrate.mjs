@@ -1,17 +1,25 @@
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
+import { existsSync } from 'fs'
+import { resolve } from 'path'
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 async function runMigrations() {
   const databaseUrl = process.env.DATABASE_URL
 
+  console.log('[migrate] 🚀 Starting migration script...')
+  console.log('[migrate] NODE_ENV:', process.env.NODE_ENV)
+  console.log('[migrate] RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT)
+  console.log('[migrate] CWD:', process.cwd())
+
   if (!databaseUrl) {
-    console.error('[migrate] ERROR: DATABASE_URL environment variable is not set')
+    console.error('[migrate] ❌ ERROR: DATABASE_URL environment variable is not set')
     process.exit(1)
   }
 
+  console.log('[migrate] ✅ DATABASE_URL is set')
   console.log('[migrate] Starting database migrations...')
 
   const maxRetries = 5
@@ -34,7 +42,16 @@ async function runMigrations() {
         ? '/app/drizzle/migrations'
         : './drizzle/migrations'
 
+      const resolvedPath = resolve(migrationsFolder)
       console.log(`[migrate] Using migrations folder: ${migrationsFolder}`)
+      console.log(`[migrate] Resolved path: ${resolvedPath}`)
+      console.log(`[migrate] Folder exists: ${existsSync(resolvedPath)}`)
+
+      if (!existsSync(resolvedPath)) {
+        console.error(`[migrate] ❌ ERROR: Migrations folder does not exist at ${resolvedPath}`)
+        process.exit(1)
+      }
+
       await migrate(db, { migrationsFolder })
 
       console.log('[migrate] Migrations completed successfully!')
