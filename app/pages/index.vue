@@ -51,7 +51,7 @@ const filteredMenu = computed(() =>
 
 const steps = [
   { n: '01', title: 'Elegís tu plan', desc: '5 o 10 viandas por semana. O pedí cuando quieras, sin compromiso.' },
-  { n: '02', title: 'Armás tu semana', desc: 'Mirá el menú y elegí las viandas que querés. Cambiá cada semana.' },
+  { n: '02', title: 'Elegís del menú', desc: 'Mirá las opciones y elegí las viandas que querés. Siempre disponibles.' },
   { n: '03', title: 'Te las llevamos', desc: 'Llegan frescas a tu puerta. Calentá y comé. Eso es todo.' }
 ]
 
@@ -80,7 +80,7 @@ const plans = [
     unit: 'por vianda',
     discount: '-5%' as string | null,
     highlight: false,
-    features: ['Entrega 1 vez por semana', 'Elegís del menú semanal', 'Envío incluido'],
+    features: ['Entrega 1 vez por semana', 'Elegís del menú fijo', 'Envío incluido'],
     cta: 'Suscribirme'
   },
   {
@@ -90,7 +90,7 @@ const plans = [
     unit: 'por vianda',
     discount: '-10%' as string | null,
     highlight: true,
-    features: ['Entrega 2 veces por semana', 'Elegís del menú semanal', 'Envío incluido'],
+    features: ['Entrega 2 veces por semana', 'Elegís del menú fijo', 'Envío incluido'],
     cta: 'Suscribirme'
   },
   {
@@ -126,8 +126,8 @@ const faqs = [
     <!-- HERO -->
     <section class="relative overflow-hidden pt-24 pb-20 px-6">
       <div class="max-w-5xl mx-auto text-center">
-        <UBadge color="primary" variant="subtle" class="mb-6 text-sm">
-          📍 Delivery en Córdoba Capital
+        <UBadge color="primary" variant="solid" class="mb-6 text-sm font-semibold px-4 py-1.5">
+          📍 La única app de viandas de Córdoba Capital
         </UBadge>
 
         <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-neutral-900 dark:text-white">
@@ -198,6 +198,95 @@ const faqs = [
       </div>
     </section>
 
+    <!-- EL CHEF -->
+    <section class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-4">
+          <p class="text-sm text-primary-500 font-semibold uppercase tracking-wider mb-2">Detrás de cada vianda, un chef</p>
+          <h2 class="text-4xl font-bold mb-3">Lighuen cocina todo</h2>
+          <p class="text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto">
+            Esto no es una fábrica. Es una cocina real con un chef que le pone ganas a cada plato.
+          </p>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+          <!-- Chef card -->
+          <div class="relative rounded-3xl overflow-hidden bg-primary-500 p-8 text-white">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary-400 rounded-full -translate-y-8 translate-x-8 opacity-50" />
+            <div class="relative">
+              <div class="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
+                <UIcon name="i-lucide-chef-hat" class="w-10 h-10 text-white" />
+              </div>
+              <h3 class="text-2xl font-bold mb-1">Lighuen</h3>
+              <p class="text-primary-100 text-sm mb-6">Chef DeComer</p>
+              <blockquote class="border-l-2 border-white/40 pl-4 italic text-primary-50 text-sm leading-relaxed">
+                "Cocino cada vianda como si fuera para mi familia. No me gusta la comida triste de tupper — me gusta que la gente coma bien de verdad."
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Bio -->
+          <div class="space-y-5">
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center shrink-0">
+                <UIcon name="i-lucide-flame" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Cocinero desde los 15</h4>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm">Pasó por varios restaurantes de Córdoba antes de fundar DeComer. Sabe lo que hace.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center shrink-0">
+                <UIcon name="i-lucide-heart" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Comida real, no de fábrica</h4>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm">Se cansó de que su comida llegara fría o recalentada. DeComer es su forma de hacer comida real que llegue fresca.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900 flex items-center justify-center shrink-0">
+                <UIcon name="i-lucide-check-circle" class="w-5 h-5 text-primary-600 dark:text-primary-400" />
+              </div>
+              <div>
+                <h4 class="font-bold mb-1">Si no la comería él, no sale</h4>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm">Lighuen cocina personalmente cada vianda. Cada plato pasa por su control antes de salir.</p>
+              </div>
+            </div>
+            <UButton to="/buscar" label="Ver el menú de Lighuen" icon="i-lucide-arrow-right" trailing class="mt-4" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓRDOBA CAPITAL -->
+    <section class="py-20 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-3xl bg-neutral-900 dark:bg-neutral-800 text-white p-10 md:p-14 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary-600/20 to-transparent pointer-events-none" />
+          <div class="relative">
+            <div class="inline-flex items-center gap-2 bg-primary-500/20 text-primary-300 text-sm font-semibold px-4 py-2 rounded-full mb-6">
+              <UIcon name="i-lucide-map-pin" class="w-4 h-4" />
+              Solo en Córdoba Capital
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Hechos en Córdoba, para Córdoba</h2>
+            <p class="text-neutral-300 max-w-2xl mb-8 text-lg">
+              Somos los <strong class="text-white">únicos</strong> con una app de viandas en Córdoba Capital. Cocinamos acá, entregamos acá. Conocemos los barrios, los horarios, lo que le gusta comer a la gente.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span v-for="barrio in ['Nueva Córdoba', 'Centro', 'Cerro de las Rosas', 'Cofico', 'General Paz', 'Alto Alberdi', 'Alberdi', 'Jardín', 'Urca', 'Poeta Lugones', 'Villa Cabrera']" :key="barrio"
+                class="bg-white/10 text-white/80 text-sm px-3 py-1 rounded-full">
+                {{ barrio }}
+              </span>
+              <span class="bg-white/10 text-white/60 text-sm px-3 py-1 rounded-full">y alrededores</span>
+            </div>
+            <UButton to="/buscar" label="Ver si llegamos a tu zona" icon="i-lucide-map-pin" color="primary" size="lg" />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- DIFERENCIADORES -->
     <section class="py-20 px-6 bg-neutral-50 dark:bg-neutral-900">
       <div class="max-w-5xl mx-auto">
@@ -225,8 +314,8 @@ const faqs = [
     <section class="py-20 px-6">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10">
-          <h2 class="text-4xl font-bold mb-3">Esta semana cocinamos...</h2>
-          <p class="text-neutral-500 dark:text-neutral-400">El menú rota cada semana. Siempre hay opciones para todos.</p>
+          <h2 class="text-4xl font-bold mb-3">Nuestro menú</h2>
+          <p class="text-neutral-500 dark:text-neutral-400">Platos clásicos que siempre están. Elegí los que más te gusten.</p>
         </div>
 
         <div class="flex flex-wrap gap-2 justify-center mb-10">

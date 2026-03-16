@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Menú de la Semana',
-  ogTitle: 'Menú DeComer — Esta semana cocinamos...',
-  description: 'Mirá las viandas de esta semana. Menú rotativo, siempre fresco. Proteínas, vegetariano, bajo en carbs y más.',
+  title: 'Menú DeComer — Viandas frescas en Córdoba',
+  ogTitle: 'Menú DeComer — Cocinado por Lighuen',
+  description: 'Mirá las viandas de DeComer. Menú fijo, siempre disponible. Proteínas, vegetariano, bajo en carbs y más. Delivery en Córdoba Capital.',
   ogDescription: 'Opciones para todos: proteína, veggie, low carb. Fresco, rico, listo para comer.'
 })
 
@@ -99,7 +99,7 @@ const cartCount = computed(() =>
       <div class="max-w-6xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <p class="text-sm text-neutral-500 uppercase tracking-wider mb-1">Esta semana cocinamos</p>
+            <p class="text-sm text-neutral-500 uppercase tracking-wider mb-1">Cocinado por Lighuen</p>
             <h1 class="text-4xl font-bold">El menú</h1>
           </div>
 

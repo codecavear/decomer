@@ -45,8 +45,8 @@
       "description": "Find exactly what you are looking for"
     },
     "stores": {
-      "title": "This week we cooked",
-      "description": "The menu rotates every week. Always options for everyone."
+      "title": "Our menu",
+      "description": "Classic dishes, always available. Pick what you like."
     },
     "cta": {
       "title": "Ready to eat well?",
@@ -68,8 +68,8 @@
           "description": "5 or 10 meals per week. Or order whenever you want, no commitment."
         },
         "choose": {
-          "title": "Build your week",
-          "description": "Browse the menu and pick what you want. Change every week."
+          "title": "Pick from the menu",
+          "description": "Browse the options and pick what you want. Always available."
         },
         "order": {
           "title": "We deliver",
@@ -181,7 +181,7 @@
         "features": [
           "5 meals/week",
           "1 delivery per week",
-          "You pick from the weekly menu",
+          "You pick from the fixed menu",
           "Delivery included"
         ]
       },
@@ -193,7 +193,7 @@
         "features": [
           "10 meals/week",
           "2 deliveries per week",
-          "You pick from the weekly menu",
+          "You pick from the fixed menu",
           "Delivery included"
         ]
       }
@@ -213,7 +213,7 @@
         },
         {
           "label": "Can I choose my meals?",
-          "content": "Yes. Every week we publish the menu and you pick what you want."
+          "content": "Yes. We have a fixed menu with all options always available. You pick what you want."
         },
         {
           "label": "Can I pause my subscription?",
@@ -231,10 +231,10 @@
     }
   },
   "search": {
-    "title": "Weekly menu",
+    "title": "The menu",
     "seo": {
       "title": "Menu",
-      "description": "See this week's meals. Fresh, delicious, ready to eat."
+      "description": "See DeComer's menu. Fresh, delicious, ready to eat. Delivery in Córdoba Capital."
     },
     "placeholder": "Search meals...",
     "myLocation": "My location",

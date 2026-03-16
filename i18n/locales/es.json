@@ -45,8 +45,8 @@
       "description": "Encontrá exactamente lo que estás buscando"
     },
     "stores": {
-      "title": "Esta semana cocinamos",
-      "description": "El menú rota cada semana. Siempre hay opciones para todos."
+      "title": "Nuestro menú",
+      "description": "Platos clásicos que siempre están. Elegí los que más te gusten."
     },
     "cta": {
       "owner": {
@@ -64,8 +64,8 @@
           "description": "5 o 10 viandas por semana. O pedí cuando quieras, sin compromiso."
         },
         "choose": {
-          "title": "Armás tu semana",
-          "description": "Mirá el menú y elegí las viandas que querés. Cambiá cada semana."
+          "title": "Elegís del menú",
+          "description": "Mirá las opciones y elegí las viandas que querés. Siempre disponibles."
         },
         "order": {
           "title": "Te las llevamos",
@@ -177,7 +177,7 @@
         "features": [
           "5 viandas/semana",
           "Entrega 1 vez por semana",
-          "Elegís del menú semanal",
+          "Elegís del menú fijo",
           "Envío incluido"
         ]
       },
@@ -189,7 +189,7 @@
         "features": [
           "10 viandas/semana",
           "Entrega 2 veces por semana",
-          "Elegís del menú semanal",
+          "Elegís del menú fijo",
           "Envío incluido"
         ]
       }
@@ -209,7 +209,7 @@
         },
         {
           "label": "¿Puedo elegir las viandas?",
-          "content": "Sí. Cada semana publicamos el menú y vos elegís cuáles querés."
+          "content": "Sí. Tenemos un menú fijo con todas las opciones disponibles. Vos elegís cuáles querés."
         },
         {
           "label": "¿Puedo pausar mi suscripción?",
@@ -227,10 +227,10 @@
     }
   },
   "search": {
-    "title": "Menú de la semana",
+    "title": "El menú",
     "seo": {
       "title": "Menú",
-      "description": "Mirá las viandas de esta semana. Fresco, rico, listo para comer."
+      "description": "Mirá el menú de DeComer. Fresco, rico, listo para comer. Delivery en Córdoba Capital."
     },
     "placeholder": "Buscar vianda...",
     "myLocation": "Mi ubicación",
