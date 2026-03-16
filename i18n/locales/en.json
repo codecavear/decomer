@@ -230,6 +230,28 @@
       ]
     }
   },
+  "pwa": {
+    "install": {
+      "title": "Install DeComer",
+      "description": "Faster access, works offline.",
+      "button": "Install",
+      "dismiss": "Not now"
+    },
+    "push": {
+      "pedido": {
+        "title": "Order received!",
+        "body": "Your order is being processed."
+      },
+      "recordatorio": {
+        "title": "Picked your meals yet?",
+        "body": "This week's menu is ready. Don't miss your spot!"
+      },
+      "promo": {
+        "title": "New at DeComer",
+        "body": "Check what's new on the menu."
+      }
+    }
+  },
   "search": {
     "title": "The menu",
     "seo": {

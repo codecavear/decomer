@@ -18,5 +18,6 @@ const showCart = computed(() => {
     <AppFooter />
 
     <CartDrawer v-if="showCart" />
+    <PWAInstallBanner />
   </div>
 </template>
