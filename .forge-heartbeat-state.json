@@ -1,6 +1,6 @@
 {
-  "lastCheck": "2026-03-16T11:06:00.000Z",
-  "lastTaskCompleted": "DECOMER-6",
+  "lastCheck": "2026-03-16T13:06:00.000Z",
+  "lastTaskCompleted": "DECOMER-11",
   "tasksInProgress": [],
-  "notes": "DECOMER-6 moved to in_review: Backend complete (DB schema, API endpoints /api/viandas + /api/weekly-menu/current, seed data with 10 viandas). Build successful. Ready for Pixel (frontend) + QA."
+  "notes": "DECOMER-11 (Panel admin) moved to in_review: Complete admin dashboard (overview stats, kitchen panel, menu management). Auth middleware implemented (requireAdminRole). 10+ API endpoints with admin protection. UI: Nuxt UI 4 (cards, badges, stats). Commit 1cf4a68 pushed to main. Railway auto-deploy in progress. Ready for QA. Routes: /admin, /admin/kitchen, /admin/menu."
 }
