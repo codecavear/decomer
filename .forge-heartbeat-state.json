@@ -1,14 +1,49 @@
 {
   "lastCheck": "2026-03-16T14:05:00.000Z",
-  "lastTaskCompleted": "DECOMER-11",
-  "tasksInProgress": [],
+  "tasksCompleted": ["DECOMER-11", "DECOMER-12"],
+  "tasksBlocked": ["DECOMER-9"],
   "completedWork": {
     "DECOMER-11": {
       "status": "in_review",
       "commit": "4434faa",
       "timestamp": "2026-03-16T14:05:00.000Z",
-      "description": "Enhanced kitchen panel: tabs navigation (Orders/Products/Menu), grouped-products endpoint, viandas summary view, menu grid with product management UI"
+      "description": "Enhanced kitchen panel: tabs navigation, grouped-products endpoint, viandas summary, menu grid",
+      "files": [
+        "app/pages/admin/kitchen.vue",
+        "server/api/admin/kitchen/grouped-products.get.ts"
+      ]
+    },
+    "DECOMER-12": {
+      "status": "in_review",
+      "commit": "cffe079",
+      "timestamp": "2026-03-16T14:05:00.000Z",
+      "description": "Delivery tracking with push notifications: en_route status, push subscription endpoints, admin panel updates",
+      "files": [
+        "server/database/schema/orders.ts",
+        "server/utils/push-notifications.ts",
+        "server/api/push/subscribe.post.ts",
+        "server/api/push/unsubscribe.post.ts",
+        "server/api/push/vapid-key.get.ts",
+        "server/api/admin/kitchen/orders/[id].patch.ts",
+        "app/pages/admin/kitchen.vue",
+        "DELIVERY_TRACKING.md"
+      ]
+    },
+    "DECOMER-9": {
+      "status": "blocked",
+      "commit": "c9a658c",
+      "timestamp": "2026-03-16T14:05:00.000Z",
+      "description": "Technical proposal for WhatsApp/SMS notifications (blocked by business decisions)",
+      "files": [
+        "WHATSAPP_SMS_PROPOSAL.md"
+      ],
+      "blockers": [
+        "Budget approval (~$10-20 USD/month)",
+        "Provider selection (Twilio recommended)",
+        "Phone number decision",
+        "Notification frequency limits"
+      ]
     }
   },
-  "notes": "DECOMER-11 panel improvements pushed and deployed. Remaining tasks: DECOMER-12 (delivery tracking), DECOMER-9 (WhatsApp/SMS notifications). Both low priority."
+  "summary": "2 features completed and in review, 1 blocked pending Oso approval. All commits pushed, Railway auto-deploy in progress."
 }
