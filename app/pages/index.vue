@@ -6,8 +6,8 @@ useSeoMeta({
   description: 'Viandas saludables, cocinadas hoy, en tu puerta mañana. Sin congelar. Suscripción semanal o pedido único. Delivery en Córdoba Capital.',
   ogDescription: 'Comes bien, nosotros cocinamos. Viandas saludables con delivery en Córdoba. Suscribite o pedí cuando quieras.',
   ogType: 'website',
-  ogUrl: 'https://decomer.com.ar',
-  ogImage: 'https://decomer.com.ar/og-image.jpg',
+  ogUrl: 'https://decomer.codecave.ar',
+  ogImage: 'https://decomer.codecave.ar/og-image.png',
   ogLocale: 'es_AR',
   twitterCard: 'summary_large_image',
   twitterTitle: 'DeComer — Viandas frescas por suscripción',
@@ -23,7 +23,7 @@ useHead({
         '@type': 'FoodEstablishment',
         name: 'DeComer',
         description: 'Viandas frescas por suscripción en Córdoba Capital',
-        url: 'https://decomer.com.ar',
+        url: 'https://decomer.codecave.ar',
         servesCuisine: 'Healthy',
         areaServed: 'Córdoba Capital, Argentina'
       })
