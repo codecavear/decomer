@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { canInstall, isStandalone, install } = usePWA()
+const { canInstall, isStandalone, install } = usePWAInstall()
 
 const DISMISS_KEY = 'decomer-pwa-banner-dismissed'
 const dismissed = ref(false)

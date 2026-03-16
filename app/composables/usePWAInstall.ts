@@ -15,9 +15,9 @@ export const usePWA = () => {
 
   if (import.meta.client) {
     // Check if already running as standalone PWA
-    isStandalone.value =
-      window.matchMedia('(display-mode: standalone)').matches ||
-      ('standalone' in window.navigator && (window.navigator as { standalone?: boolean }).standalone === true)
+    isStandalone.value
+      = window.matchMedia('(display-mode: standalone)').matches
+        || ('standalone' in window.navigator && (window.navigator as { standalone?: boolean }).standalone === true)
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault()
@@ -50,6 +50,6 @@ export const usePWA = () => {
   return {
     canInstall: readonly(canInstall),
     isStandalone: readonly(isStandalone),
-    install,
+    install
   }
 }
