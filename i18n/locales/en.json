@@ -249,7 +249,16 @@
       "promo": {
         "title": "New at DeComer",
         "body": "Check what's new on the menu."
-      }
+      },
+      "title": "Push notifications",
+      "description": "Get alerts for orders, reminders, and promos.",
+      "enableButton": "Enable",
+      "disableButton": "Disable",
+      "enabled": "Notifications enabled",
+      "disabled": "Notifications disabled",
+      "denied": "Permission blocked in your browser",
+      "blockedHint": "Enable notifications in your browser settings to continue.",
+      "notSupported": "Your browser does not support push notifications."
     }
   },
   "search": {

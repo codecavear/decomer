@@ -245,7 +245,16 @@
       "promo": {
         "title": "Novedad en DeComer",
         "body": "Mirá qué hay de nuevo en el menú."
-      }
+      },
+      "title": "Notificaciones push",
+      "description": "Recibí alertas de pedidos, recordatorios y promociones.",
+      "enableButton": "Activar",
+      "disableButton": "Desactivar",
+      "enabled": "Notificaciones activadas",
+      "disabled": "Notificaciones desactivadas",
+      "denied": "Permiso bloqueado en el navegador",
+      "blockedHint": "Habilitá las notificaciones en la configuración de tu navegador para continuar.",
+      "notSupported": "Tu navegador no soporta notificaciones push."
     }
   },
   "search": {

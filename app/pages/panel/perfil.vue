@@ -176,6 +176,15 @@ const togglePreference = (p: string) => {
 
     <USeparator />
 
+    <!-- Push Notifications -->
+    <div>
+      <h2 class="text-lg font-semibold mb-1">{{ $t('pwa.push.title') }}</h2>
+      <p class="text-sm text-neutral-500 mb-4">{{ $t('pwa.push.description') }}</p>
+      <PushNotificationSettings />
+    </div>
+
+    <USeparator />
+
     <!-- Save -->
     <div class="flex justify-end">
       <UButton
