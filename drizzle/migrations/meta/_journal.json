@@ -57,6 +57,13 @@
       "when": 1773625078558,
       "tag": "0007_square_micromax",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1773628464000,
+      "tag": "0008_insert_sample_viandas",
+      "breakpoints": true
     }
   ]
 }
