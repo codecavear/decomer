@@ -20,6 +20,7 @@
     "db:migrate:prod": "bun run scripts/migrate.ts",
     "db:studio": "drizzle-kit studio",
     "db:seed": "bun run server/database/seed.ts",
+    "db:seed:viandas": "bun run scripts/seed-viandas-prod.ts",
     "test": "vitest",
     "test:run": "vitest run",
     "test:unit": "vitest --project unit",

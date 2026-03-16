@@ -1,4 +1,4 @@
-import { eq, and, like, or } from 'drizzle-orm'
+import { eq, and, like, or, count } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { viandas } from '../../database/schema'
 
