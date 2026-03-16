@@ -8,7 +8,7 @@ export type OnboardingPlan = 'unico' | 'basic' | 'full' | 'premium'
 const STORAGE_KEY_PLAN = 'decomer_selected_plan'
 const STORAGE_KEY_ADDRESS = 'decomer_address'
 const STORAGE_KEY_DONE = 'decomer_onboarding_done'
-const TOTAL_STEPS = 5
+const TOTAL_STEPS = 6
 
 // Step indices
 export const STEP_WELCOME = 0
@@ -16,6 +16,7 @@ export const STEP_HOW_IT_WORKS = 1
 export const STEP_PLAN = 2
 export const STEP_ZONE = 3
 export const STEP_ACCOUNT = 4
+export const STEP_DONE = 5
 
 export function useOnboarding() {
   const step = useState<number>('onboarding:step', () => 0)
@@ -100,6 +101,7 @@ export function useOnboarding() {
     STEP_HOW_IT_WORKS,
     STEP_PLAN,
     STEP_ZONE,
-    STEP_ACCOUNT
+    STEP_ACCOUNT,
+    STEP_DONE
   }
 }

@@ -28,7 +28,8 @@ const {
   isDone,
   STEP_PLAN,
   STEP_ZONE,
-  STEP_ACCOUNT
+  STEP_ACCOUNT,
+  STEP_DONE
 } = onboarding
 
 // Redirect if already onboarded and logged in
@@ -105,21 +106,26 @@ function handleContinue() {
   if (step.value < totalSteps - 1) {
     next()
   } else {
-    save()
     router.push('/buscar')
   }
 }
 
 function handleSkip() {
   save()
+  // Jump directly to done screen skipping account creation
+  direction.value = 'forward'
+  step.value = STEP_DONE
+}
+
+function goToMenu() {
   router.push('/buscar')
 }
 
-// Auto-advance when user logs in at auth step
+// When user logs in at auth step, advance to done screen
 watch([loggedIn, step], ([logged, s]) => {
   if (logged && s === STEP_ACCOUNT) {
     save()
-    router.push('/buscar')
+    next()
   }
 })
 </script>
@@ -402,20 +408,41 @@ watch([loggedIn, step], ([logged, s]) => {
           </div>
         </template>
 
+        <!-- === SCREEN 6: All done === -->
+        <template v-else-if="step === STEP_DONE">
+          <div class="flex-1 flex flex-col items-center justify-center text-center">
+            <div class="text-8xl mb-8 select-none leading-none">🎉</div>
+            <h1 class="text-3xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight">
+              Todo listo
+            </h1>
+            <p class="text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-xs">
+              Ya podés ver el menú y armar tu primer pedido.
+            </p>
+          </div>
+        </template>
+
       </div>
     </Transition>
 
-    <!-- Bottom CTA — hidden on auth step (buttons inline) -->
+    <!-- Bottom CTA — hidden on auth and done steps (handled inline or separate) -->
     <div
-      v-if="step !== STEP_ACCOUNT"
+      v-if="step !== STEP_ACCOUNT && step !== STEP_DONE"
       class="px-6 pb-12 pt-4 max-w-md mx-auto w-full"
     >
       <UButton
-        :label="isLast ? 'Ver menú' : 'Continuar'"
+        :label="'Continuar'"
         :disabled="!canAdvance"
         size="xl"
         block
         @click="handleContinue"
+      />
+    </div>
+    <div v-else-if="step === STEP_DONE" class="px-6 pb-12 pt-4 max-w-md mx-auto w-full">
+      <UButton
+        label="Ver menú"
+        size="xl"
+        block
+        @click="goToMenu"
       />
     </div>
     <div v-else class="pb-8" />
