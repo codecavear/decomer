@@ -197,7 +197,7 @@ const faqs = [
         <div class="grid md:grid-cols-2 gap-6">
           <div v-for="item in [
             { icon: 'i-lucide-snowflake-off', title: 'Nunca congelamos', desc: 'Otras marcas congelan y recalientan. Nosotros cocinamos hoy, entregamos mañana. La diferencia se nota.' },
-            { icon: 'i-lucide-smartphone', title: 'Pedí desde la app', desc: 'Nada de WhatsApp ni "te confirmo mañana". Elegí, pagá, listo. Como debería ser en 2026.' },
+            { icon: 'i-lucide-smartphone', title: 'Pedí desde la app', desc: 'Nada de WhatsApp ni 'te confirmo mañana'. Elegí, pagá, listo. Como debería ser en 2026.' },
             { icon: 'i-lucide-chef-hat', title: 'Cocinado por un chef', desc: 'No es una fábrica. Es una cocina con un chef que le pone ganas. Se llama Lighuen.' },
             { icon: 'i-lucide-lock-open', title: 'Sin ataduras', desc: 'Pausá, cancelá, cambiá de plan. Sin penalidades, sin letra chica.' }
           ]" :key="item.title"
