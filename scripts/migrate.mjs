@@ -9,26 +9,16 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 async function runMigrations() {
   const databaseUrl = process.env.DATABASE_URL
 
-  console.log('[migrate] 🚀 Starting migration script...')
-  console.log('[migrate] NODE_ENV:', process.env.NODE_ENV)
-  console.log('[migrate] RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT)
-  console.log('[migrate] CWD:', process.cwd())
-
   if (!databaseUrl) {
-    console.error('[migrate] ❌ ERROR: DATABASE_URL environment variable is not set')
+    console.error('[migrate] ERROR: DATABASE_URL not set')
     process.exit(1)
   }
-
-  console.log('[migrate] ✅ DATABASE_URL is set')
-  console.log('[migrate] Starting database migrations...')
 
   const maxRetries = 5
   let lastError
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      console.log(`[migrate] Connection attempt ${attempt}/${maxRetries}...`)
-
       const client = postgres(databaseUrl, {
         max: 1,
         connect_timeout: 30,
@@ -43,35 +33,30 @@ async function runMigrations() {
         : './drizzle/migrations'
 
       const resolvedPath = resolve(migrationsFolder)
-      console.log(`[migrate] Using migrations folder: ${migrationsFolder}`)
-      console.log(`[migrate] Resolved path: ${resolvedPath}`)
-      console.log(`[migrate] Folder exists: ${existsSync(resolvedPath)}`)
 
       if (!existsSync(resolvedPath)) {
-        console.error(`[migrate] ❌ ERROR: Migrations folder does not exist at ${resolvedPath}`)
+        console.error(`[migrate] ERROR: Migrations folder not found at ${resolvedPath}`)
         process.exit(1)
       }
 
       await migrate(db, { migrationsFolder })
 
-      console.log('[migrate] Migrations completed successfully!')
+      console.log('[migrate] ✅ Migrations completed')
 
       await client.end()
       process.exit(0)
     } catch (error) {
       lastError = error
-      console.error(`[migrate] Attempt ${attempt} failed:`, error.message)
 
       if (attempt < maxRetries) {
-        const delay = attempt * 2000 // 2s, 4s, 6s, 8s
-        console.log(`[migrate] Retrying in ${delay / 1000} seconds...`)
+        const delay = attempt * 2000
         await sleep(delay)
       }
     }
   }
 
-  console.error('[migrate] All connection attempts failed')
-  console.error('[migrate] Last error:', lastError)
+  console.error('[migrate] ERROR: All connection attempts failed')
+  if (lastError) console.error('[migrate]', lastError.message)
   process.exit(1)
 }
 
