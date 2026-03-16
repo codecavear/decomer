@@ -49,13 +49,26 @@ const filteredMenu = computed(() =>
     : menuItems.filter(m => m.tag === activeTag.value)
 )
 
+const steps = [
+  { n: '01', title: 'Elegís tu plan', desc: '5 o 10 viandas por semana. O pedí cuando quieras, sin compromiso.' },
+  { n: '02', title: 'Armás tu semana', desc: 'Mirá el menú y elegí las viandas que querés. Cambiá cada semana.' },
+  { n: '03', title: 'Te las llevamos', desc: 'Llegan frescas a tu puerta. Calentá y comé. Eso es todo.' }
+]
+
+const diferenciadores = [
+  { icon: 'i-lucide-snowflake-off', title: 'Nunca congelamos', desc: 'Otras marcas congelan y recalientan. Nosotros cocinamos hoy, entregamos mañana. La diferencia se nota.' },
+  { icon: 'i-lucide-smartphone', title: 'Pedí desde la app', desc: 'Nada de llamadas ni mensajes. Elegí, pagá, listo. Como debería ser en 2026.' },
+  { icon: 'i-lucide-chef-hat', title: 'Cocinado por un chef', desc: 'No es una fábrica. Es una cocina con un chef que le pone ganas. Se llama Lighuen.' },
+  { icon: 'i-lucide-lock-open', title: 'Sin ataduras', desc: 'Pausá, cancelá, cambiá de plan. Sin penalidades, sin letra chica.' }
+]
+
 const plans = [
   {
     name: 'Pedido Único',
     subtitle: 'Para probar',
     price: '$12.000',
     unit: 'por vianda',
-    discount: null,
+    discount: null as string | null,
     highlight: false,
     features: ['Sin suscripción', 'Mínimo 3 viandas', 'Envío incluido'],
     cta: 'Pedir ahora'
@@ -65,7 +78,7 @@ const plans = [
     subtitle: '5 viandas/semana',
     price: '$11.400',
     unit: 'por vianda',
-    discount: '-5%',
+    discount: '-5%' as string | null,
     highlight: false,
     features: ['Entrega 1 vez por semana', 'Elegís del menú semanal', 'Envío incluido'],
     cta: 'Suscribirme'
@@ -75,7 +88,7 @@ const plans = [
     subtitle: '10 viandas/semana',
     price: '$10.800',
     unit: 'por vianda',
-    discount: '-10%',
+    discount: '-10%' as string | null,
     highlight: true,
     features: ['Entrega 2 veces por semana', 'Elegís del menú semanal', 'Envío incluido'],
     cta: 'Suscribirme'
@@ -85,7 +98,7 @@ const plans = [
     subtitle: '10 viandas + nutrición',
     price: '$10.560',
     unit: 'por vianda',
-    discount: '-12%',
+    discount: '-12%' as string | null,
     highlight: false,
     features: ['Todo lo del Full', 'Perfil nutricional personalizado', 'Ajustamos macros a tus objetivos', 'Envío incluido'],
     cta: 'Suscribirme'
@@ -174,12 +187,10 @@ const faqs = [
         </div>
 
         <div class="grid md:grid-cols-3 gap-10">
-          <div v-for="(step, i) in [
-            { n: '01', title: 'Elegís tu plan', desc: '5 o 10 viandas por semana. O pedí cuando quieras, sin compromiso.' },
-            { n: '02', title: 'Armás tu semana', desc: 'Mirá el menú y elegí las viandas que querés. Cambiá cada semana.' },
-            { n: '03', title: 'Te las llevamos', desc: 'Llegan frescas a tu puerta. Calentá y comé. Eso es todo.' }
-          ]" :key="i" class="relative">
-            <div class="text-6xl font-bold text-primary-100 dark:text-primary-900 mb-4 select-none">{{ step.n }}</div>
+          <div v-for="(step, i) in steps" :key="i" class="relative">
+            <div class="text-6xl font-bold text-primary-100 dark:text-primary-900 mb-4 select-none">
+              {{ step.n }}
+            </div>
             <h3 class="text-xl font-bold mb-2">{{ step.title }}</h3>
             <p class="text-neutral-500 dark:text-neutral-400">{{ step.desc }}</p>
           </div>
@@ -195,13 +206,11 @@ const faqs = [
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <div v-for="item in [
-            { icon: 'i-lucide-snowflake-off', title: 'Nunca congelamos', desc: 'Otras marcas congelan y recalientan. Nosotros cocinamos hoy, entregamos mañana. La diferencia se nota.' },
-            { icon: 'i-lucide-smartphone', title: 'Pedí desde la app', desc: 'Nada de WhatsApp ni 'te confirmo mañana'. Elegí, pagá, listo. Como debería ser en 2026.' },
-            { icon: 'i-lucide-chef-hat', title: 'Cocinado por un chef', desc: 'No es una fábrica. Es una cocina con un chef que le pone ganas. Se llama Lighuen.' },
-            { icon: 'i-lucide-lock-open', title: 'Sin ataduras', desc: 'Pausá, cancelá, cambiá de plan. Sin penalidades, sin letra chica.' }
-          ]" :key="item.title"
-            class="flex gap-4 p-6 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+          <div
+            v-for="item in diferenciadores"
+            :key="item.title"
+            class="flex gap-4 p-6 rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
+          >
             <UIcon :name="item.icon" class="w-6 h-6 text-primary-500 shrink-0 mt-1" />
             <div>
               <h3 class="font-bold mb-1">{{ item.title }}</h3>
@@ -220,7 +229,6 @@ const faqs = [
           <p class="text-neutral-500 dark:text-neutral-400">El menú rota cada semana. Siempre hay opciones para todos.</p>
         </div>
 
-        <!-- Tag filter -->
         <div class="flex flex-wrap gap-2 justify-center mb-10">
           <UButton
             v-for="tag in tags"
@@ -278,7 +286,14 @@ const faqs = [
             <div class="mb-4">
               <div class="flex items-center gap-2 mb-1">
                 <h3 class="font-bold text-lg">{{ plan.name }}</h3>
-                <UBadge v-if="plan.discount" :label="plan.discount" color="primary" variant="subtle" size="xs" :class="plan.highlight ? 'bg-white/20 text-white' : ''" />
+                <UBadge
+                  v-if="plan.discount"
+                  :label="plan.discount"
+                  color="primary"
+                  variant="subtle"
+                  size="xs"
+                  :class="plan.highlight ? 'bg-white/20 text-white' : ''"
+                />
               </div>
               <p :class="plan.highlight ? 'text-primary-100' : 'text-neutral-500'" class="text-sm">{{ plan.subtitle }}</p>
             </div>
@@ -320,14 +335,14 @@ const faqs = [
 
         <div class="grid md:grid-cols-3 gap-6">
           <div
-            v-for="t in testimonials"
-            :key="t.name"
+            v-for="testimonial in testimonials"
+            :key="testimonial.name"
             class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
           >
-            <p class="text-neutral-700 dark:text-neutral-300 mb-4 italic">"{{ t.text }}"</p>
+            <p class="text-neutral-700 dark:text-neutral-300 mb-4 italic">"{{ testimonial.text }}"</p>
             <div>
-              <p class="font-semibold">{{ t.name }}</p>
-              <p class="text-sm text-neutral-400">{{ t.location }}</p>
+              <p class="font-semibold">{{ testimonial.name }}</p>
+              <p class="text-sm text-neutral-400">{{ testimonial.location }}</p>
             </div>
           </div>
         </div>
