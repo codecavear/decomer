@@ -9,18 +9,18 @@
     "search": "Buscar",
     "favorites": "Favoritos",
     "myOrders": "Mis Pedidos",
-    "panel": "Mi Tienda",
+    "panel": "Mi cuenta",
     "login": "Iniciar Sesion",
     "logout": "Cerrar Sesion",
     "pricing": "Precios"
   },
   "home": {
-    "title": "Descubri Tiendas {highlight}",
-    "titleHighlight": "Veganas y Vegetarianas",
-    "description": "Encontra las mejores tiendas veganas y vegetarianas cerca tuyo. Pedi online, descubri nuevos productos y apoya el estilo de vida plant-based en Argentina.",
+    "title": "Comes bien. {highlight}",
+    "titleHighlight": "Nosotros cocinamos.",
+    "description": "Viandas frescas, nunca congeladas. En tu puerta cuando las necesites. Suscripción semanal o pedido único en Córdoba Capital.",
     "seo": {
-      "title": "DeComer - Descubri Tiendas Veganas y Vegetarianas",
-      "description": "Crea y gestiona tu tienda vegetariana o vegana. Plataforma para emprendedores plant-based en Argentina."
+      "title": "DeComer | Viandas frescas por suscripción en Córdoba",
+      "description": "Viandas saludables, cocinadas hoy, en tu puerta mañana. Sin congelar. Delivery en Córdoba Capital."
     },
     "hero": {
       "searchPlaceholder": "Buscar por ciudad...",
@@ -28,16 +28,16 @@
     },
     "features": {
       "discover": {
-        "title": "Descubri tiendas",
-        "description": "Encontra tiendas veganas y vegetarianas cerca tuyo con busqueda por ubicacion y categoria"
+        "title": "Cocinado hoy",
+        "description": "Preparamos todo fresco. Nada sale del freezer, todo sale de la cocina."
       },
       "order": {
-        "title": "Pedi online",
-        "description": "Hace tus pedidos para retiro o delivery desde tu tienda favorita"
+        "title": "En tu puerta",
+        "description": "Delivery en Córdoba Capital. Llega frío, listo para calentar y comer."
       },
       "review": {
-        "title": "Deja tu opinion",
-        "description": "Comparti tu experiencia y ayuda a otros a descubrir las mejores tiendas"
+        "title": "Tu plan, tu ritmo",
+        "description": "Suscripción flexible. Pausá, cambiá o cancelá cuando quieras."
       }
     },
     "categories": {
@@ -50,9 +50,9 @@
     },
     "cta": {
       "owner": {
-        "title": "Tenes una tienda?",
-        "description": "Suma tu negocio a DeComer y llega a miles de personas interesadas en productos veganos y vegetarianos",
-        "button": "Crear Tienda"
+        "title": "¿Querés probar?",
+        "description": "Primera semana sin compromiso. Elegí tu plan y empezá a comer bien sin cocinar.",
+        "button": "Ver planes"
       }
     },
     "howItWorks": {
