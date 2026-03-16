@@ -257,6 +257,69 @@
       "notSupported": "Tu navegador no soporta notificaciones push."
     }
   },
+  "profile": {
+    "title": "Mi Perfil",
+    "tabs": {
+      "personal": "Datos",
+      "delivery": "Entrega",
+      "diet": "Alimentación",
+      "orders": "Pedidos",
+      "subscription": "Suscripción"
+    },
+    "personal": {
+      "title": "Datos personales",
+      "description": "Tu nombre y teléfono de contacto para los pedidos.",
+      "name": "Nombre completo",
+      "email": "Email",
+      "phone": "Teléfono",
+      "save": "Guardar datos"
+    },
+    "delivery": {
+      "title": "Dirección de entrega",
+      "description": "Dónde y cuándo querés recibir tus viandas.",
+      "address": "Dirección",
+      "neighborhood": "Barrio",
+      "notes": "Notas para el repartidor",
+      "hoursTitle": "Horario preferido de entrega",
+      "hoursDescription": "Indicá el rango en el que podés recibir el pedido.",
+      "from": "Desde",
+      "to": "Hasta",
+      "save": "Guardar dirección"
+    },
+    "diet": {
+      "allergiesTitle": "Alergias e intolerancias",
+      "allergiesDescription": "Lo tenemos en cuenta al preparar y recomendarte viandas.",
+      "preferencesTitle": "Preferencias alimentarias",
+      "preferencesDescription": "Para mostrarte primero las viandas que más te van.",
+      "save": "Guardar preferencias"
+    },
+    "orders": {
+      "title": "Historial de pedidos",
+      "description": "Últimos 20 pedidos realizados.",
+      "viewAll": "Ver todos",
+      "empty": "Sin pedidos todavía",
+      "emptyDescription": "Cuando hagas tu primer pedido, va a aparecer acá.",
+      "viewMenu": "Ver el menú"
+    },
+    "subscription": {
+      "title": "Suscripción",
+      "description": "Tu plan activo y opciones de gestión.",
+      "currentPlan": "Plan activo",
+      "active": "Activo",
+      "contactSupport": "Contactar soporte",
+      "contactDescription": "Para cambiar o cancelar tu suscripción, contactanos por WhatsApp.",
+      "plans": "Planes disponibles",
+      "seePlans": "Ver planes",
+      "pause": "Pausar suscripción",
+      "comingSoon": "Próximamente",
+      "comingSoonDescription": "Gestión de suscripciones en desarrollo.",
+      "perMonth": "/mes",
+      "noPlansFallback": "Visitá la página de planes para ver las opciones disponibles."
+    },
+    "saved": "Perfil actualizado",
+    "saveError": "Error al guardar",
+    "saveErrorDescription": "Intentá de nuevo"
+  },
   "search": {
     "title": "El menú",
     "seo": {

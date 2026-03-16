@@ -23,6 +23,11 @@ const links = [[{
   icon: 'i-lucide-star',
   to: '/panel/resenas',
   onSelect: () => { open.value = false }
+}, {
+  label: 'Mi Perfil',
+  icon: 'i-lucide-user-circle',
+  to: '/panel/perfil',
+  onSelect: () => { open.value = false }
 }], [{
   label: 'Mi Tienda',
   icon: 'i-lucide-settings',

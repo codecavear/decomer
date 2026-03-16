@@ -14,6 +14,8 @@ export const users = pgTable('decomer_users', {
   deliveryAddress: text('delivery_address'),
   deliveryNeighborhood: text('delivery_neighborhood'),
   deliveryNotes: text('delivery_notes'),
+  deliveryHoursFrom: text('delivery_hours_from'),
+  deliveryHoursTo: text('delivery_hours_to'),
   allergies: jsonb('allergies').$type<string[]>().default([]),
   preferences: jsonb('preferences').$type<string[]>().default([]),
   createdAt: timestamp('created_at').defaultNow().notNull(),

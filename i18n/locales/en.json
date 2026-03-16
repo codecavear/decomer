@@ -261,6 +261,69 @@
       "notSupported": "Your browser does not support push notifications."
     }
   },
+  "profile": {
+    "title": "My Profile",
+    "tabs": {
+      "personal": "Personal",
+      "delivery": "Delivery",
+      "diet": "Diet",
+      "orders": "Orders",
+      "subscription": "Subscription"
+    },
+    "personal": {
+      "title": "Personal data",
+      "description": "Your name and phone number for orders.",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "save": "Save"
+    },
+    "delivery": {
+      "title": "Delivery address",
+      "description": "Where and when you want to receive your meals.",
+      "address": "Address",
+      "neighborhood": "Neighbourhood",
+      "notes": "Notes for the courier",
+      "hoursTitle": "Preferred delivery window",
+      "hoursDescription": "Set the time range when you can receive your order.",
+      "from": "From",
+      "to": "To",
+      "save": "Save address"
+    },
+    "diet": {
+      "allergiesTitle": "Allergies & intolerances",
+      "allergiesDescription": "We take these into account when preparing and recommending meals.",
+      "preferencesTitle": "Dietary preferences",
+      "preferencesDescription": "To show you the most relevant meals first.",
+      "save": "Save preferences"
+    },
+    "orders": {
+      "title": "Order history",
+      "description": "Last 20 orders placed.",
+      "viewAll": "View all",
+      "empty": "No orders yet",
+      "emptyDescription": "Your first order will appear here.",
+      "viewMenu": "Browse menu"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "description": "Your active plan and management options.",
+      "currentPlan": "Active plan",
+      "active": "Active",
+      "contactSupport": "Contact support",
+      "contactDescription": "To change or cancel your subscription, contact us on WhatsApp.",
+      "plans": "Available plans",
+      "seePlans": "See plans",
+      "pause": "Pause subscription",
+      "comingSoon": "Coming soon",
+      "comingSoonDescription": "Subscription management is under development.",
+      "perMonth": "/month",
+      "noPlansFallback": "Visit the plans page to see available options."
+    },
+    "saved": "Profile updated",
+    "saveError": "Save failed",
+    "saveErrorDescription": "Please try again"
+  },
   "search": {
     "title": "The menu",
     "seo": {

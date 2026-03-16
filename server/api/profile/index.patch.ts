@@ -9,6 +9,8 @@ const updateProfileSchema = z.object({
   deliveryAddress: z.string().max(200).optional().nullable(),
   deliveryNeighborhood: z.string().max(100).optional().nullable(),
   deliveryNotes: z.string().max(300).optional().nullable(),
+  deliveryHoursFrom: z.string().max(5).optional().nullable(),
+  deliveryHoursTo: z.string().max(5).optional().nullable(),
   allergies: z.array(z.string()).optional(),
   preferences: z.array(z.string()).optional()
 })
