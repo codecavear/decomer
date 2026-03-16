@@ -1,4 +1,4 @@
-import { _eq, sql } from 'drizzle-orm'
+import { eq, sql } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { categories, storeCategories } from '../../database/schema'
 
@@ -24,8 +24,8 @@ export default defineEventHandler(async (event) => {
       storeCount: sql<number>`count(distinct ${storeCategories.storeId})::int`
     })
     .from(categories)
-    .leftJoin(storeCategories, _eq(categories.id, storeCategories.categoryId))
-    .where(_eq(categories.id, id))
+    .leftJoin(storeCategories, eq(categories.id, storeCategories.categoryId))
+    .where(eq(categories.id, id))
     .groupBy(categories.id)
 
   if (!category) {
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     const [parentCategory] = await db
       .select()
       .from(categories)
-      .where(_eq(categories.id, category.parentId))
+      .where(eq(categories.id, category.parentId))
     parent = parentCategory || null
   }
 
@@ -55,8 +55,8 @@ export default defineEventHandler(async (event) => {
       storeCount: sql<number>`count(distinct ${storeCategories.storeId})::int`
     })
     .from(categories)
-    .leftJoin(storeCategories, _eq(categories.id, storeCategories.categoryId))
-    .where(_eq(categories.parentId, id))
+    .leftJoin(storeCategories, eq(categories.id, storeCategories.categoryId))
+    .where(eq(categories.parentId, id))
     .groupBy(categories.id)
     .orderBy(categories.name)
 

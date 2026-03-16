@@ -8,7 +8,7 @@ async function runMigrations() {
   const databaseUrl = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL
 
   if (!databaseUrl) {
-    console._error('[migrate] ERROR: DATABASE_URL or DATABASE_PUBLIC_URL environment variable is not set')
+    console.error('[migrate] ERROR: DATABASE_URL or DATABASE_PUBLIC_URL environment variable is not set')
     process.exit(1)
   }
 
@@ -36,9 +36,9 @@ async function runMigrations() {
 
       await client.end()
       process.exit(0)
-    } catch {
+    } catch (_error) {
       lastError = _error as Error
-      console._error(`[migrate] Attempt ${attempt} failed:`, (_error as Error).message)
+      console.error(`[migrate] Attempt ${attempt} failed:`, (_error as Error).message)
 
       if (attempt < maxRetries) {
         const delay = attempt * 2000 // 2s, 4s, 6s, 8s
@@ -48,8 +48,8 @@ async function runMigrations() {
     }
   }
 
-  console._error('[migrate] All connection attempts failed')
-  console._error('[migrate] Last _error:', lastError)
+  console.error('[migrate] All connection attempts failed')
+  console.error('[migrate] Last _error:', lastError)
   process.exit(1)
 }
 

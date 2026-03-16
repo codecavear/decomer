@@ -1,4 +1,4 @@
-import { desc, _eq, and } from 'drizzle-orm'
+import { desc, eq, and } from 'drizzle-orm'
 import { orders } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -12,9 +12,9 @@ export default defineEventHandler(async (event) => {
 
   const db = getDb()
 
-  const conditions = [_eq(orders.userId, user.id)]
+  const conditions = [eq(orders.userId, user.id)]
   if (status && ['pending', 'confirmed', 'preparing', 'ready', 'delivered', 'cancelled'].includes(status)) {
-    conditions.push(_eq(orders.status, status as 'pending' | 'confirmed' | 'preparing' | 'ready' | 'delivered' | 'cancelled'))
+    conditions.push(eq(orders.status, status as 'pending' | 'confirmed' | 'preparing' | 'ready' | 'delivered' | 'cancelled'))
   }
 
   const userOrders = await db.query.orders.findMany({

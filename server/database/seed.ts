@@ -136,7 +136,7 @@ async function seed() {
 
     // Get user ID (either new or existing)
     const userId = testUser?.id || (await db.query.users.findFirst({
-      where: (users, { _eq }) => _eq(users.email, 'demo@decomer.ar')
+      where: (users, { eq }) => eq(users.email, 'demo@decomer.ar')
     }))?.id
 
     if (!userId) {

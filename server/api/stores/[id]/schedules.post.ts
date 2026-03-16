@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../../utils/db'
 import { stores, storeSchedules } from '../../../database/schema'
 
@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
 
   // Check if store exists and user is the owner
   const store = await db.query.stores.findFirst({
-    where: _eq(stores.id, id)
+    where: eq(stores.id, id)
   })
 
   if (!store) {
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
   // Delete existing schedules for the store
   await db
     .delete(storeSchedules)
-    .where(_eq(storeSchedules.storeId, id))
+    .where(eq(storeSchedules.storeId, id))
 
   // Insert new schedules
   const schedules = await db

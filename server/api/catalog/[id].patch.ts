@@ -1,4 +1,4 @@
-import { _eq, and } from 'drizzle-orm'
+import { eq, and } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
@@ -37,8 +37,8 @@ export default defineEventHandler(async (event) => {
   // Check product exists and belongs to user
   const existingProduct = await db.query.products.findFirst({
     where: and(
-      _eq(products.id, id),
-      _eq(products.ownerId, user.id)
+      eq(products.id, id),
+      eq(products.ownerId, user.id)
     )
   })
 
@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
   // Update the product
   const [updatedProduct] = await db.update(products)
     .set(updateData)
-    .where(_eq(products.id, id))
+    .where(eq(products.id, id))
     .returning()
 
   return updatedProduct

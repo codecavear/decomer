@@ -60,7 +60,7 @@ describe('Navigation E2E', async () => {
       try {
         await $fetch('/non-existent-page-xyz')
         // If no _error, check if 404 content is returned
-      } catch {
+      } catch (_error) {
         // Expected 404 _error
         const err = _error as { statusCode?: number, response?: { status?: number } }
         expect(err.statusCode || err.response?.status).toBe(404)

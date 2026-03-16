@@ -1,4 +1,4 @@
-import { _eq, count } from 'drizzle-orm'
+import { eq, count } from 'drizzle-orm'
 import { storeSubscriptions, subscriptionPlans, stores, products, storeLocations } from '../../database/schema'
 
 interface LimitCheck {
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   const [store] = await db
     .select()
     .from(stores)
-    .where(_eq(stores.id, storeId))
+    .where(eq(stores.id, storeId))
     .limit(1)
 
   if (!store) {
@@ -46,8 +46,8 @@ export default defineEventHandler(async (event) => {
       plan: subscriptionPlans
     })
     .from(storeSubscriptions)
-    .leftJoin(subscriptionPlans, _eq(storeSubscriptions.planId, subscriptionPlans.id))
-    .where(_eq(storeSubscriptions.storeId, storeId))
+    .leftJoin(subscriptionPlans, eq(storeSubscriptions.planId, subscriptionPlans.id))
+    .where(eq(storeSubscriptions.storeId, storeId))
     .limit(1)
 
   // Default limits for free tier
@@ -73,12 +73,12 @@ export default defineEventHandler(async (event) => {
   const [productCount] = await db
     .select({ count: count() })
     .from(products)
-    .where(_eq(products.storeId, storeId))
+    .where(eq(products.storeId, storeId))
 
   const [locationCount] = await db
     .select({ count: count() })
     .from(storeLocations)
-    .where(_eq(storeLocations.storeId, storeId))
+    .where(eq(storeLocations.storeId, storeId))
 
   // Build limit checks
   const checks: LimitCheck[] = [

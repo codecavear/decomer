@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { _eq, inArray } from 'drizzle-orm'
+import { eq, inArray } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import {
   stores,
@@ -69,7 +69,7 @@ export default defineEventHandler(async (event) => {
   while (true) {
     const candidate = attempt === 0 ? slug : `${slug}-${attempt + 1}`
     const existing = await db.query.stores.findFirst({
-      where: _eq(stores.slug, candidate)
+      where: eq(stores.slug, candidate)
     })
     if (!existing) {
       slug = candidate

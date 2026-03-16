@@ -3,8 +3,6 @@
  * GET /api/payments/[id]
  */
 
-import { _eq } from 'drizzle-orm'
-
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
 
@@ -27,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const payment = await db.query.payments.findFirst({
-      where: (payments, { _eq }) => _eq(payments.id, paymentId),
+      where: (payments, { eq }) => eq(payments.id, paymentId),
       with: {
         order: {
           with: {

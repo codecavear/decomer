@@ -1,4 +1,4 @@
-import { _eq, sql } from 'drizzle-orm'
+import { eq, sql } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { categories, storeCategories } from '../../database/schema'
 
@@ -19,7 +19,7 @@ export default defineEventHandler(async () => {
         storeCount: sql<number>`count(distinct ${storeCategories.storeId})::int`
       })
       .from(categories)
-      .leftJoin(storeCategories, _eq(categories.id, storeCategories.categoryId))
+      .leftJoin(storeCategories, eq(categories.id, storeCategories.categoryId))
       .groupBy(categories.id)
       .orderBy(categories.name)
 
@@ -33,8 +33,8 @@ export default defineEventHandler(async () => {
     }))
 
     return hierarchicalCategories
-  } catch {
-    console.warn('Categories API: Database connection failed during build, returning empty array:', error.message)
+  } catch (error) {
+    console.warn('Categories API: Database connection failed during build, returning empty array:', error)
     // Return empty array during build when database is not available
     return []
   }

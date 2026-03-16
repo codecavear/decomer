@@ -1,4 +1,4 @@
-import { _eq, count, inArray } from 'drizzle-orm'
+import { eq, count, inArray } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products, stores } from '../../database/schema'
 
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   const userStores = await db
     .select({ id: stores.id })
     .from(stores)
-    .where(_eq(stores.ownerId, user.id))
+    .where(eq(stores.ownerId, user.id))
 
   const storeIds = userStores.map(s => s.id)
 

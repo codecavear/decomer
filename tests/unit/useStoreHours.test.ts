@@ -32,7 +32,7 @@ const getOpenStatus = (schedules: StoreSchedule[] | undefined) => {
   return {
     isOpen: open,
     label: open ? 'Abierto' : 'Cerrado',
-    color: open ? 'success' : '_error'
+    color: open ? 'success' : 'error'
   }
 }
 
@@ -126,7 +126,7 @@ describe('useStoreHours', () => {
       const status = getOpenStatus(schedules)
       expect(status.isOpen).toBe(false)
       expect(status.label).toBe('Cerrado')
-      expect(status.color).toBe('_error')
+      expect(status.color).toBe('error')
     })
   })
 })

@@ -1,4 +1,4 @@
-import { _eq, and, gt } from 'drizzle-orm'
+import { eq, and, gt } from 'drizzle-orm'
 import { z } from 'zod'
 import { randomBytes } from 'node:crypto'
 import { getDb } from '../../utils/db'
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
   // Rate limiting: max 3 tokens per email in last 15 minutes
   const recentTokens = await db.query.magicLinkTokens.findMany({
     where: and(
-      _eq(magicLinkTokens.email, normalizedEmail),
+      eq(magicLinkTokens.email, normalizedEmail),
       gt(magicLinkTokens.createdAt, new Date(Date.now() - 15 * 60 * 1000))
     )
   })
@@ -56,7 +56,7 @@ export default defineEventHandler(async (event) => {
 
   // Check if user exists (for email personalization)
   const existingUser = await db.query.users.findFirst({
-    where: _eq(users.email, normalizedEmail)
+    where: eq(users.email, normalizedEmail)
   })
 
   // Send email via Resend

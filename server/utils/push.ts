@@ -9,7 +9,7 @@
  */
 
 import webpush from 'web-push'
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { pushSubscriptions } from '../database/schema'
 import { getDb } from './db'
 
@@ -53,7 +53,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
   const subs = await db
     .select()
     .from(pushSubscriptions)
-    .where(_eq(pushSubscriptions.userId, userId))
+    .where(eq(pushSubscriptions.userId, userId))
 
   if (subs.length === 0) return
 
@@ -75,7 +75,7 @@ export async function sendPushToUser(userId: string, payload: PushPayload): Prom
         if (statusCode === 404 || statusCode === 410) {
           await db
             .delete(pushSubscriptions)
-            .where(_eq(pushSubscriptions.endpoint, sub.endpoint))
+            .where(eq(pushSubscriptions.endpoint, sub.endpoint))
         } else {
           console.error(`[push] Failed to send to ${sub.endpoint}:`, err)
         }

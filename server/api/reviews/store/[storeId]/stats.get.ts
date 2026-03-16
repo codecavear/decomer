@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { reviews } from '../../../../database/schema'
 import { getDb } from '../../../../utils/db'
 
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   // Get all reviews for the store
   const storeReviews = await db.query.reviews.findMany({
-    where: _eq(reviews.storeId, storeId),
+    where: eq(reviews.storeId, storeId),
     columns: {
       rating: true
     }

@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { storeSubscriptions, subscriptionPlans, stores } from '../../../database/schema'
 
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
   const [store] = await db
     .select()
     .from(stores)
-    .where(_eq(stores.id, storeId))
+    .where(eq(stores.id, storeId))
     .limit(1)
 
   if (!store) {
@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
   const [plan] = await db
     .select()
     .from(subscriptionPlans)
-    .where(_eq(subscriptionPlans.id, planId))
+    .where(eq(subscriptionPlans.id, planId))
     .limit(1)
 
   if (!plan || !plan.isActive) {
@@ -66,7 +66,7 @@ export default defineEventHandler(async (event) => {
   const [existingSub] = await db
     .select()
     .from(storeSubscriptions)
-    .where(_eq(storeSubscriptions.storeId, storeId))
+    .where(eq(storeSubscriptions.storeId, storeId))
     .limit(1)
 
   if (existingSub) {
@@ -82,7 +82,7 @@ export default defineEventHandler(async (event) => {
         cancelAtPeriodEnd: false,
         updatedAt: now
       })
-      .where(_eq(storeSubscriptions.id, existingSub.id))
+      .where(eq(storeSubscriptions.id, existingSub.id))
       .returning()
 
     return { ...updated, plan }

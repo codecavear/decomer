@@ -1,7 +1,7 @@
 import { gte, and, eq, sql } from 'drizzle-orm'
 import { getDb } from '../../../utils/db'
 import { orders } from '../../../database/schema/orders'
-import { subscriptions } from '../../../database/schema/subscriptions'
+import { storeSubscriptions } from '../../../database/schema/subscriptions'
 
 export default defineEventHandler(async (event) => {
   await requireAdminRole(event)
@@ -35,8 +35,8 @@ export default defineEventHandler(async (event) => {
   // Active customers (with active subscriptions)
   const [activeCustomersResult] = await db
     .select({ count: sql<number>`count(*)` })
-    .from(subscriptions)
-    .where(eq(subscriptions.status, 'active'))
+    .from(storeSubscriptions)
+    .where(eq(storeSubscriptions.status, 'active'))
 
   // Weekly revenue
   const [weeklyRevenueResult] = await db

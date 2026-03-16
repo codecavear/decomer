@@ -1,4 +1,4 @@
-import { _eq, and, gt } from 'drizzle-orm'
+import { eq, and, gt } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { magicLinkTokens, users } from '../../database/schema'
 
@@ -15,8 +15,8 @@ export default defineEventHandler(async (event) => {
   // Find valid token
   const tokenRecord = await db.query.magicLinkTokens.findFirst({
     where: and(
-      _eq(magicLinkTokens.token, token),
-      _eq(magicLinkTokens.used, false),
+      eq(magicLinkTokens.token, token),
+      eq(magicLinkTokens.used, false),
       gt(magicLinkTokens.expiresAt, new Date())
     )
   })
@@ -28,11 +28,11 @@ export default defineEventHandler(async (event) => {
   // Mark token as used
   await db.update(magicLinkTokens)
     .set({ used: true })
-    .where(_eq(magicLinkTokens.id, tokenRecord.id))
+    .where(eq(magicLinkTokens.id, tokenRecord.id))
 
   // Find or create user
   let dbUser = await db.query.users.findFirst({
-    where: _eq(users.email, tokenRecord.email)
+    where: eq(users.email, tokenRecord.email)
   })
 
   if (!dbUser) {
@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
     // Update last login
     const [updatedUser] = await db.update(users)
       .set({ updatedAt: new Date() })
-      .where(_eq(users.id, dbUser.id))
+      .where(eq(users.id, dbUser.id))
       .returning()
     dbUser = updatedUser
   }

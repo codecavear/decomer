@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../../utils/db'
 import { categories, storeCategories, stores, storeLocations } from '../../../database/schema'
 
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
   const [category] = await db
     .select()
     .from(categories)
-    .where(_eq(categories.id, categoryId))
+    .where(eq(categories.id, categoryId))
 
   if (!category) {
     throw createError({ statusCode: 404, message: 'Category not found' })
@@ -49,12 +49,12 @@ export default defineEventHandler(async (event) => {
       }
     })
     .from(stores)
-    .innerJoin(storeCategories, _eq(stores.id, storeCategories.storeId))
+    .innerJoin(storeCategories, eq(stores.id, storeCategories.storeId))
     .leftJoin(
       storeLocations,
-      _eq(stores.id, storeLocations.storeId)
+      eq(stores.id, storeLocations.storeId)
     )
-    .where(_eq(storeCategories.categoryId, categoryId))
+    .where(eq(storeCategories.categoryId, categoryId))
     .orderBy(stores.name)
     .limit(limit)
     .offset(offset)

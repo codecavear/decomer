@@ -3,7 +3,7 @@
  * POST /api/payments/webhook
  */
 
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {
   const db = useDrizzle()
@@ -56,9 +56,9 @@ export default defineEventHandler(async (event) => {
 
     // Find payment record
     const paymentRecord = await db.query.payments.findFirst({
-      where: (payments, { _eq, or }) => or(
-        _eq(payments.paymentId, paymentId.toString()),
-        _eq(payments.externalReference, paymentDetails.external_reference || '')
+      where: (payments, { eq, or }) => or(
+        eq(payments.paymentId, paymentId.toString()),
+        eq(payments.externalReference, paymentDetails.external_reference || '')
       )
     })
 
@@ -112,7 +112,7 @@ export default defineEventHandler(async (event) => {
     await db
       .update(tables.payments)
       .set(updateData)
-      .where(_eq(tables.payments.id, paymentRecord.id))
+      .where(eq(tables.payments.id, paymentRecord.id))
 
     // Update order status
     const orderUpdate: unknown = {
@@ -128,7 +128,7 @@ export default defineEventHandler(async (event) => {
     await db
       .update(tables.orders)
       .set(orderUpdate)
-      .where(_eq(tables.orders.id, paymentRecord.orderId))
+      .where(eq(tables.orders.id, paymentRecord.orderId))
 
     console.log('✅ Payment and order updated:', {
       paymentId: paymentRecord.id,

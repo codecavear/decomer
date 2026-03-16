@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
     '@vite-pwa/nuxt',
-    '@nuxt/test-utils/module'
+    ...(process.env.NODE_ENV === 'test' ? ['@nuxt/test-utils/module'] : [])
   ],
 
   devtools: {
@@ -64,6 +64,10 @@ export default defineNuxtConfig({
     url: 'https://decomer.codecave.ar'
   },
 
+  ui: {
+    fonts: false
+  },
+
   runtimeConfig: {
     sessionPassword: process.env.NUXT_SESSION_PASSWORD,
     cloudinary: {
@@ -105,7 +109,7 @@ export default defineNuxtConfig({
         '/pricing',
         '/blog'
       ],
-      crawlLinks: true,
+      crawlLinks: false,
       failOnError: false
     }
   },

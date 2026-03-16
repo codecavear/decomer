@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { _eq, and } from 'drizzle-orm'
+import { eq, and } from 'drizzle-orm'
 import { reviews, orders } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -18,8 +18,8 @@ export default defineEventHandler(async (event) => {
   // Check if user already has a review for this store
   const existingReview = await db.query.reviews.findFirst({
     where: and(
-      _eq(reviews.userId, user.id),
-      _eq(reviews.storeId, body.storeId)
+      eq(reviews.userId, user.id),
+      eq(reviews.storeId, body.storeId)
     )
   })
 
@@ -33,8 +33,8 @@ export default defineEventHandler(async (event) => {
   // Check if user has ordered from this store (for verified badge)
   const userOrder = await db.query.orders.findFirst({
     where: and(
-      _eq(orders.userId, user.id),
-      _eq(orders.storeId, body.storeId)
+      eq(orders.userId, user.id),
+      eq(orders.storeId, body.storeId)
     )
   })
 
@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
 
   // Fetch complete review with user info
   const completeReview = await db.query.reviews.findFirst({
-    where: _eq(reviews.id, review.id),
+    where: eq(reviews.id, review.id),
     with: {
       user: {
         columns: {

@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../utils/db'
 import { users } from '../../database/schema'
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
   const [updated] = await db
     .update(users)
     .set({ ...parsed.data, updatedAt: new Date() })
-    .where(_eq(users.id, session.user.id))
+    .where(eq(users.id, session.user.id))
     .returning()
 
   return updated

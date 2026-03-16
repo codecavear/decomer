@@ -1,4 +1,4 @@
-import { desc, _eq, and } from 'drizzle-orm'
+import { desc, eq, and } from 'drizzle-orm'
 import { orders, stores } from '../../../database/schema'
 import { getDb } from '../../../utils/db'
 
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   // Verify user owns the store
   const store = await db.query.stores.findFirst({
-    where: _eq(stores.id, storeId)
+    where: eq(stores.id, storeId)
   })
 
   if (!store) {
@@ -33,9 +33,9 @@ export default defineEventHandler(async (event) => {
   const limit = Math.min(Number(query.limit) || 20, 100)
   const offset = Number(query.offset) || 0
 
-  const conditions = [_eq(orders.storeId, storeId)]
+  const conditions = [eq(orders.storeId, storeId)]
   if (status && ['pending', 'confirmed', 'preparing', 'ready', 'delivered', 'cancelled'].includes(status)) {
-    conditions.push(_eq(orders.status, status as 'pending' | 'confirmed' | 'preparing' | 'ready' | 'delivered' | 'cancelled'))
+    conditions.push(eq(orders.status, status as 'pending' | 'confirmed' | 'preparing' | 'ready' | 'delivered' | 'cancelled'))
   }
 
   const storeOrders = await db.query.orders.findMany({

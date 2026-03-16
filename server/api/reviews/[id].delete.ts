@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { reviews } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
 
   // Check if review exists and belongs to user
   const review = await db.query.reviews.findFirst({
-    where: _eq(reviews.id, id)
+    where: eq(reviews.id, id)
   })
 
   if (!review) {
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
 
   // Delete review
   await db.delete(reviews)
-    .where(_eq(reviews.id, id))
+    .where(eq(reviews.id, id))
 
   return { success: true, message: 'Review deleted successfully' }
 })

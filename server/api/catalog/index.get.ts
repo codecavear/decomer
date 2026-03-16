@@ -17,10 +17,10 @@ export default defineEventHandler(async (event) => {
   const userProducts = await db.query.products.findMany({
     where: search
       ? (products, { and }) => and(
-          _eq(products.ownerId, user.id),
+          eq(products.ownerId, user.id),
           like(products.name, `%${search}%`)
         )
-      : _eq(products.ownerId, user.id),
+      : eq(products.ownerId, user.id),
     with: {
       storeAssignments: {
         with: {
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
   const [{ total }] = await db
     .select({ total: count() })
     .from(products)
-    .where(_eq(products.ownerId, user.id))
+    .where(eq(products.ownerId, user.id))
 
   return {
     products: userProducts,

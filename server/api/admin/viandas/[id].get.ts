@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../../utils/db'
 import { viandas } from '../../../database/schema'
 
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const vianda = await db.query.viandas.findFirst({
-    where: _eq(viandas.id, id)
+    where: eq(viandas.id, id)
   })
 
   if (!vianda) {

@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { users } from '../../database/schema'
 
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
   const db = getDb()
   const user = await db.query.users.findFirst({
-    where: _eq(users.id, session.user.id)
+    where: eq(users.id, session.user.id)
   })
 
   if (!user) {

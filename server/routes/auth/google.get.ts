@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { users } from '../../database/schema'
 
@@ -8,7 +8,7 @@ export default defineOAuthGoogleEventHandler({
 
     // Find or create user in database
     let dbUser = await db.query.users.findFirst({
-      where: _eq(users.googleId, user.sub)
+      where: eq(users.googleId, user.sub)
     })
 
     if (!dbUser) {
@@ -32,7 +32,7 @@ export default defineOAuthGoogleEventHandler({
           avatarUrl: user.picture,
           updatedAt: new Date()
         })
-        .where(_eq(users.id, dbUser.id))
+        .where(eq(users.id, dbUser.id))
         .returning()
       dbUser = updatedUser
     }

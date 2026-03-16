@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { orders, stores, orderStatusEnum } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
 
   // Fetch order to check authorization and current status
   const order = await db.query.orders.findFirst({
-    where: _eq(orders.id, id),
+    where: eq(orders.id, id),
     with: {
       store: true
     }
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
 
   // Check if user is the store owner
   const store = await db.query.stores.findFirst({
-    where: _eq(stores.id, order.storeId)
+    where: eq(stores.id, order.storeId)
   })
 
   if (store?.ownerId !== user.id) {
@@ -68,11 +68,11 @@ export default defineEventHandler(async (event) => {
       status: body.status,
       updatedAt: new Date()
     })
-    .where(_eq(orders.id, id))
+    .where(eq(orders.id, id))
 
   // Fetch complete order with relations
   const completeOrder = await db.query.orders.findFirst({
-    where: _eq(orders.id, id),
+    where: eq(orders.id, id),
     with: {
       store: true,
       user: {

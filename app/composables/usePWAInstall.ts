@@ -8,7 +8,7 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
 }
 
-export const usePWA = () => {
+export const usePWAInstall = () => {
   const canInstall = ref(false)
   const isStandalone = ref(false)
   let deferredPrompt: BeforeInstallPromptEvent | null = null

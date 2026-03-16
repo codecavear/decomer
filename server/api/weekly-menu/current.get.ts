@@ -1,4 +1,4 @@
-import { _eq, and, gte, lte, desc } from 'drizzle-orm'
+import { eq, and, gte, lte, desc } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import type { viandas } from '../../database/schema'
 import { weeklyMenus, weeklyMenuViandas } from '../../database/schema'
@@ -10,7 +10,7 @@ export default defineEventHandler(async () => {
   // Find active weekly menu for current date
   const activeMenu = await db.query.weeklyMenus.findFirst({
     where: and(
-      _eq(weeklyMenus.isActive, true),
+      eq(weeklyMenus.isActive, true),
       lte(weeklyMenus.weekStart, now),
       gte(weeklyMenus.weekEnd, now)
     ),
@@ -19,7 +19,7 @@ export default defineEventHandler(async () => {
         with: {
           vianda: true
         },
-        where: _eq(weeklyMenuViandas.isAvailable, true)
+        where: eq(weeklyMenuViandas.isAvailable, true)
       }
     },
     orderBy: [desc(weeklyMenus.weekStart)]

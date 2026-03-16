@@ -1,4 +1,4 @@
-import { _eq, and, inArray } from 'drizzle-orm'
+import { eq, and, inArray } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../../utils/db'
 import { products, stores, storeProducts } from '../../../database/schema'
@@ -33,8 +33,8 @@ export default defineEventHandler(async (event) => {
   // Verify product belongs to user
   const product = await db.query.products.findFirst({
     where: and(
-      _eq(products.id, productId),
-      _eq(products.ownerId, user.id)
+      eq(products.id, productId),
+      eq(products.ownerId, user.id)
     )
   })
 
@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
   const userStores = await db.query.stores.findMany({
     where: and(
       inArray(stores.id, parsed.data.storeIds),
-      _eq(stores.ownerId, user.id)
+      eq(stores.ownerId, user.id)
     )
   })
 
@@ -74,7 +74,7 @@ export default defineEventHandler(async (event) => {
 
   // Return updated assignments
   const updatedAssignments = await db.query.storeProducts.findMany({
-    where: _eq(storeProducts.productId, productId),
+    where: eq(storeProducts.productId, productId),
     with: {
       store: {
         columns: {

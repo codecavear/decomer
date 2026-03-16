@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
 
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   const db = getDb()
 
   const product = await db.query.products.findFirst({
-    where: _eq(products.id, id),
+    where: eq(products.id, id),
     with: {
       store: true
     }

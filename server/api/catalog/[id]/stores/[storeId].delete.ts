@@ -1,4 +1,4 @@
-import { _eq, and } from 'drizzle-orm'
+import { eq, and } from 'drizzle-orm'
 import { getDb } from '../../../../utils/db'
 import { products, stores, storeProducts } from '../../../../database/schema'
 
@@ -19,8 +19,8 @@ export default defineEventHandler(async (event) => {
   // Verify product belongs to user
   const product = await db.query.products.findFirst({
     where: and(
-      _eq(products.id, productId),
-      _eq(products.ownerId, user.id)
+      eq(products.id, productId),
+      eq(products.ownerId, user.id)
     )
   })
 
@@ -34,8 +34,8 @@ export default defineEventHandler(async (event) => {
   // Verify store belongs to user
   const store = await db.query.stores.findFirst({
     where: and(
-      _eq(stores.id, storeId),
-      _eq(stores.ownerId, user.id)
+      eq(stores.id, storeId),
+      eq(stores.ownerId, user.id)
     )
   })
 
@@ -49,8 +49,8 @@ export default defineEventHandler(async (event) => {
   // Delete the assignment
   await db.delete(storeProducts)
     .where(and(
-      _eq(storeProducts.productId, productId),
-      _eq(storeProducts.storeId, storeId)
+      eq(storeProducts.productId, productId),
+      eq(storeProducts.storeId, storeId)
     ))
 
   return {

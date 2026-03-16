@@ -1,4 +1,4 @@
-import { _eq, and, desc } from 'drizzle-orm'
+import { eq, and, desc } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
 
@@ -23,18 +23,18 @@ export default defineEventHandler(async (event) => {
   const db = getDb()
 
   // Build where clause
-  const whereConditions = [_eq(products.storeId, storeId)]
+  const whereConditions = [eq(products.storeId, storeId)]
 
   if (available) {
-    whereConditions.push(_eq(products.isAvailable, true))
+    whereConditions.push(eq(products.isAvailable, true))
   }
 
   // Apply dietary filters
-  if (isVegan) whereConditions.push(_eq(products.isVegan, true))
-  if (isGlutenFree) whereConditions.push(_eq(products.isGlutenFree, true))
-  if (isLowCarb) whereConditions.push(_eq(products.isLowCarb, true))
-  if (isHighProtein) whereConditions.push(_eq(products.isHighProtein, true))
-  if (isVegetarian) whereConditions.push(_eq(products.isVegetarian, true))
+  if (isVegan) whereConditions.push(eq(products.isVegan, true))
+  if (isGlutenFree) whereConditions.push(eq(products.isGlutenFree, true))
+  if (isLowCarb) whereConditions.push(eq(products.isLowCarb, true))
+  if (isHighProtein) whereConditions.push(eq(products.isHighProtein, true))
+  if (isVegetarian) whereConditions.push(eq(products.isVegetarian, true))
 
   const productList = await db.query.products.findMany({
     where: and(...whereConditions),

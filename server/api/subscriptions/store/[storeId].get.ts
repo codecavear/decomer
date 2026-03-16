@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { storeSubscriptions, subscriptionPlans, stores } from '../../../database/schema'
 
 export default defineEventHandler(async (event) => {
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
   const [store] = await db
     .select()
     .from(stores)
-    .where(_eq(stores.id, storeId))
+    .where(eq(stores.id, storeId))
     .limit(1)
 
   if (!store) {
@@ -36,8 +36,8 @@ export default defineEventHandler(async (event) => {
       plan: subscriptionPlans
     })
     .from(storeSubscriptions)
-    .leftJoin(subscriptionPlans, _eq(storeSubscriptions.planId, subscriptionPlans.id))
-    .where(_eq(storeSubscriptions.storeId, storeId))
+    .leftJoin(subscriptionPlans, eq(storeSubscriptions.planId, subscriptionPlans.id))
+    .where(eq(storeSubscriptions.storeId, storeId))
     .limit(1)
 
   if (!subscription) {

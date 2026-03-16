@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../../utils/db'
 import { viandas } from '../../../database/schema'
 import { slugify } from '../../../utils/slug'
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
 
   const [updated] = await db.update(viandas)
     .set(updateData)
-    .where(_eq(viandas.id, id))
+    .where(eq(viandas.id, id))
     .returning()
 
   if (!updated) {

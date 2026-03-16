@@ -1,4 +1,4 @@
-import { _eq, and } from 'drizzle-orm'
+import { eq, and } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { favorites } from '../../database/schema'
 
@@ -16,8 +16,8 @@ export default defineEventHandler(async (event) => {
   await db
     .delete(favorites)
     .where(and(
-      _eq(favorites.userId, user.id),
-      _eq(favorites.storeId, storeId)
+      eq(favorites.userId, user.id),
+      eq(favorites.storeId, storeId)
     ))
 
   return { success: true }

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { orders, orderItems, products } from '../../database/schema'
 import { getDb } from '../../utils/db'
 import { sendPushToUser } from '../../utils/push'
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
 
   // Fetch all products to calculate total and validate availability
   const productRecords = await db.query.products.findMany({
-    where: _eq(products.storeId, body.storeId)
+    where: eq(products.storeId, body.storeId)
   })
 
   const productMap = new Map(productRecords.map(p => [p.id, p]))
@@ -97,7 +97,7 @@ export default defineEventHandler(async (event) => {
 
   // Fetch the complete order with relations
   const completeOrder = await db.query.orders.findFirst({
-    where: _eq(orders.id, order.id),
+    where: eq(orders.id, order.id),
     with: {
       store: true,
       items: {

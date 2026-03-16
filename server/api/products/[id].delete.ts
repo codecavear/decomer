@@ -1,4 +1,4 @@
-import { _eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { products } from '../../database/schema'
 
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   // Get the product with store info
   const product = await db.query.products.findFirst({
-    where: _eq(products.id, id),
+    where: eq(products.id, id),
     with: {
       store: true
     }
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
   // Hard delete the product
   await db
     .delete(products)
-    .where(_eq(products.id, id))
+    .where(eq(products.id, id))
 
   return { success: true, message: '_Product deleted successfully' }
 })

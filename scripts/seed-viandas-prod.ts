@@ -5,7 +5,7 @@ import * as schema from '../server/database/schema'
 const connectionString = process.env.DATABASE_PUBLIC_URL || process.env.DATABASE_URL
 
 if (!connectionString) {
-  console._error('[seed-viandas] ERROR: DATABASE_URL environment variable is not set')
+  console.error('[seed-viandas] ERROR: DATABASE_URL environment variable is not set')
   process.exit(1)
 }
 
@@ -235,8 +235,8 @@ async function seedViandas() {
     }
 
     console.log('[seed-viandas] ✨ Viandas seed completed successfully!')
-  } catch {
-    console._error('[seed-viandas] ❌ Viandas seed failed:', _error)
+  } catch (_error) {
+    console.error('[seed-viandas] ❌ Viandas seed failed:', _error)
     throw _error
   } finally {
     await client.end()
@@ -246,6 +246,6 @@ async function seedViandas() {
 seedViandas()
   .then(() => process.exit(0))
   .catch((_error) => {
-    console._error(_error)
+    console.error(_error)
     process.exit(1)
   })

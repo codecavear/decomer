@@ -1,4 +1,4 @@
-import { _eq, sql, and } from 'drizzle-orm'
+import { eq, sql, and } from 'drizzle-orm'
 import { getDb } from '../../utils/db'
 import { stores, storeLocations } from '../../database/schema'
 
@@ -50,10 +50,10 @@ export default defineEventHandler(async (event) => {
       distance: distanceFormula
     })
     .from(stores)
-    .innerJoin(storeLocations, _eq(stores.id, storeLocations.storeId))
+    .innerJoin(storeLocations, eq(stores.id, storeLocations.storeId))
     .where(
       and(
-        _eq(stores.status, 'active'),
+        eq(stores.status, 'active'),
         sql`${distanceFormula} <= ${radius}`
       )
     )

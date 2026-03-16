@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
 
     // Get order
     const order = await db.query.orders.findFirst({
-      where: (orders, { _eq }) => _eq(orders.id, body.orderId),
+      where: (orders, { eq }) => eq(orders.id, body.orderId),
       with: {
         store: true,
         items: {
@@ -62,9 +62,9 @@ export default defineEventHandler(async (event) => {
 
     // Check if order already has a pending payment
     const existingPayment = await db.query.payments.findFirst({
-      where: (payments, { _eq, and }) => and(
-        _eq(payments.orderId, body.orderId),
-        _eq(payments.status, 'pending')
+      where: (payments, { eq, and }) => and(
+        eq(payments.orderId, body.orderId),
+        eq(payments.status, 'pending')
       )
     })
 
@@ -152,7 +152,7 @@ export default defineEventHandler(async (event) => {
         status: 'pending',
         updatedAt: new Date()
       })
-      .where(_eq(tables.orders.id, order.id))
+      .where(eq(tables.orders.id, order.id))
 
     return {
       success: true,
