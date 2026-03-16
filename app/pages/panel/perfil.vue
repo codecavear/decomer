@@ -68,7 +68,7 @@ const save = async () => {
     })
     await _refresh()
     toast.add({ title: 'Perfil actualizado', color: 'success' })
-  } catch (_e: unknown) {
+  } catch {
     const _error = _e as { data?: { message?: string } }
     toast.add({ title: 'Error', description: _error.data?.message || 'No se pudo guardar', color: '_error' })
   } finally {

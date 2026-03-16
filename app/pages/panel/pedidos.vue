@@ -71,7 +71,7 @@ const updateOrderStatus = async (order: Order, newStatus: OrderStatus) => {
     })
     order.status = newStatus
     toast.add({ title: 'Estado actualizado', color: 'success' })
-  } catch (_e: unknown) {
+  } catch {
     const _error = _e as { data?: { message?: string } }
     toast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo actualizar', color: '_error' })
   }

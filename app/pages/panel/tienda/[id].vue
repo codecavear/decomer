@@ -238,7 +238,7 @@ const saveInfo = async () => {
       }
     })
     infoToast.add({ title: 'Guardado', description: 'Los datos de la tienda se actualizaron correctamente.', color: 'success' })
-  } catch (_e: unknown) {
+  } catch {
     const _error = _e as { data?: { message?: string } }
     infoToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudieron guardar los cambios.', color: '_error' })
   } finally {

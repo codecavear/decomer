@@ -191,7 +191,7 @@ const saveProduct = async () => {
     }
     await refreshProducts()
     isSlideoverOpen.value = false
-  } catch (_e: unknown) {
+  } catch {
     const _error = _e as { data?: { message?: string } }
     productToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo guardar.', color: '_error' })
   } finally {
@@ -205,7 +205,7 @@ const deleteProduct = async (productId: string) => {
     await $fetch(`/api/products/${productId}`, { method: 'DELETE' })
     productToast.add({ title: 'Producto eliminado', color: 'success' })
     await refreshProducts()
-  } catch (_e: unknown) {
+  } catch {
     const _error = _e as { data?: { message?: string } }
     productToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo eliminar.', color: '_error' })
   }
@@ -220,7 +220,7 @@ const toggleAvailability = async (product: _Product) => {
     })
     product.isAvailable = newValue
     productToast.add({ title: newValue ? 'Producto disponible' : 'Producto no disponible', color: 'success' })
-  } catch (_e: unknown) {
+  } catch {
     const _error = _e as { data?: { message?: string } }
     productToast.add({ title: 'Error', description: _error?.data?.message || 'No se pudo actualizar.', color: '_error' })
   } finally {
