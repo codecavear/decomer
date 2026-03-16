@@ -14,11 +14,14 @@ WORKDIR /app
 
 COPY --from=build /app/.output .output
 COPY --from=build /app/drizzle drizzle
+COPY --from=build /app/scripts/migrate.mjs scripts/migrate.mjs
 COPY --from=build /app/package.json .
+COPY --from=build /app/node_modules/drizzle-orm node_modules/drizzle-orm
+COPY --from=build /app/node_modules/postgres node_modules/postgres
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3000
 EXPOSE 3000
 
-CMD ["node", ".output/server/index.mjs"]
+CMD ["sh", "-c", "node scripts/migrate.mjs && node .output/server/index.mjs"]
