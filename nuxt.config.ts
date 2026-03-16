@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
+    '@vite-pwa/nuxt',
     '@nuxt/test-utils/module'
   ],
 
@@ -91,6 +92,33 @@ export default defineNuxtConfig({
     '/auth/**': { prerender: false }
   },
 
+
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: false, // use our own public/site.webmanifest
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico,woff2}'],
+      runtimeCaching: [
+        {
+          urlPattern: /^\/api\/viandas/,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'viandas-cache',
+            expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 6 }
+          }
+        }
+      ]
+    },
+    client: {
+      installPrompt: true,
+      periodicSyncForUpdates: 3600
+    },
+    devOptions: {
+      enabled: false
+    }
+  },
+
   compatibilityDate: '2024-07-11',
 
   nitro: {
@@ -152,3 +180,4 @@ export default defineNuxtConfig({
     }
   }
 })
+

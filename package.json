@@ -44,7 +44,8 @@
     "nuxt": "^4.2.2",
     "nuxt-auth-utils": "^0.5.26",
     "postgres": "^3.4.8",
-    "zod": "^4.2.1"
+    "zod": "^4.2.1",
+    "@vite-pwa/nuxt": "^0.10.6"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.12.1",
