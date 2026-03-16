@@ -1,0 +1,26 @@
+import { z } from 'zod'
+import { and, eq } from 'drizzle-orm'
+import { pushSubscriptions } from '../../database/schema'
+import { getDb } from '../../utils/db'
+
+const unsubscribeSchema = z.object({
+  endpoint: z.string().url(),
+})
+
+export default defineEventHandler(async (event) => {
+  const { user } = await requireUserSession(event)
+  const body = await readValidatedBody(event, unsubscribeSchema.parse)
+
+  const db = getDb()
+
+  await db
+    .delete(pushSubscriptions)
+    .where(
+      and(
+        eq(pushSubscriptions.userId, user.id),
+        eq(pushSubscriptions.endpoint, body.endpoint)
+      )
+    )
+
+  return { ok: true }
+})

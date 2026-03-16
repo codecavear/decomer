@@ -78,7 +78,9 @@ export default defineNuxtConfig({
     },
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://decomer.codecave.ar',
-      googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY
+      googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+      // VAPID public key for Web Push (set VAPID_PUBLIC_KEY in env)
+      vapidPublicKey: process.env.VAPID_PUBLIC_KEY || ''
     }
   },
 

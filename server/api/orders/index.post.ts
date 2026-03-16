@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { eq } from 'drizzle-orm'
 import { orders, orderItems, products } from '../../database/schema'
 import { getDb } from '../../utils/db'
+import { sendPushToUser } from '../../utils/push'
 
 const deliveryAddressSchema = z.object({
   address: z.string().min(1),
@@ -106,6 +107,14 @@ export default defineEventHandler(async (event) => {
       }
     }
   })
+
+  // Send push notification (non-blocking — don't fail the order if push fails)
+  sendPushToUser(user.id, {
+    type: 'pedido',
+    title: '¡Pedido recibido!',
+    body: `Tu pedido por $${totalAmount.toFixed(2)} está siendo procesado.`,
+    url: '/mis-pedidos',
+  }).catch((err) => console.error('[push] Order notification failed:', err))
 
   return completeOrder
 })

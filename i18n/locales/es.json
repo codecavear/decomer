@@ -226,6 +226,28 @@
       ]
     }
   },
+  "pwa": {
+    "install": {
+      "title": "Instalá DeComer",
+      "description": "Accedé más rápido, funciona sin conexión.",
+      "button": "Instalar",
+      "dismiss": "Ahora no"
+    },
+    "push": {
+      "pedido": {
+        "title": "¡Pedido recibido!",
+        "body": "Tu pedido está siendo procesado."
+      },
+      "recordatorio": {
+        "title": "¿Ya elegiste tus viandas?",
+        "body": "El menú de esta semana está listo. ¡No te quedes sin lugar!"
+      },
+      "promo": {
+        "title": "Novedad en DeComer",
+        "body": "Mirá qué hay de nuevo en el menú."
+      }
+    }
+  },
   "search": {
     "title": "El menú",
     "seo": {
