@@ -16,13 +16,15 @@ const ordersByStatus = computed(() => {
   if (!orders.value) return {
     confirmed: [],
     preparing: [],
-    ready: []
+    ready: [],
+    en_route: []
   }
 
   return {
     confirmed: orders.value.filter(o => o.status === 'confirmed'),
     preparing: orders.value.filter(o => o.status === 'preparing'),
-    ready: orders.value.filter(o => o.status === 'ready')
+    ready: orders.value.filter(o => o.status === 'ready'),
+    en_route: orders.value.filter(o => o.status === 'en_route')
   }
 })
 
@@ -42,13 +44,15 @@ async function updateOrderStatus(orderId: string, newStatus: string) {
 const statusColors = {
   confirmed: 'blue',
   preparing: 'yellow',
-  ready: 'green'
+  ready: 'green',
+  en_route: 'purple'
 }
 
 const statusLabels = {
   confirmed: 'Confirmados',
   preparing: 'En Preparación',
-  ready: 'Listos'
+  ready: 'Listos',
+  en_route: 'En Camino'
 }
 </script>
 
@@ -124,10 +128,10 @@ const statusLabels = {
       <!-- Kanban Board (Pedidos) -->
       <div
         v-if="activeTab === 'orders'"
-        class="grid grid-cols-1 md:grid-cols-3 gap-6"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
         <div
-          v-for="statusKey in ['confirmed', 'preparing', 'ready']"
+          v-for="statusKey in ['confirmed', 'preparing', 'ready', 'en_route']"
           :key="statusKey"
         >
           <UCard>
@@ -205,7 +209,23 @@ const statusLabels = {
                       Marcar listo
                     </UButton>
                     <UButton
-                      v-if="statusKey === 'ready'"
+                      v-if="statusKey === 'ready' && order.deliveryType === 'delivery'"
+                      size="xs"
+                      color="purple"
+                      @click="updateOrderStatus(order.id, 'en_route')"
+                    >
+                      En Camino
+                    </UButton>
+                    <UButton
+                      v-if="statusKey === 'ready' && order.deliveryType === 'pickup'"
+                      size="xs"
+                      color="blue"
+                      @click="updateOrderStatus(order.id, 'delivered')"
+                    >
+                      Entregado
+                    </UButton>
+                    <UButton
+                      v-if="statusKey === 'en_route'"
                       size="xs"
                       color="blue"
                       @click="updateOrderStatus(order.id, 'delivered')"

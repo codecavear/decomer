@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../../../utils/db'
 import { orders, orderStatusEnum } from '../../../../database/schema/orders'
+import { sendOrderStatusNotification } from '../../../../utils/push-notifications'
 
 const updateOrderSchema = z.object({
   status: z.enum(orderStatusEnum)
@@ -48,8 +49,15 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // TODO: Send push notification to user about status change
-  // TODO: If status is 'ready' and deliveryType is 'delivery', notify delivery partner
+  // Send push notification to user about status change
+  try {
+    await sendOrderStatusNotification(updatedOrder.userId, updatedOrder.id, status)
+  } catch (error) {
+    console.error('Failed to send push notification:', error)
+    // Don't fail the request if notification fails
+  }
+
+  // TODO: If status is 'ready' or 'en_route' and deliveryType is 'delivery', notify delivery partner (Rappi/PedidosYa integration)
 
   return updatedOrder
 })

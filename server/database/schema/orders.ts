@@ -4,7 +4,7 @@ import { users } from './users'
 import { stores } from './stores'
 import { products } from './products'
 
-export const orderStatusEnum = ['pending', 'confirmed', 'preparing', 'ready', 'delivered', 'cancelled'] as const
+export const orderStatusEnum = ['pending', 'confirmed', 'preparing', 'ready', 'en_route', 'delivered', 'cancelled'] as const
 export const deliveryTypeEnum = ['pickup', 'delivery'] as const
 export const paymentStatusEnum = ['pending', 'paid', 'failed', 'refunded'] as const
 
