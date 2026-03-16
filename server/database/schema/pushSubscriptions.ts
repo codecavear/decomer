@@ -7,7 +7,7 @@ export const pushSubscriptions = pgTable('decomer_push_subscriptions', {
   endpoint: text('endpoint').notNull().unique(),
   p256dh: text('p256dh').notNull(),
   auth: text('auth').notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
 })
 
 export type PushSubscription = typeof pushSubscriptions.$inferSelect

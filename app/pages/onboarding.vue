@@ -101,7 +101,6 @@ const skip = () => {
 
 <template>
   <div class="min-h-screen bg-white dark:bg-neutral-950 flex flex-col">
-
     <!-- Progress dots -->
     <div class="flex justify-center gap-2 pt-10 pb-6">
       <div
@@ -127,11 +126,18 @@ const skip = () => {
     </div>
 
     <!-- Step content -->
-    <Transition name="slide" mode="out-in">
-      <div :key="step" class="flex-1 flex flex-col items-center justify-center px-8 text-center max-w-md mx-auto w-full">
-
+    <Transition
+      name="slide"
+      mode="out-in"
+    >
+      <div
+        :key="step"
+        class="flex-1 flex flex-col items-center justify-center px-8 text-center max-w-md mx-auto w-full"
+      >
         <!-- Icon -->
-        <div class="text-7xl mb-8 select-none">{{ steps[step].icon }}</div>
+        <div class="text-7xl mb-8 select-none">
+          {{ steps[step].icon }}
+        </div>
 
         <!-- Title -->
         <h1 class="text-3xl font-bold mb-4 text-neutral-900 dark:text-white">
@@ -139,12 +145,18 @@ const skip = () => {
         </h1>
 
         <!-- Body text -->
-        <p v-if="steps[step].body" class="text-lg text-neutral-500 dark:text-neutral-400 mb-10 leading-relaxed">
+        <p
+          v-if="steps[step].body"
+          class="text-lg text-neutral-500 dark:text-neutral-400 mb-10 leading-relaxed"
+        >
           {{ steps[step].body }}
         </p>
 
         <!-- Step 3: Plan selector -->
-        <div v-if="step === 3" class="w-full space-y-3 mb-10 text-left">
+        <div
+          v-if="step === 3"
+          class="w-full space-y-3 mb-10 text-left"
+        >
           <button
             v-for="plan in plans"
             :key="plan.id"
@@ -159,9 +171,17 @@ const skip = () => {
             <div>
               <p :class="['font-semibold', plan.highlight ? 'text-primary-600 dark:text-primary-400' : '']">
                 {{ plan.label }}
-                <UBadge v-if="plan.highlight" label="Popular" color="primary" size="xs" class="ml-2" />
+                <UBadge
+                  v-if="plan.highlight"
+                  label="Popular"
+                  color="primary"
+                  size="xs"
+                  class="ml-2"
+                />
               </p>
-              <p class="text-sm text-neutral-500">{{ plan.sub }}</p>
+              <p class="text-sm text-neutral-500">
+                {{ plan.sub }}
+              </p>
             </div>
             <UIcon
               :name="selectedPlan === plan.id ? 'i-lucide-check-circle' : 'i-lucide-circle'"
@@ -172,7 +192,10 @@ const skip = () => {
         </div>
 
         <!-- Step 4: Address input -->
-        <div v-if="step === 4" class="w-full mb-10">
+        <div
+          v-if="step === 4"
+          class="w-full mb-10"
+        >
           <UInput
             v-model="address"
             placeholder="Ej: Av. Colón 1234, Nueva Córdoba"
@@ -184,7 +207,6 @@ const skip = () => {
             Barrios: Nueva Córdoba, Centro, Cerro, Urca, Cofico, Alberdi, General Paz y alrededores.
           </p>
         </div>
-
       </div>
     </Transition>
 
@@ -198,7 +220,6 @@ const skip = () => {
         @click="next"
       />
     </div>
-
   </div>
 </template>
 

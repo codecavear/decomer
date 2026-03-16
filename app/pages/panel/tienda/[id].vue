@@ -1,4 +1,31 @@
 <script setup lang="ts">
+interface Location {
+  address?: string
+  city?: string
+  country?: string
+  latitude?: number
+  longitude?: number
+  isPrimary?: boolean
+}
+
+interface Schedule {
+  dayOfWeek: number
+  isClosed: boolean
+  openTime?: string
+  closeTime?: string
+}
+
+interface StoreData {
+  name: string
+  description?: string
+  logoUrl?: string
+  logoPublicId?: string
+  bannerUrl?: string
+  bannerPublicId?: string
+  locations?: Location[]
+  schedules?: Schedule[]
+}
+
 definePageMeta({
   layout: 'panel',
   middleware: 'auth'
@@ -8,7 +35,7 @@ const route = useRoute()
 const storeId = route.params.id as string
 
 // Load store
-const { data: storeData, error: storeError } = await useFetch(`/api/stores/${storeId}`)
+const { data: storeData, error: storeError } = await useFetch<StoreData>(`/api/stores/${storeId}`)
 if (storeError.value || !storeData.value) {
   throw createError({ statusCode: 404, message: 'Tienda no encontrada' })
 }
@@ -51,7 +78,7 @@ storeInfo.bannerUrl = store.bannerUrl ?? null
 storeInfo.bannerPublicId = store.bannerPublicId ?? null
 
 // Location form - initialize from store's primary location
-const primaryLocation = store.locations?.find((l: any) => l.isPrimary) || store.locations?.[0]
+const primaryLocation = store.locations?.find((l: Location) => l.isPrimary) || store.locations?.[0]
 const location = reactive({
   address: primaryLocation?.address ?? '',
   city: primaryLocation?.city ?? '',
@@ -74,8 +101,8 @@ const daysOfWeek = [
 // Initialize schedule from store data
 const storeSchedules = store.schedules || []
 const schedule = ref(
-  daysOfWeek.map(day => {
-    const existing = storeSchedules.find((s: any) => s.dayOfWeek === day.value)
+  daysOfWeek.map((day) => {
+    const existing = storeSchedules.find((s: Schedule) => s.dayOfWeek === day.value)
     return {
       day: day.value,
       label: day.label,
@@ -95,11 +122,17 @@ const contactTypes = [
   { value: 'facebook', label: 'Facebook', icon: 'i-lucide-facebook' }
 ]
 
+interface Contact {
+  type: string
+  value: string
+  isPrimary: boolean
+}
+
 // Initialize contacts from store data
-const storeContacts = store.contacts || []
+const storeContacts = (store as { contacts?: Contact[] }).contacts || []
 const contacts = ref(
   storeContacts.length > 0
-    ? storeContacts.map((c: any) => ({ type: c.type, value: c.value, isPrimary: c.isPrimary }))
+    ? storeContacts.map((c: Contact) => ({ type: c.type, value: c.value, isPrimary: c.isPrimary }))
     : [{ type: 'phone', value: '', isPrimary: true }]
 )
 
@@ -147,7 +180,7 @@ const handleBannerSelect = (event: Event) => {
   }
 }
 
-const uploadImage = async (file: File): Promise<{ url: string; publicId: string } | null> => {
+const uploadImage = async (file: File): Promise<{ url: string, publicId: string } | null> => {
   try {
     const formData = new FormData()
     formData.append('image', file)
@@ -205,8 +238,9 @@ const saveInfo = async () => {
       }
     })
     infoToast.add({ title: 'Guardado', description: 'Los datos de la tienda se actualizaron correctamente.', color: 'success' })
-  } catch (e: any) {
-    infoToast.add({ title: 'Error', description: e?.data?.message || 'No se pudieron guardar los cambios.', color: 'error' })
+  } catch (e: unknown) {
+    const error = e as { data?: { message?: string } }
+    infoToast.add({ title: 'Error', description: error?.data?.message || 'No se pudieron guardar los cambios.', color: 'error' })
   } finally {
     isSavingInfo.value = false
   }
@@ -217,7 +251,7 @@ const { attachAutocomplete } = useAddressAutocomplete()
 const addressInputRef = ref<HTMLElement | null>(null)
 let autocompleteInstance: google.maps.places.Autocomplete | null = null
 
-function onAddressSelect(result: { address: string; city: string; country: string; latitude: string; longitude: string }) {
+function onAddressSelect(result: { address: string, city: string, country: string, latitude: string, longitude: string }) {
   location.address = result.address
   location.city = result.city
   location.country = result.country
@@ -230,7 +264,7 @@ watch(editingSection, async (section) => {
   await nextTick()
   if (autocompleteInstance) return
   const comp = addressInputRef.value
-  const el = (comp as any)?.$el ?? comp
+  const el = (comp as { $el?: HTMLElement })?.$el ?? comp
   const input = el instanceof HTMLInputElement ? el : el?.querySelector?.('input')
   if (input) {
     autocompleteInstance = await attachAutocomplete(input, onAddressSelect)
@@ -315,7 +349,9 @@ const saveContacts = async () => {
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
-              <h3 class="font-semibold text-highlighted">Informacion basica</h3>
+              <h3 class="font-semibold text-highlighted">
+                Informacion basica
+              </h3>
               <UButton
                 :color="editingSection === 'info' ? 'primary' : 'neutral'"
                 variant="ghost"
@@ -328,53 +364,124 @@ const saveContacts = async () => {
             </div>
           </template>
 
-          <div v-if="editingSection === 'info'" class="space-y-4">
-            <UFormField label="Nombre de la tienda" required>
-              <UInput v-model="storeInfo.name" placeholder="Ej: Veggie Market" icon="i-lucide-store" />
+          <div
+            v-if="editingSection === 'info'"
+            class="space-y-4"
+          >
+            <UFormField
+              label="Nombre de la tienda"
+              required
+            >
+              <UInput
+                v-model="storeInfo.name"
+                placeholder="Ej: Veggie Market"
+                icon="i-lucide-store"
+              />
             </UFormField>
 
             <UFormField label="Descripcion">
-              <UTextarea v-model="storeInfo.description" placeholder="Describe tu tienda..." :rows="3" />
+              <UTextarea
+                v-model="storeInfo.description"
+                placeholder="Describe tu tienda..."
+                :rows="3"
+              />
             </UFormField>
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField label="Logo">
                 <div class="space-y-2">
-                  <input ref="logoFileInput" type="file" accept="image/*" class="hidden" @change="handleLogoSelect">
-                  <div class="size-24 rounded-lg border-2 border-dashed border-default flex items-center justify-center overflow-hidden cursor-pointer" @click="triggerLogoInput">
-                    <img v-if="logoPreview" :src="logoPreview" alt="Logo" class="size-full object-contain">
-                    <UIcon v-else name="i-lucide-image" class="size-8 text-muted" />
+                  <input
+                    ref="logoFileInput"
+                    type="file"
+                    accept="image/*"
+                    class="hidden"
+                    @change="handleLogoSelect"
+                  >
+                  <div
+                    class="size-24 rounded-lg border-2 border-dashed border-default flex items-center justify-center overflow-hidden cursor-pointer"
+                    @click="triggerLogoInput"
+                  >
+                    <img
+                      v-if="logoPreview"
+                      :src="logoPreview"
+                      alt="Logo"
+                      class="size-full object-contain"
+                    >
+                    <UIcon
+                      v-else
+                      name="i-lucide-image"
+                      class="size-8 text-muted"
+                    />
                   </div>
                 </div>
               </UFormField>
 
               <UFormField label="Banner">
                 <div class="space-y-2">
-                  <input ref="bannerFileInput" type="file" accept="image/*" class="hidden" @change="handleBannerSelect">
-                  <div class="w-full h-24 rounded-lg border-2 border-dashed border-default flex items-center justify-center overflow-hidden cursor-pointer" @click="triggerBannerInput">
-                    <img v-if="bannerPreview" :src="bannerPreview" alt="Banner" class="size-full object-contain">
-                    <UIcon v-else name="i-lucide-image" class="size-8 text-muted" />
+                  <input
+                    ref="bannerFileInput"
+                    type="file"
+                    accept="image/*"
+                    class="hidden"
+                    @change="handleBannerSelect"
+                  >
+                  <div
+                    class="w-full h-24 rounded-lg border-2 border-dashed border-default flex items-center justify-center overflow-hidden cursor-pointer"
+                    @click="triggerBannerInput"
+                  >
+                    <img
+                      v-if="bannerPreview"
+                      :src="bannerPreview"
+                      alt="Banner"
+                      class="size-full object-contain"
+                    >
+                    <UIcon
+                      v-else
+                      name="i-lucide-image"
+                      class="size-8 text-muted"
+                    />
                   </div>
                 </div>
               </UFormField>
             </div>
 
             <div class="flex justify-end">
-              <UButton color="primary" icon="i-lucide-save" :loading="isSavingInfo" @click="saveInfo">
+              <UButton
+                color="primary"
+                icon="i-lucide-save"
+                :loading="isSavingInfo"
+                @click="saveInfo"
+              >
                 Guardar
               </UButton>
             </div>
           </div>
 
-          <div v-else class="space-y-2">
+          <div
+            v-else
+            class="space-y-2"
+          >
             <div class="flex items-center gap-3">
               <div class="size-12 rounded-lg overflow-hidden bg-muted flex items-center justify-center shrink-0">
-                <img v-if="logoPreview" :src="logoPreview" alt="Logo" class="size-full object-contain">
-                <UIcon v-else name="i-lucide-store" class="size-6 text-muted" />
+                <img
+                  v-if="logoPreview"
+                  :src="logoPreview"
+                  alt="Logo"
+                  class="size-full object-contain"
+                >
+                <UIcon
+                  v-else
+                  name="i-lucide-store"
+                  class="size-6 text-muted"
+                />
               </div>
               <div>
-                <p class="font-semibold text-highlighted">{{ storeInfo.name }}</p>
-                <p class="text-sm text-muted line-clamp-2">{{ storeInfo.description || 'Sin descripcion' }}</p>
+                <p class="font-semibold text-highlighted">
+                  {{ storeInfo.name }}
+                </p>
+                <p class="text-sm text-muted line-clamp-2">
+                  {{ storeInfo.description || 'Sin descripcion' }}
+                </p>
               </div>
             </div>
           </div>
@@ -384,7 +491,9 @@ const saveContacts = async () => {
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
-              <h3 class="font-semibold text-highlighted">Ubicacion</h3>
+              <h3 class="font-semibold text-highlighted">
+                Ubicacion
+              </h3>
               <UButton
                 :color="editingSection === 'location' ? 'primary' : 'neutral'"
                 variant="ghost"
@@ -397,8 +506,14 @@ const saveContacts = async () => {
             </div>
           </template>
 
-          <div v-if="editingSection === 'location'" class="space-y-4">
-            <UFormField label="Direccion" required>
+          <div
+            v-if="editingSection === 'location'"
+            class="space-y-4"
+          >
+            <UFormField
+              label="Direccion"
+              required
+            >
               <UInput
                 ref="addressInputRef"
                 v-model="location.address"
@@ -408,8 +523,14 @@ const saveContacts = async () => {
               />
             </UFormField>
 
-            <div v-if="location.address" class="flex items-center gap-2 text-sm text-muted">
-              <UIcon name="i-lucide-map-pin" class="size-4 text-primary shrink-0" />
+            <div
+              v-if="location.address"
+              class="flex items-center gap-2 text-sm text-muted"
+            >
+              <UIcon
+                name="i-lucide-map-pin"
+                class="size-4 text-primary shrink-0"
+              />
               <span>{{ location.address }}, {{ location.city }}, {{ location.country }}</span>
             </div>
 
@@ -420,16 +541,27 @@ const saveContacts = async () => {
             />
 
             <div class="flex justify-end">
-              <UButton color="primary" icon="i-lucide-save" @click="saveLocation">
+              <UButton
+                color="primary"
+                icon="i-lucide-save"
+                @click="saveLocation"
+              >
                 Guardar
               </UButton>
             </div>
           </div>
 
-          <div v-else class="space-y-3">
+          <div
+            v-else
+            class="space-y-3"
+          >
             <div class="space-y-1">
-              <p class="text-sm text-highlighted">{{ location.address || 'Sin direccion' }}</p>
-              <p class="text-sm text-muted">{{ location.city || 'Sin ciudad' }}, {{ location.country }}</p>
+              <p class="text-sm text-highlighted">
+                {{ location.address || 'Sin direccion' }}
+              </p>
+              <p class="text-sm text-muted">
+                {{ location.city || 'Sin ciudad' }}, {{ location.country }}
+              </p>
             </div>
 
             <div
@@ -437,10 +569,18 @@ const saveContacts = async () => {
               ref="locationMapContainer"
               class="w-full h-48 rounded-lg"
             />
-            <div v-else class="w-full h-48 rounded-lg bg-muted flex items-center justify-center">
+            <div
+              v-else
+              class="w-full h-48 rounded-lg bg-muted flex items-center justify-center"
+            >
               <div class="text-center">
-                <UIcon name="i-lucide-map-pin-off" class="size-8 text-muted mx-auto mb-1" />
-                <p class="text-xs text-muted">Sin coordenadas</p>
+                <UIcon
+                  name="i-lucide-map-pin-off"
+                  class="size-8 text-muted mx-auto mb-1"
+                />
+                <p class="text-xs text-muted">
+                  Sin coordenadas
+                </p>
               </div>
             </div>
           </div>
@@ -450,7 +590,9 @@ const saveContacts = async () => {
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
-              <h3 class="font-semibold text-highlighted">Horarios</h3>
+              <h3 class="font-semibold text-highlighted">
+                Horarios
+              </h3>
               <UButton
                 :color="editingSection === 'schedule' ? 'primary' : 'neutral'"
                 variant="ghost"
@@ -463,33 +605,68 @@ const saveContacts = async () => {
             </div>
           </template>
 
-          <div v-if="editingSection === 'schedule'" class="space-y-2">
+          <div
+            v-if="editingSection === 'schedule'"
+            class="space-y-2"
+          >
             <div
               v-for="day in schedule"
               :key="day.day"
               class="flex items-center gap-3 p-3 rounded-lg border border-default"
             >
-              <div class="w-24 text-sm font-medium text-highlighted">{{ day.label }}</div>
-              <USwitch v-model="day.isClosed" size="sm" />
-              <span class="text-xs" :class="day.isClosed ? 'text-red-500' : 'text-green-500'">
+              <div class="w-24 text-sm font-medium text-highlighted">
+                {{ day.label }}
+              </div>
+              <USwitch
+                v-model="day.isClosed"
+                size="sm"
+              />
+              <span
+                class="text-xs"
+                :class="day.isClosed ? 'text-red-500' : 'text-green-500'"
+              >
                 {{ day.isClosed ? 'Cerrado' : 'Abierto' }}
               </span>
-              <div v-if="!day.isClosed" class="flex items-center gap-1 ml-auto">
-                <UInput v-model="day.openTime" type="time" class="w-28" size="sm" />
+              <div
+                v-if="!day.isClosed"
+                class="flex items-center gap-1 ml-auto"
+              >
+                <UInput
+                  v-model="day.openTime"
+                  type="time"
+                  class="w-28"
+                  size="sm"
+                />
                 <span class="text-muted">-</span>
-                <UInput v-model="day.closeTime" type="time" class="w-28" size="sm" />
+                <UInput
+                  v-model="day.closeTime"
+                  type="time"
+                  class="w-28"
+                  size="sm"
+                />
               </div>
             </div>
 
             <div class="flex justify-end pt-2">
-              <UButton color="primary" icon="i-lucide-save" @click="saveSchedule">
+              <UButton
+                color="primary"
+                icon="i-lucide-save"
+                @click="saveSchedule"
+              >
                 Guardar
               </UButton>
             </div>
           </div>
 
-          <div v-else class="space-y-1">
-            <div v-for="day in schedule" :key="day.day" class="flex items-center justify-between text-sm">
+          <div
+            v-else
+            class="space-y-1"
+          >
+            <div
+              v-for="day in schedule"
+              :key="day.day"
+              class="flex items-center justify-between text-sm"
+            >
               <span class="text-highlighted">{{ day.label }}</span>
               <span :class="day.isClosed ? 'text-red-500' : 'text-muted'">
                 {{ day.isClosed ? 'Cerrado' : `${day.openTime} - ${day.closeTime}` }}
@@ -502,7 +679,9 @@ const saveContacts = async () => {
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
-              <h3 class="font-semibold text-highlighted">Contactos</h3>
+              <h3 class="font-semibold text-highlighted">
+                Contactos
+              </h3>
               <UButton
                 :color="editingSection === 'contacts' ? 'primary' : 'neutral'"
                 variant="ghost"
@@ -515,7 +694,10 @@ const saveContacts = async () => {
             </div>
           </template>
 
-          <div v-if="editingSection === 'contacts'" class="space-y-3">
+          <div
+            v-if="editingSection === 'contacts'"
+            class="space-y-3"
+          >
             <div
               v-for="(contact, index) in contacts"
               :key="index"
@@ -523,7 +705,12 @@ const saveContacts = async () => {
             >
               <div class="grid grid-cols-2 gap-3">
                 <UFormField label="Tipo">
-                  <USelect v-model="contact.type" :items="contactTypes" value-key="value" label-key="label" />
+                  <USelect
+                    v-model="contact.type"
+                    :items="contactTypes"
+                    value-key="value"
+                    label-key="label"
+                  />
                 </UFormField>
                 <UFormField label="Valor">
                   <UInput
@@ -536,7 +723,10 @@ const saveContacts = async () => {
               </div>
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <USwitch v-model="contact.isPrimary" size="sm" />
+                  <USwitch
+                    v-model="contact.isPrimary"
+                    size="sm"
+                  />
                   <span class="text-xs text-muted">Principal</span>
                 </div>
                 <UButton
@@ -550,24 +740,59 @@ const saveContacts = async () => {
               </div>
             </div>
 
-            <UButton color="neutral" variant="soft" icon="i-lucide-plus" size="sm" @click="addContact">
+            <UButton
+              color="neutral"
+              variant="soft"
+              icon="i-lucide-plus"
+              size="sm"
+              @click="addContact"
+            >
               Agregar contacto
             </UButton>
 
             <div class="flex justify-end">
-              <UButton color="primary" icon="i-lucide-save" @click="saveContacts">
+              <UButton
+                color="primary"
+                icon="i-lucide-save"
+                @click="saveContacts"
+              >
                 Guardar
               </UButton>
             </div>
           </div>
 
-          <div v-else class="space-y-2">
-            <div v-for="(contact, index) in contacts" :key="index" class="flex items-center gap-2 text-sm">
-              <UBadge color="neutral" variant="soft" size="sm">{{ contactTypes.find(t => t.value === contact.type)?.label || contact.type }}</UBadge>
+          <div
+            v-else
+            class="space-y-2"
+          >
+            <div
+              v-for="(contact, index) in contacts"
+              :key="index"
+              class="flex items-center gap-2 text-sm"
+            >
+              <UBadge
+                color="neutral"
+                variant="soft"
+                size="sm"
+              >
+                {{ contactTypes.find(t => t.value === contact.type)?.label || contact.type }}
+              </UBadge>
               <span class="text-highlighted">{{ contact.value || 'Sin valor' }}</span>
-              <UBadge v-if="contact.isPrimary" color="primary" variant="soft" size="sm">Principal</UBadge>
+              <UBadge
+                v-if="contact.isPrimary"
+                color="primary"
+                variant="soft"
+                size="sm"
+              >
+                Principal
+              </UBadge>
             </div>
-            <p v-if="contacts.length === 0" class="text-sm text-muted">Sin contactos</p>
+            <p
+              v-if="contacts.length === 0"
+              class="text-sm text-muted"
+            >
+              Sin contactos
+            </p>
           </div>
         </UCard>
       </div>

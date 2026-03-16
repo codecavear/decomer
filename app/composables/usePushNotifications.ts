@@ -18,7 +18,7 @@ export const usePushNotifications = () => {
     const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
     const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/')
     const rawData = atob(base64)
-    return Uint8Array.from([...rawData].map((c) => c.charCodeAt(0)))
+    return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)))
   }
 
   const requestPermission = async (): Promise<NotificationPermission> => {
@@ -50,7 +50,7 @@ export const usePushNotifications = () => {
       if (!subscription) {
         subscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),
+          applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
         })
       }
 
@@ -60,8 +60,8 @@ export const usePushNotifications = () => {
         body: {
           endpoint: subscriptionJson.endpoint,
           p256dh: subscriptionJson.keys?.p256dh,
-          auth: subscriptionJson.keys?.auth,
-        },
+          auth: subscriptionJson.keys?.auth
+        }
       })
 
       isSubscribed.value = true
@@ -86,7 +86,7 @@ export const usePushNotifications = () => {
 
       await $fetch('/api/push/unsubscribe', {
         method: 'POST',
-        body: { endpoint: subscription.endpoint },
+        body: { endpoint: subscription.endpoint }
       })
 
       await subscription.unsubscribe()
@@ -112,6 +112,6 @@ export const usePushNotifications = () => {
     requestPermission,
     subscribeToPush,
     unsubscribe,
-    checkSubscription,
+    checkSubscription
   }
 }

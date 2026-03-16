@@ -113,8 +113,8 @@ export default defineEventHandler(async (event) => {
     type: 'pedido',
     title: '¡Pedido recibido!',
     body: `Tu pedido por $${totalAmount.toFixed(2)} está siendo procesado.`,
-    url: '/mis-pedidos',
-  }).catch((err) => console.error('[push] Order notification failed:', err))
+    url: '/mis-pedidos'
+  }).catch(err => console.error('[push] Order notification failed:', err))
 
   return completeOrder
 })

@@ -537,4 +537,3 @@ const getAvailableStoresCount = (product: ProductWithStoreAssignments) => {
     </UModal>
   </div>
 </template>
-

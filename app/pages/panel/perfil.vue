@@ -33,16 +33,27 @@ const form = reactive({
   preferences: (profile.value?.preferences as string[]) ?? []
 })
 
+interface ProfileData {
+  name?: string
+  phone?: string
+  deliveryAddress?: string
+  deliveryNeighborhood?: string
+  deliveryNotes?: string
+  allergies?: string[]
+  preferences?: string[]
+}
+
 // Sync when profile loads
 watch(profile, (p) => {
   if (p) {
+    const profileData = p as ProfileData
     form.name = p.name ?? ''
-    form.phone = (p as any).phone ?? ''
-    form.deliveryAddress = (p as any).deliveryAddress ?? ''
-    form.deliveryNeighborhood = (p as any).deliveryNeighborhood ?? ''
-    form.deliveryNotes = (p as any).deliveryNotes ?? ''
-    form.allergies = ((p as any).allergies as string[]) ?? []
-    form.preferences = ((p as any).preferences as string[]) ?? []
+    form.phone = profileData.phone ?? ''
+    form.deliveryAddress = profileData.deliveryAddress ?? ''
+    form.deliveryNeighborhood = profileData.deliveryNeighborhood ?? ''
+    form.deliveryNotes = profileData.deliveryNotes ?? ''
+    form.allergies = profileData.allergies ?? []
+    form.preferences = profileData.preferences ?? []
   }
 })
 
@@ -57,8 +68,9 @@ const save = async () => {
     })
     await refresh()
     toast.add({ title: 'Perfil actualizado', color: 'success' })
-  } catch (e: any) {
-    toast.add({ title: 'Error', description: e.data?.message || 'No se pudo guardar', color: 'error' })
+  } catch (e: unknown) {
+    const error = e as { data?: { message?: string } }
+    toast.add({ title: 'Error', description: error.data?.message || 'No se pudo guardar', color: 'error' })
   } finally {
     isSaving.value = false
   }
@@ -79,7 +91,6 @@ const togglePreference = (p: string) => {
 
 <template>
   <div class="max-w-2xl mx-auto px-6 py-10 space-y-8">
-
     <!-- Header -->
     <div class="flex items-center gap-4">
       <UAvatar
@@ -88,8 +99,12 @@ const togglePreference = (p: string) => {
         size="xl"
       />
       <div>
-        <h1 class="text-2xl font-bold">{{ sessionUser?.name }}</h1>
-        <p class="text-neutral-500 text-sm">{{ sessionUser?.email }}</p>
+        <h1 class="text-2xl font-bold">
+          {{ sessionUser?.name }}
+        </h1>
+        <p class="text-neutral-500 text-sm">
+          {{ sessionUser?.email }}
+        </p>
       </div>
     </div>
 
@@ -97,13 +112,29 @@ const togglePreference = (p: string) => {
 
     <!-- Datos personales -->
     <div>
-      <h2 class="text-lg font-semibold mb-4">Datos personales</h2>
+      <h2 class="text-lg font-semibold mb-4">
+        Datos personales
+      </h2>
       <div class="space-y-4">
-        <UFormField label="Nombre" name="name">
-          <UInput v-model="form.name" placeholder="Tu nombre" class="w-full" />
+        <UFormField
+          label="Nombre"
+          name="name"
+        >
+          <UInput
+            v-model="form.name"
+            placeholder="Tu nombre"
+            class="w-full"
+          />
         </UFormField>
-        <UFormField label="Teléfono" name="phone">
-          <UInput v-model="form.phone" placeholder="+54 9 351 000-0000" class="w-full" />
+        <UFormField
+          label="Teléfono"
+          name="phone"
+        >
+          <UInput
+            v-model="form.phone"
+            placeholder="+54 9 351 000-0000"
+            class="w-full"
+          />
         </UFormField>
       </div>
     </div>
@@ -112,9 +143,14 @@ const togglePreference = (p: string) => {
 
     <!-- Dirección de entrega -->
     <div>
-      <h2 class="text-lg font-semibold mb-4">Dirección de entrega</h2>
+      <h2 class="text-lg font-semibold mb-4">
+        Dirección de entrega
+      </h2>
       <div class="space-y-4">
-        <UFormField label="Dirección" name="deliveryAddress">
+        <UFormField
+          label="Dirección"
+          name="deliveryAddress"
+        >
           <UInput
             v-model="form.deliveryAddress"
             placeholder="Av. Colón 1234"
@@ -122,10 +158,20 @@ const togglePreference = (p: string) => {
             class="w-full"
           />
         </UFormField>
-        <UFormField label="Barrio" name="deliveryNeighborhood">
-          <UInput v-model="form.deliveryNeighborhood" placeholder="Nueva Córdoba" class="w-full" />
+        <UFormField
+          label="Barrio"
+          name="deliveryNeighborhood"
+        >
+          <UInput
+            v-model="form.deliveryNeighborhood"
+            placeholder="Nueva Córdoba"
+            class="w-full"
+          />
         </UFormField>
-        <UFormField label="Notas de entrega" name="deliveryNotes">
+        <UFormField
+          label="Notas de entrega"
+          name="deliveryNotes"
+        >
           <UTextarea
             v-model="form.deliveryNotes"
             placeholder="Ej: Timbre 2B, dejar en portería..."
@@ -140,8 +186,12 @@ const togglePreference = (p: string) => {
 
     <!-- Alergias -->
     <div>
-      <h2 class="text-lg font-semibold mb-1">Alergias e intolerancias</h2>
-      <p class="text-sm text-neutral-500 mb-4">Seleccioná lo que querés que tengamos en cuenta.</p>
+      <h2 class="text-lg font-semibold mb-1">
+        Alergias e intolerancias
+      </h2>
+      <p class="text-sm text-neutral-500 mb-4">
+        Seleccioná lo que querés que tengamos en cuenta.
+      </p>
       <div class="flex flex-wrap gap-2">
         <UButton
           v-for="a in ALLERGIES_OPTIONS"
@@ -159,8 +209,12 @@ const togglePreference = (p: string) => {
 
     <!-- Preferencias -->
     <div>
-      <h2 class="text-lg font-semibold mb-1">Preferencias alimentarias</h2>
-      <p class="text-sm text-neutral-500 mb-4">Para mostrarte las viandas más relevantes.</p>
+      <h2 class="text-lg font-semibold mb-1">
+        Preferencias alimentarias
+      </h2>
+      <p class="text-sm text-neutral-500 mb-4">
+        Para mostrarte las viandas más relevantes.
+      </p>
       <div class="flex flex-wrap gap-2">
         <UButton
           v-for="p in PREFERENCES_OPTIONS"
@@ -185,6 +239,5 @@ const togglePreference = (p: string) => {
         @click="save"
       />
     </div>
-
   </div>
 </template>

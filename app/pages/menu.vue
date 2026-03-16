@@ -52,8 +52,8 @@ const filteredViandas = computed(() => {
   if (searchQuery.value.trim()) {
     const q = searchQuery.value.toLowerCase()
     list = list.filter(v =>
-      v.name.toLowerCase().includes(q) ||
-      v.description?.toLowerCase().includes(q)
+      v.name.toLowerCase().includes(q)
+      || v.description?.toLowerCase().includes(q)
     )
   }
 
@@ -78,7 +78,9 @@ const removeFromCart = (id: string) => {
   if (cart.value[id] > 1) {
     cart.value[id]--
   } else {
-    delete cart.value[id]
+    cart.value = Object.fromEntries(
+      Object.entries(cart.value).filter(([key]) => key !== id)
+    )
   }
 }
 
@@ -93,14 +95,17 @@ const cartCount = computed(() =>
 
 <template>
   <div class="min-h-screen bg-white dark:bg-neutral-950">
-
     <!-- Header section -->
     <div class="pt-12 pb-8 px-6 border-b border-neutral-200 dark:border-neutral-800">
       <div class="max-w-6xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <p class="text-sm text-neutral-500 uppercase tracking-wider mb-1">Cocinado por Lighuen</p>
-            <h1 class="text-4xl font-bold">El menú</h1>
+            <p class="text-sm text-neutral-500 uppercase tracking-wider mb-1">
+              Cocinado por Lighuen
+            </p>
+            <h1 class="text-4xl font-bold">
+              El menú
+            </h1>
           </div>
 
           <!-- Search -->
@@ -129,10 +134,16 @@ const cartCount = computed(() =>
 
     <!-- Content -->
     <div class="max-w-6xl mx-auto px-6 py-10">
-
       <!-- Loading -->
-      <div v-if="pending" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <USkeleton v-for="i in 6" :key="i" class="h-72 rounded-2xl" />
+      <div
+        v-if="pending"
+        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <USkeleton
+          v-for="i in 6"
+          :key="i"
+          class="h-72 rounded-2xl"
+        />
       </div>
 
       <!-- Error -->
@@ -145,14 +156,30 @@ const cartCount = computed(() =>
       />
 
       <!-- Empty -->
-      <div v-else-if="!filteredViandas.length" class="text-center py-20">
-        <UIcon name="i-lucide-utensils" class="w-12 h-12 text-neutral-300 mx-auto mb-4" />
-        <p class="text-neutral-500">No hay viandas que coincidan con tu búsqueda.</p>
-        <UButton label="Ver todas" variant="ghost" class="mt-4" @click="activeFilter = 'todos'; searchQuery = ''" />
+      <div
+        v-else-if="!filteredViandas.length"
+        class="text-center py-20"
+      >
+        <UIcon
+          name="i-lucide-utensils"
+          class="w-12 h-12 text-neutral-300 mx-auto mb-4"
+        />
+        <p class="text-neutral-500">
+          No hay viandas que coincidan con tu búsqueda.
+        </p>
+        <UButton
+          label="Ver todas"
+          variant="ghost"
+          class="mt-4"
+          @click="activeFilter = 'todos'; searchQuery = ''"
+        />
       </div>
 
       <!-- Grid -->
-      <div v-else class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        v-else
+        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         <div
           v-for="vianda in filteredViandas"
           :key="vianda.id"
@@ -167,8 +194,14 @@ const cartCount = computed(() =>
               class="w-full h-full object-cover"
               loading="lazy"
             />
-            <div v-else class="w-full h-full flex items-center justify-center">
-              <UIcon name="i-lucide-utensils" class="w-8 h-8 text-neutral-300" />
+            <div
+              v-else
+              class="w-full h-full flex items-center justify-center"
+            >
+              <UIcon
+                name="i-lucide-utensils"
+                class="w-8 h-8 text-neutral-300"
+              />
             </div>
 
             <!-- Vegan badge -->
@@ -184,7 +217,9 @@ const cartCount = computed(() =>
           <!-- Info -->
           <div class="p-5 flex flex-col flex-1">
             <div class="flex items-start justify-between gap-2 mb-2">
-              <h3 class="font-semibold text-base leading-tight">{{ vianda.name }}</h3>
+              <h3 class="font-semibold text-base leading-tight">
+                {{ vianda.name }}
+              </h3>
               <UBadge
                 v-if="vianda.category"
                 :label="vianda.category"
@@ -195,12 +230,18 @@ const cartCount = computed(() =>
               />
             </div>
 
-            <p v-if="vianda.description" class="text-sm text-neutral-500 dark:text-neutral-400 mb-4 line-clamp-2">
+            <p
+              v-if="vianda.description"
+              class="text-sm text-neutral-500 dark:text-neutral-400 mb-4 line-clamp-2"
+            >
               {{ vianda.description }}
             </p>
 
             <!-- Macros placeholder — pendiente de migration -->
-            <div v-if="vianda.calories" class="flex gap-3 text-xs text-neutral-400 mb-4">
+            <div
+              v-if="vianda.calories"
+              class="flex gap-3 text-xs text-neutral-400 mb-4"
+            >
               <span>{{ vianda.calories }} kcal</span>
               <span>{{ vianda.protein }}g prot</span>
               <span>{{ vianda.carbs }}g carb</span>
@@ -213,7 +254,10 @@ const cartCount = computed(() =>
               </span>
 
               <!-- Add to cart -->
-              <div v-if="cart[vianda.id]" class="flex items-center gap-2">
+              <div
+                v-if="cart[vianda.id]"
+                class="flex items-center gap-2"
+              >
                 <UButton
                   icon="i-lucide-minus"
                   color="neutral"
@@ -257,7 +301,6 @@ const cartCount = computed(() =>
         />
       </div>
     </Transition>
-
   </div>
 </template>
 

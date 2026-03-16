@@ -203,4 +203,3 @@ const providers = [{
     </div>
   </div>
 </template>
-

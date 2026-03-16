@@ -71,8 +71,9 @@ const updateOrderStatus = async (order: Order, newStatus: OrderStatus) => {
     })
     order.status = newStatus
     toast.add({ title: 'Estado actualizado', color: 'success' })
-  } catch (e: any) {
-    toast.add({ title: 'Error', description: e?.data?.message || 'No se pudo actualizar', color: 'error' })
+  } catch (e: unknown) {
+    const error = e as { data?: { message?: string } }
+    toast.add({ title: 'Error', description: error?.data?.message || 'No se pudo actualizar', color: 'error' })
   }
 }
 
@@ -118,212 +119,210 @@ const getNextStatusActions = (currentStatus: OrderStatus) => {
     </template>
 
     <template #body>
-    <div class="space-y-6">
-
-    <!-- Status filter tabs -->
-    <div class="flex flex-wrap gap-3">
-      <UButton
-        v-for="status in statusOptions"
-        :key="status.value"
-        :color="statusFilter === status.value ? status.color : 'neutral'"
-        :variant="statusFilter === status.value ? 'solid' : 'soft'"
-        size="lg"
-        class="hover:scale-105 transition-transform font-semibold"
-        @click="statusFilter = status.value"
-      >
-        {{ status.label }}
-      </UButton>
-    </div>
-
-    <!-- Orders list -->
-    <UCard class="border-2 border-gray-200 dark:border-gray-800">
-      <div
-        v-if="filteredOrders.length > 0"
-        class="space-y-4"
-      >
-        <div
-          v-for="order in filteredOrders"
-          :key="order.id"
-          class="border-2 border-gray-200 dark:border-gray-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg"
-        >
-          <!-- Order header -->
-          <div
-            class="flex items-center justify-between p-5 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/50 transition-colors cursor-pointer"
-            @click="toggleOrderDetails(order.id)"
+      <div class="space-y-6">
+        <!-- Status filter tabs -->
+        <div class="flex flex-wrap gap-3">
+          <UButton
+            v-for="status in statusOptions"
+            :key="status.value"
+            :color="statusFilter === status.value ? status.color : 'neutral'"
+            :variant="statusFilter === status.value ? 'solid' : 'soft'"
+            size="lg"
+            class="hover:scale-105 transition-transform font-semibold"
+            @click="statusFilter = status.value"
           >
-            <div class="flex items-center gap-4 flex-1">
-              <UAvatar
-                :name="order.customerName"
-                :src="order.customerAvatar"
-                size="lg"
-                class="ring-2 ring-emerald-200 dark:ring-emerald-800"
-              />
-              <div class="flex-1">
-                <div class="flex items-center gap-3">
-                  <p class="font-bold text-lg text-gray-900 dark:text-white">
-                    {{ order.customerName }}
-                  </p>
-                  <span class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900 px-3 py-1 rounded-full">{{ order.orderNumber }}</span>
-                </div>
-                <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  <span class="flex items-center gap-1.5 font-medium">
-                    <UIcon
-                      name="i-lucide-package"
-                      class="size-4 text-emerald-600 dark:text-emerald-400"
-                    />
-                    {{ order.items }} items
-                  </span>
-                  <span class="flex items-center gap-1.5 font-medium">
-                    <UIcon
-                      :name="order.deliveryType === 'delivery' ? 'i-lucide-truck' : 'i-lucide-store'"
-                      class="size-4 text-emerald-600 dark:text-emerald-400"
-                    />
-                    {{ order.deliveryType === 'delivery' ? 'Delivery' : 'Retiro' }}
-                  </span>
-                  <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400">${{ order.total }}</span>
-                </div>
-              </div>
-            </div>
+            {{ status.label }}
+          </UButton>
+        </div>
 
-            <div class="flex items-center gap-4">
-              <UBadge
-                :color="getStatusColor(order.status)"
-                size="lg"
+        <!-- Orders list -->
+        <UCard class="border-2 border-gray-200 dark:border-gray-800">
+          <div
+            v-if="filteredOrders.length > 0"
+            class="space-y-4"
+          >
+            <div
+              v-for="order in filteredOrders"
+              :key="order.id"
+              class="border-2 border-gray-200 dark:border-gray-800 hover:border-emerald-400 dark:hover:border-emerald-600 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg"
+            >
+              <!-- Order header -->
+              <div
+                class="flex items-center justify-between p-5 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/50 transition-colors cursor-pointer"
+                @click="toggleOrderDetails(order.id)"
               >
-                {{ getStatusLabel(order.status) }}
-              </UBadge>
-              <div class="size-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <UIcon
-                  :name="expandedOrders.has(order.id) ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
-                  class="size-5 text-gray-600 dark:text-gray-400"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- Order details (expanded) -->
-          <div
-            v-if="expandedOrders.has(order.id)"
-            class="border-t-2 border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50"
-          >
-            <div class="p-6 space-y-5">
-              <!-- Order info -->
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <p class="text-sm text-muted-foreground">
-                    Fecha del pedido
-                  </p>
-                  <p class="font-medium">
-                    {{ new Date(order.createdAt).toLocaleString('es-AR') }}
-                  </p>
+                <div class="flex items-center gap-4 flex-1">
+                  <UAvatar
+                    :name="order.customerName"
+                    :src="order.customerAvatar"
+                    size="lg"
+                    class="ring-2 ring-emerald-200 dark:ring-emerald-800"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center gap-3">
+                      <p class="font-bold text-lg text-gray-900 dark:text-white">
+                        {{ order.customerName }}
+                      </p>
+                      <span class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900 px-3 py-1 rounded-full">{{ order.orderNumber }}</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-2">
+                      <span class="flex items-center gap-1.5 font-medium">
+                        <UIcon
+                          name="i-lucide-package"
+                          class="size-4 text-emerald-600 dark:text-emerald-400"
+                        />
+                        {{ order.items }} items
+                      </span>
+                      <span class="flex items-center gap-1.5 font-medium">
+                        <UIcon
+                          :name="order.deliveryType === 'delivery' ? 'i-lucide-truck' : 'i-lucide-store'"
+                          class="size-4 text-emerald-600 dark:text-emerald-400"
+                        />
+                        {{ order.deliveryType === 'delivery' ? 'Delivery' : 'Retiro' }}
+                      </span>
+                      <span class="font-bold text-lg text-emerald-600 dark:text-emerald-400">${{ order.total }}</span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p class="text-sm text-muted-foreground">
-                    Tipo de entrega
-                  </p>
-                  <p class="font-medium">
-                    {{ order.deliveryType === 'delivery' ? 'Delivery' : 'Retiro en tienda' }}
-                  </p>
-                </div>
-              </div>
 
-              <!-- Order notes -->
-              <div v-if="order.notes">
-                <p class="text-sm font-semibold text-gray-600 dark:text-gray-300 mb-2">
-                  Notas del cliente
-                </p>
-                <div class="p-4 bg-white dark:bg-gray-800 rounded-xl border-2 border-amber-200 dark:border-amber-800">
-                  <div class="flex gap-3">
+                <div class="flex items-center gap-4">
+                  <UBadge
+                    :color="getStatusColor(order.status)"
+                    size="lg"
+                  >
+                    {{ getStatusLabel(order.status) }}
+                  </UBadge>
+                  <div class="size-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
                     <UIcon
-                      name="i-lucide-message-square"
-                      class="size-5 text-amber-600 shrink-0 mt-0.5"
+                      :name="expandedOrders.has(order.id) ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'"
+                      class="size-5 text-gray-600 dark:text-gray-400"
                     />
-                    <p class="text-sm text-gray-700 dark:text-gray-300">
-                      {{ order.notes }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order details (expanded) -->
+              <div
+                v-if="expandedOrders.has(order.id)"
+                class="border-t-2 border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50"
+              >
+                <div class="p-6 space-y-5">
+                  <!-- Order info -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p class="text-sm text-muted-foreground">
+                        Fecha del pedido
+                      </p>
+                      <p class="font-medium">
+                        {{ new Date(order.createdAt).toLocaleString('es-AR') }}
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-sm text-muted-foreground">
+                        Tipo de entrega
+                      </p>
+                      <p class="font-medium">
+                        {{ order.deliveryType === 'delivery' ? 'Delivery' : 'Retiro en tienda' }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Order notes -->
+                  <div v-if="order.notes">
+                    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300 mb-2">
+                      Notas del cliente
                     </p>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-xl border-2 border-amber-200 dark:border-amber-800">
+                      <div class="flex gap-3">
+                        <UIcon
+                          name="i-lucide-message-square"
+                          class="size-5 text-amber-600 shrink-0 mt-0.5"
+                        />
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          {{ order.notes }}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <!-- Status actions -->
-              <div
-                v-if="getNextStatusActions(order.status).length > 0"
-                class="flex flex-wrap gap-3"
-              >
-                <p class="text-sm font-semibold text-gray-600 dark:text-gray-300 w-full">
-                  Actualizar estado:
-                </p>
-                <UButton
-                  v-for="action in getNextStatusActions(order.status)"
-                  :key="action.status"
-                  :color="action.color as any"
-                  variant="soft"
-                  size="lg"
-                  class="hover:scale-105 transition-transform font-semibold"
-                  @click="updateOrderStatus(order, action.status)"
-                >
-                  {{ action.label }}
-                </UButton>
-              </div>
-
-              <div
-                v-else-if="order.status === 'delivered'"
-                class="p-4 bg-green-50 dark:bg-green-950 rounded-xl border-2 border-green-200 dark:border-green-800"
-              >
-                <div class="flex items-center gap-3 text-green-700 dark:text-green-300">
-                  <div class="size-10 rounded-xl bg-green-200 dark:bg-green-800 flex items-center justify-center">
-                    <UIcon
-                      name="i-lucide-check-circle"
-                      class="size-6"
-                    />
+                  <!-- Status actions -->
+                  <div
+                    v-if="getNextStatusActions(order.status).length > 0"
+                    class="flex flex-wrap gap-3"
+                  >
+                    <p class="text-sm font-semibold text-gray-600 dark:text-gray-300 w-full">
+                      Actualizar estado:
+                    </p>
+                    <UButton
+                      v-for="action in getNextStatusActions(order.status)"
+                      :key="action.status"
+                      :color="action.color as any"
+                      variant="soft"
+                      size="lg"
+                      class="hover:scale-105 transition-transform font-semibold"
+                      @click="updateOrderStatus(order, action.status)"
+                    >
+                      {{ action.label }}
+                    </UButton>
                   </div>
-                  <p class="font-semibold text-lg">
-                    Pedido completado
-                  </p>
-                </div>
-              </div>
 
-              <div
-                v-else-if="order.status === 'cancelled'"
-                class="p-4 bg-red-50 dark:bg-red-950 rounded-xl border-2 border-red-200 dark:border-red-800"
-              >
-                <div class="flex items-center gap-3 text-red-700 dark:text-red-300">
-                  <div class="size-10 rounded-xl bg-red-200 dark:bg-red-800 flex items-center justify-center">
-                    <UIcon
-                      name="i-lucide-x-circle"
-                      class="size-6"
-                    />
+                  <div
+                    v-else-if="order.status === 'delivered'"
+                    class="p-4 bg-green-50 dark:bg-green-950 rounded-xl border-2 border-green-200 dark:border-green-800"
+                  >
+                    <div class="flex items-center gap-3 text-green-700 dark:text-green-300">
+                      <div class="size-10 rounded-xl bg-green-200 dark:bg-green-800 flex items-center justify-center">
+                        <UIcon
+                          name="i-lucide-check-circle"
+                          class="size-6"
+                        />
+                      </div>
+                      <p class="font-semibold text-lg">
+                        Pedido completado
+                      </p>
+                    </div>
                   </div>
-                  <p class="font-semibold text-lg">
-                    Pedido cancelado
-                  </p>
+
+                  <div
+                    v-else-if="order.status === 'cancelled'"
+                    class="p-4 bg-red-50 dark:bg-red-950 rounded-xl border-2 border-red-200 dark:border-red-800"
+                  >
+                    <div class="flex items-center gap-3 text-red-700 dark:text-red-300">
+                      <div class="size-10 rounded-xl bg-red-200 dark:bg-red-800 flex items-center justify-center">
+                        <UIcon
+                          name="i-lucide-x-circle"
+                          class="size-6"
+                        />
+                      </div>
+                      <p class="font-semibold text-lg">
+                        Pedido cancelado
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div
-        v-else
-        class="text-center py-16"
-      >
-        <div class="size-24 mx-auto rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900 dark:to-teal-900 flex items-center justify-center mb-6">
-          <UIcon
-            name="i-lucide-shopping-cart"
-            class="size-14 text-emerald-500"
-          />
-        </div>
-        <p class="text-xl font-bold text-gray-900 dark:text-white">
-          No hay pedidos con este estado
-        </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-          Los pedidos aparecerán aquí cuando los clientes realicen compras
-        </p>
+          <div
+            v-else
+            class="text-center py-16"
+          >
+            <div class="size-24 mx-auto rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900 dark:to-teal-900 flex items-center justify-center mb-6">
+              <UIcon
+                name="i-lucide-shopping-cart"
+                class="size-14 text-emerald-500"
+              />
+            </div>
+            <p class="text-xl font-bold text-gray-900 dark:text-white">
+              No hay pedidos con este estado
+            </p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              Los pedidos aparecerán aquí cuando los clientes realicen compras
+            </p>
+          </div>
+        </UCard>
       </div>
-    </UCard>
-    </div>
-
     </template>
   </UDashboardPanel>
 </template>

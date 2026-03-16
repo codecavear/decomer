@@ -4,7 +4,7 @@ import { pushSubscriptions } from '../../database/schema'
 import { getDb } from '../../utils/db'
 
 const unsubscribeSchema = z.object({
-  endpoint: z.string().url(),
+  endpoint: z.string().url()
 })
 
 export default defineEventHandler(async (event) => {

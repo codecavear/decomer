@@ -1,4 +1,15 @@
 <script setup lang="ts">
+interface Product {
+  id: string
+  name: string
+  description: string
+  price: number
+  imageUrl?: string
+  imagePublicId?: string
+  category: string
+  isAvailable: boolean
+}
+
 definePageMeta({
   layout: 'panel',
   middleware: 'auth'
@@ -14,7 +25,7 @@ if (!store?.id) {
 const storeId = store!.id
 
 // Load products for this store
-const { data: productsData, refresh: refreshProducts } = await useFetch<{ products: any[] }>(
+const { data: productsData, refresh: refreshProducts } = await useFetch<{ products: Product[] }>(
   () => `/api/products?storeId=${storeId}&available=false`,
   { default: () => ({ products: [] }) }
 )
@@ -22,7 +33,7 @@ const products = computed(() => productsData.value?.products ?? [])
 
 // Slideover state
 const isSlideoverOpen = ref(false)
-const editingProduct = ref<any>(null)
+const editingProduct = ref<Product | null>(null)
 
 // Product form
 const productForm = reactive({
@@ -74,7 +85,7 @@ const openAddSlideover = () => {
   isSlideoverOpen.value = true
 }
 
-const openEditSlideover = (product: any) => {
+const openEditSlideover = (product: Product) => {
   editingProduct.value = product
   productForm.name = product.name
   productForm.description = product.description ?? ''
@@ -105,7 +116,7 @@ const handleImageSelect = (event: Event) => {
   }
 }
 
-const uploadImage = async (): Promise<{ url: string; publicId: string } | null> => {
+const uploadImage = async (): Promise<{ url: string, publicId: string } | null> => {
   if (!productForm.image) return null
 
   isUploading.value = true
@@ -180,8 +191,9 @@ const saveProduct = async () => {
     }
     await refreshProducts()
     isSlideoverOpen.value = false
-  } catch (e: any) {
-    productToast.add({ title: 'Error', description: e?.data?.message || 'No se pudo guardar.', color: 'error' })
+  } catch (e: unknown) {
+    const error = e as { data?: { message?: string } }
+    productToast.add({ title: 'Error', description: error?.data?.message || 'No se pudo guardar.', color: 'error' })
   } finally {
     isSaving.value = false
   }
@@ -193,12 +205,13 @@ const deleteProduct = async (productId: string) => {
     await $fetch(`/api/products/${productId}`, { method: 'DELETE' })
     productToast.add({ title: 'Producto eliminado', color: 'success' })
     await refreshProducts()
-  } catch (e: any) {
-    productToast.add({ title: 'Error', description: e?.data?.message || 'No se pudo eliminar.', color: 'error' })
+  } catch (e: unknown) {
+    const error = e as { data?: { message?: string } }
+    productToast.add({ title: 'Error', description: error?.data?.message || 'No se pudo eliminar.', color: 'error' })
   }
 }
 
-const toggleAvailability = async (product: any) => {
+const toggleAvailability = async (product: Product) => {
   const newValue = !product.isAvailable
   try {
     await $fetch(`/api/products/${product.id}`, {
@@ -207,8 +220,9 @@ const toggleAvailability = async (product: any) => {
     })
     product.isAvailable = newValue
     productToast.add({ title: newValue ? 'Producto disponible' : 'Producto no disponible', color: 'success' })
-  } catch (e: any) {
-    productToast.add({ title: 'Error', description: e?.data?.message || 'No se pudo actualizar.', color: 'error' })
+  } catch (e: unknown) {
+    const error = e as { data?: { message?: string } }
+    productToast.add({ title: 'Error', description: error?.data?.message || 'No se pudo actualizar.', color: 'error' })
   } finally {
     await refreshProducts()
   }
@@ -269,7 +283,10 @@ const toggleAvailability = async (product: any) => {
           </template>
 
           <template #category-data="{ row }">
-            <UBadge color="neutral" variant="soft">
+            <UBadge
+              color="neutral"
+              variant="soft"
+            >
               {{ row.category }}
             </UBadge>
           </template>
@@ -305,9 +322,15 @@ const toggleAvailability = async (product: any) => {
           </template>
         </UTable>
 
-        <div v-else class="text-center py-16">
+        <div
+          v-else
+          class="text-center py-16"
+        >
           <div class="size-24 mx-auto rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900 dark:to-teal-900 flex items-center justify-center mb-6">
-            <UIcon name="i-lucide-package" class="size-14 text-emerald-500" />
+            <UIcon
+              name="i-lucide-package"
+              class="size-14 text-emerald-500"
+            />
           </div>
           <p class="text-xl font-bold text-highlighted">
             No hay productos agregados
@@ -338,7 +361,10 @@ const toggleAvailability = async (product: any) => {
 
         <template #body>
           <div class="space-y-4">
-            <UFormField label="Nombre del producto" required>
+            <UFormField
+              label="Nombre del producto"
+              required
+            >
               <UInput
                 v-model="productForm.name"
                 placeholder="Ej: Pollo al limón con quinoa"
@@ -354,7 +380,10 @@ const toggleAvailability = async (product: any) => {
               />
             </UFormField>
 
-            <UFormField label="Precio" required>
+            <UFormField
+              label="Precio"
+              required
+            >
               <UInput
                 v-model="productForm.price"
                 type="number"
@@ -363,7 +392,10 @@ const toggleAvailability = async (product: any) => {
               />
             </UFormField>
 
-            <UFormField label="Categoria" required>
+            <UFormField
+              label="Categoria"
+              required
+            >
               <USelect
                 v-model="productForm.category"
                 :items="categories"
@@ -384,8 +416,14 @@ const toggleAvailability = async (product: any) => {
                   class="w-full h-40 rounded-lg border-2 border-dashed border-default flex items-center justify-center cursor-pointer hover:border-primary transition-colors"
                   @click="triggerFileInput"
                 >
-                  <div v-if="!imagePreview" class="text-center">
-                    <UIcon name="i-lucide-image" class="size-10 text-muted mx-auto mb-2" />
+                  <div
+                    v-if="!imagePreview"
+                    class="text-center"
+                  >
+                    <UIcon
+                      name="i-lucide-image"
+                      class="size-10 text-muted mx-auto mb-2"
+                    />
                     <p class="text-sm text-muted">
                       Haz clic para subir una imagen
                     </p>
@@ -397,13 +435,19 @@ const toggleAvailability = async (product: any) => {
                     class="h-full w-full object-contain rounded-lg"
                   >
                 </div>
-                <p v-if="isUploading" class="text-sm text-primary">
+                <p
+                  v-if="isUploading"
+                  class="text-sm text-primary"
+                >
                   Subiendo imagen...
                 </p>
               </div>
             </UFormField>
 
-            <USwitch v-model="productForm.isAvailable" label="Producto disponible" />
+            <USwitch
+              v-model="productForm.isAvailable"
+              label="Producto disponible"
+            />
           </div>
         </template>
 
@@ -430,4 +474,3 @@ const toggleAvailability = async (product: any) => {
     </template>
   </UDashboardPanel>
 </template>
-

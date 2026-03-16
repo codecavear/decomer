@@ -265,7 +265,7 @@ watch(currentStep, async (step) => {
   await nextTick()
   if (autocompleteInstance) return
   const comp = addressInputRef.value
-  const el = (comp as any)?.$el ?? comp
+  const el = (comp as { $el?: HTMLElement })?.$el ?? comp
   const input = el instanceof HTMLInputElement ? el : el?.querySelector?.('input')
   if (input) {
     autocompleteInstance = await attachAutocomplete(input, onAddressSelect)
@@ -342,7 +342,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
       <UDashboardToolbar>
         <template #left>
           <div class="flex items-center gap-2 w-full">
-            <template v-for="step in totalSteps" :key="step">
+            <template
+              v-for="step in totalSteps"
+              :key="step"
+            >
               <div
                 :class="[
                   'flex items-center justify-center size-8 rounded-full text-sm font-semibold transition-colors shrink-0',
@@ -374,12 +377,18 @@ watch(() => [formData.latitude, formData.longitude], () => {
 
     <template #body>
       <!-- Step 1: Basic Info -->
-      <div v-if="currentStep === 1" class="space-y-6 max-w-2xl">
+      <div
+        v-if="currentStep === 1"
+        class="space-y-6 max-w-2xl"
+      >
         <h2 class="text-xl font-bold">
           Informacion Basica
         </h2>
 
-        <UFormField label="Nombre de la tienda" required>
+        <UFormField
+          label="Nombre de la tienda"
+          required
+        >
           <UInput
             v-model="formData.name"
             placeholder="Mi DeComer"
@@ -394,7 +403,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
           />
         </UFormField>
 
-        <UFormField label="Tipo de Tienda" required>
+        <UFormField
+          label="Tipo de Tienda"
+          required
+        >
           <div class="grid sm:grid-cols-2 gap-3">
             <label
               v-for="storeType in storeTypes"
@@ -410,7 +422,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
               </URadioGroup>
               <div class="flex-1">
                 <div class="flex items-center gap-2">
-                  <UIcon :name="storeType.icon" class="size-5 text-primary" />
+                  <UIcon
+                    :name="storeType.icon"
+                    class="size-5 text-primary"
+                  />
                   <span class="font-medium">{{ storeType.label }}</span>
                 </div>
                 <p class="text-sm text-muted mt-1">{{ storeType.description }}</p>
@@ -419,7 +434,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
           </div>
         </UFormField>
 
-        <UFormField label="Categorias" required>
+        <UFormField
+          label="Categorias"
+          required
+        >
           <div class="grid sm:grid-cols-2 gap-3">
             <label
               v-for="category in categories"
@@ -431,7 +449,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
                 :model-value="formData.categories.includes(category.slug)"
                 @update:model-value="toggleCategory(category.slug)"
               />
-              <UIcon :name="category.icon || 'i-lucide-leaf'" class="size-5 text-primary" />
+              <UIcon
+                :name="category.icon || 'i-lucide-leaf'"
+                class="size-5 text-primary"
+              />
               <span class="font-medium">{{ category.name }}</span>
             </label>
           </div>
@@ -439,7 +460,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
       </div>
 
       <!-- Step 2: Location -->
-      <div v-else-if="currentStep === 2" class="space-y-6 max-w-2xl">
+      <div
+        v-else-if="currentStep === 2"
+        class="space-y-6 max-w-2xl"
+      >
         <h2 class="text-xl font-bold">
           Donde esta tu tienda?
         </h2>
@@ -453,25 +477,37 @@ watch(() => [formData.latitude, formData.longitude], () => {
           autocomplete="off"
         />
 
-        <div v-if="hasCoords" class="space-y-4">
+        <div
+          v-if="hasCoords"
+          class="space-y-4"
+        >
           <div
             ref="locationMapEl"
             class="w-full h-56 rounded-xl overflow-hidden"
           />
 
           <div class="flex items-center gap-2 text-sm text-muted">
-            <UIcon name="i-lucide-map-pin" class="size-4 text-primary shrink-0" />
+            <UIcon
+              name="i-lucide-map-pin"
+              class="size-4 text-primary shrink-0"
+            />
             <span>{{ formData.address }}, {{ formData.city }}, {{ formData.country }}</span>
           </div>
 
           <UFormField label="Depto / Piso (opcional)">
-            <UInput v-model="formData.apartment" placeholder="Ej: 2 B" />
+            <UInput
+              v-model="formData.apartment"
+              placeholder="Ej: 2 B"
+            />
           </UFormField>
         </div>
       </div>
 
       <!-- Step 3: Schedule -->
-      <div v-else-if="currentStep === 3" class="space-y-6 max-w-2xl">
+      <div
+        v-else-if="currentStep === 3"
+        class="space-y-6 max-w-2xl"
+      >
         <h2 class="text-xl font-bold">
           Horarios de Atencion
         </h2>
@@ -486,24 +522,45 @@ watch(() => [formData.latitude, formData.longitude], () => {
               {{ dayNames[schedule.dayOfWeek] }}
             </div>
 
-            <UCheckbox v-model="schedule.isClosed" label="Cerrado" />
+            <UCheckbox
+              v-model="schedule.isClosed"
+              label="Cerrado"
+            />
 
-            <div v-if="!schedule.isClosed" class="flex items-center gap-2 flex-1">
-              <UInput v-model="schedule.openTime" type="time" size="sm" />
+            <div
+              v-if="!schedule.isClosed"
+              class="flex items-center gap-2 flex-1"
+            >
+              <UInput
+                v-model="schedule.openTime"
+                type="time"
+                size="sm"
+              />
               <span class="text-muted">a</span>
-              <UInput v-model="schedule.closeTime" type="time" size="sm" />
+              <UInput
+                v-model="schedule.closeTime"
+                type="time"
+                size="sm"
+              />
             </div>
           </div>
         </div>
       </div>
 
       <!-- Step 4: Contacts -->
-      <div v-else-if="currentStep === 4" class="space-y-6 max-w-2xl">
+      <div
+        v-else-if="currentStep === 4"
+        class="space-y-6 max-w-2xl"
+      >
         <div class="flex items-center justify-between">
           <h2 class="text-xl font-bold">
             Informacion de Contacto
           </h2>
-          <UButton icon="i-lucide-plus" variant="outline" @click="addContact">
+          <UButton
+            icon="i-lucide-plus"
+            variant="outline"
+            @click="addContact"
+          >
             Agregar
           </UButton>
         </div>
@@ -514,7 +571,10 @@ watch(() => [formData.latitude, formData.longitude], () => {
             :key="index"
             class="flex items-end gap-4 p-4 rounded-lg border border-default"
           >
-            <UFormField label="Tipo" class="flex-1">
+            <UFormField
+              label="Tipo"
+              class="flex-1"
+            >
               <USelect
                 v-model="contact.type"
                 :items="contactTypes"
@@ -523,14 +583,20 @@ watch(() => [formData.latitude, formData.longitude], () => {
               />
             </UFormField>
 
-            <UFormField label="Valor" class="flex-[2]">
+            <UFormField
+              label="Valor"
+              class="flex-[2]"
+            >
               <UInput
                 v-model="contact.value"
                 :placeholder="contact.type === 'email' ? 'correo@ejemplo.com' : contact.type === 'phone' || contact.type === 'whatsapp' ? '+54 9 11 1234-5678' : '@usuario'"
               />
             </UFormField>
 
-            <UCheckbox v-model="contact.isPrimary" label="Principal" />
+            <UCheckbox
+              v-model="contact.isPrimary"
+              label="Principal"
+            />
 
             <UButton
               icon="i-lucide-trash-2"
@@ -576,4 +642,3 @@ watch(() => [formData.latitude, formData.longitude], () => {
     </template>
   </UDashboardPanel>
 </template>
-

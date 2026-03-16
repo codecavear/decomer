@@ -6,7 +6,7 @@ import { getDb } from '../../utils/db'
 const subscribeSchema = z.object({
   endpoint: z.string().url(),
   p256dh: z.string().min(1),
-  auth: z.string().min(1),
+  auth: z.string().min(1)
 })
 
 export default defineEventHandler(async (event) => {
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
       userId: user.id,
       endpoint: body.endpoint,
       p256dh: body.p256dh,
-      auth: body.auth,
+      auth: body.auth
     })
   }
 
