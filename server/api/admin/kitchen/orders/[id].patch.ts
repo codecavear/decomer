@@ -1,8 +1,9 @@
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { getDb } from '../../../../utils/db'
-import { orders, orderStatusEnum } from '../../../../database/schema/orders'
+import { orders, orderStatusEnum, orderItems } from '../../../../database/schema/orders'
 import { sendOrderStatusNotification } from '../../../../utils/push-notifications'
+import { notifyOrderStatus } from '../../../../utils/order-notifications'
 
 const updateOrderSchema = z.object({
   status: z.enum(orderStatusEnum)
@@ -52,8 +53,25 @@ export default defineEventHandler(async (event) => {
   // Send push notification to user about status change
   try {
     await sendOrderStatusNotification(updatedOrder.userId, updatedOrder.id, status)
-  } catch {
+  } catch (error) {
     console.error('Failed to send push notification:', error)
+    // Don't fail the request if notification fails
+  }
+
+  // Send WhatsApp/SMS notification
+  try {
+    // Fetch order items for notification
+    const items = await db
+      .select({ quantity: orderItems.quantity })
+      .from(orderItems)
+      .where(eq(orderItems.orderId, orderId))
+
+    await notifyOrderStatus({
+      ...updatedOrder,
+      items
+    }, status)
+  } catch (error) {
+    console.error('Failed to send WhatsApp/SMS notification:', error)
     // Don't fail the request if notification fails
   }
 

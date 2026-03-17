@@ -81,6 +81,11 @@ export default defineNuxtConfig({
         clientSecret: process.env.GOOGLE_CLIENT_SECRET
       }
     },
+    // Twilio (SMS/WhatsApp)
+    twilioAccountSid: process.env.TWILIO_ACCOUNT_SID,
+    twilioAuthToken: process.env.TWILIO_AUTH_TOKEN,
+    twilioPhoneNumber: process.env.TWILIO_PHONE_NUMBER,
+    twilioWhatsAppNumber: process.env.TWILIO_WHATSAPP_NUMBER,
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://decomer.codecave.ar',
       googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY,
