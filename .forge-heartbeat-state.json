@@ -1,22 +1,28 @@
 {
-  "lastCheck": "2026-03-16T14:05:00.000Z",
-  "tasksCompleted": ["DECOMER-11", "DECOMER-12"],
-  "tasksBlocked": ["DECOMER-9"],
+  "lastCheck": "2026-03-17T05:19:00.000Z",
+  "tasksCompleted": ["DECOMER-11", "DECOMER-23"],
+  "tasksBlocked": ["DECOMER-9", "DECOMER-15"],
+  "tasksPending": [],
   "completedWork": {
     "DECOMER-11": {
+      "habitoId": "6be57d45-bd6f-44c8-8301-9476523351a7",
       "status": "in_review",
       "commit": "4434faa",
       "timestamp": "2026-03-16T14:05:00.000Z",
+      "syncedToHabito": "2026-03-17T05:19:32.000Z",
       "description": "Enhanced kitchen panel: tabs navigation, grouped-products endpoint, viandas summary, menu grid",
       "files": [
         "app/pages/admin/kitchen.vue",
         "server/api/admin/kitchen/grouped-products.get.ts"
-      ]
+      ],
+      "docs": "/root/clawd/decomer/KITCHEN_ADMIN_PANEL.md"
     },
-    "DECOMER-12": {
+    "DECOMER-23": {
+      "habitoId": "5feb515a-3934-4538-89a4-ba2a3523268f",
       "status": "in_review",
       "commit": "cffe079",
       "timestamp": "2026-03-16T14:05:00.000Z",
+      "syncedToHabito": "2026-03-17T05:19:37.000Z",
       "description": "Delivery tracking with push notifications: en_route status, push subscription endpoints, admin panel updates",
       "files": [
         "server/database/schema/orders.ts",
@@ -25,11 +31,12 @@
         "server/api/push/unsubscribe.post.ts",
         "server/api/push/vapid-key.get.ts",
         "server/api/admin/kitchen/orders/[id].patch.ts",
-        "app/pages/admin/kitchen.vue",
-        "DELIVERY_TRACKING.md"
-      ]
+        "app/pages/admin/kitchen.vue"
+      ],
+      "docs": "/root/clawd/decomer/DELIVERY_TRACKING.md"
     },
     "DECOMER-9": {
+      "habitoId": "92303009-2e5d-44eb-bb5f-635310aac3ad",
       "status": "blocked",
       "commit": "c9a658c",
       "timestamp": "2026-03-16T14:05:00.000Z",
@@ -43,7 +50,16 @@
         "Phone number decision",
         "Notification frequency limits"
       ]
+    },
+    "DECOMER-15": {
+      "habitoId": "07324f76-f106-44cb-9171-685d7176d98e",
+      "status": "blocked",
+      "timestamp": "2026-03-17T05:19:00.000Z",
+      "description": "Domain registration decomer.com.ar - pending name decision",
+      "blockers": [
+        "Waiting for final domain name confirmation from Oso"
+      ]
     }
   },
-  "summary": "2 features completed and in review, 1 blocked pending Oso approval. All commits pushed, Railway auto-deploy in progress."
+  "summary": "✅ 2 features in_review (DECOMER-11, DECOMER-23) - Habito synced successfully. 🚧 2 blocked (DECOMER-9, DECOMER-15). All code pushed and deployed. Ready for Docta QA."
 }
