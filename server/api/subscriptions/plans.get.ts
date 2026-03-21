@@ -1,14 +1,11 @@
-import { eq } from 'drizzle-orm'
-import { subscriptionPlans } from '../../database/schema'
-
 export default defineEventHandler(async () => {
-  const db = getDb()
+  const db = useDrizzle()
 
   const plans = await db
     .select()
-    .from(subscriptionPlans)
-    .where(eq(subscriptionPlans.isActive, true))
-    .orderBy(subscriptionPlans.displayOrder)
+    .from(tables.mealPlans)
+    .where(eq(tables.mealPlans.isActive, true))
+    .orderBy(asc(tables.mealPlans.displayOrder))
 
   return plans
 })

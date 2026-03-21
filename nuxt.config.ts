@@ -86,8 +86,11 @@ export default defineNuxtConfig({
     twilioAuthToken: process.env.TWILIO_AUTH_TOKEN,
     twilioPhoneNumber: process.env.TWILIO_PHONE_NUMBER,
     twilioWhatsAppNumber: process.env.TWILIO_WHATSAPP_NUMBER,
+    // MercadoPago
+    mercadoPagoAccessToken: process.env.MERCADOPAGO_ACCESS_TOKEN,
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://decomer.codecave.ar',
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL || 'https://decomer.codecave.ar',
       googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY,
       // VAPID public key for Web Push (set VAPID_PUBLIC_KEY in env)
       vapidPublicKey: process.env.VAPID_PUBLIC_KEY || ''
