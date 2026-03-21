@@ -14,8 +14,10 @@ export const users = pgTable('decomer_users', {
   deliveryAddress: text('delivery_address'),
   deliveryNeighborhood: text('delivery_neighborhood'),
   deliveryNotes: text('delivery_notes'),
-  allergies: jsonb('allergies').$type<string[]>().default([]),
-  preferences: jsonb('preferences').$type<string[]>().default([]),
+  // Dietary restrictions and preferences
+  allergies: jsonb('allergies').$type<string[]>().default([]), // e.g., ["gluten", "lactose", "nuts"]
+  dietaryPreferences: jsonb('dietary_preferences').$type<string[]>().default([]), // e.g., ["vegetarian", "low_carb"]
+  dislikedIngredients: jsonb('disliked_ingredients').$type<string[]>().default([]), // e.g., ["cilantro", "mushrooms"]
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })
